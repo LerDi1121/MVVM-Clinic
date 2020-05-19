@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="35211f202eb248789f45ef3b7d0f14d7" Name="Diagram1" >
+        <EntityTypeShape EntityType="ClinicModel.Klinika" Width="1.5" PointX="5.5" PointY="0.5" />
+        <EntityTypeShape EntityType="ClinicModel.Departman" Width="1.5" PointX="6.375" PointY="3.5" />
+        <EntityTypeShape EntityType="ClinicModel.Doktor" Width="1.5" PointX="3.875" PointY="3.5" />
+        <EntityTypeShape EntityType="ClinicModel.Ugovor" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClinicModel.Zdravstveni_Karton" Width="2" PointX="8.375" PointY="1.25" />
+        <EntityTypeShape EntityType="ClinicModel.Pacijent" Width="1.5" PointX="10.375" PointY="4.125" />
+        <EntityTypeShape EntityType="ClinicModel.Pregled" Width="1.5" PointX="1.5" PointY="3.875" />
+        <EntityTypeShape EntityType="ClinicModel.Terapija_Specijaliste" Width="1.5" PointX="2.125" PointY="9.125" />
+        <EntityTypeShape EntityType="ClinicModel.Dijagnoza_Specijaliste" Width="1.875" PointX="6.75" PointY="9.5" />
+        <EntityTypeShape EntityType="ClinicModel.Terapija" Width="1.5" PointX="10.75" PointY="10.375" />
+        <EntityTypeShape EntityType="ClinicModel.Ishod_Pregleda" Width="1.5" PointX="11.125" PointY="8.125" />
+        <EntityTypeShape EntityType="ClinicModel.Dijagnoza" Width="1.5" PointX="14" PointY="5.75" />
+        <EntityTypeShape EntityType="ClinicModel.Uput" Width="1.5" PointX="14.75" PointY="7.875" />
+        <InheritanceConnector EntityType="ClinicModel.Dijagnoza" />
+        <InheritanceConnector EntityType="ClinicModel.Uput" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

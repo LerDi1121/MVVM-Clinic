@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="ClinicModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ClinicModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ClinicModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ClinicModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Klinikas" EntityType="ClinicModel.Klinika" />
+          <EntitySet Name="Departmen" EntityType="ClinicModel.Departman" />
+          <EntitySet Name="Doktors" EntityType="ClinicModel.Doktor" />
+          <EntitySet Name="Ugovors" EntityType="ClinicModel.Ugovor" />
+          <EntitySet Name="Zdravstveni_Karton" EntityType="ClinicModel.Zdravstveni_Karton" />
+          <EntitySet Name="Pacijents" EntityType="ClinicModel.Pacijent" />
+          <EntitySet Name="Pregleds" EntityType="ClinicModel.Pregled" />
+          <EntitySet Name="Terapija_Specijaliste" EntityType="ClinicModel.Terapija_Specijaliste" />
+          <EntitySet Name="Dijagnoza_Specijaliste" EntityType="ClinicModel.Dijagnoza_Specijaliste" />
+          <EntitySet Name="Terapijas" EntityType="ClinicModel.Terapija" />
+          <EntitySet Name="Ishod_Pregleda" EntityType="ClinicModel.Ishod_Pregleda" />
+          <EntitySet Name="Dijagnozas" EntityType="ClinicModel.Dijagnoza" />
+          <EntitySet Name="Uputs" EntityType="ClinicModel.Uput" />
+        </EntityContainer>
+        <EntityType Name="Klinika">
+          <Key>
+            <PropertyRef Name="Klinika_Id" />
+          </Key>
+          <Property Name="Klinika_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" />
+          <Property Name="Grad" Type="String" Nullable="false" />
+          <Property Name="Ulica" Type="String" Nullable="false" />
+          <Property Name="Broj" Type="String" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departman">
+          <Key>
+            <PropertyRef Name="Departman_Id" />
+          </Key>
+          <Property Name="Departman_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" />
+          <Property Name="Sprat" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doktor">
+          <Key>
+            <PropertyRef Name="Doktor_Id" />
+          </Key>
+          <Property Name="Doktor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Korisnicko_Ime" Type="String" Nullable="false" />
+          <Property Name="Lozinka" Type="String" Nullable="false" />
+          <Property Name="Ime" Type="String" Nullable="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" />
+          <Property Name="Specijalizacija" Type="String" Nullable="false" />
+          <Property Name="Klinika_Id" Type="Int32" Nullable="false" />
+          <Property Name="Departman_Id" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ugovor">
+          <Key>
+            <PropertyRef Name="Ugovor_Id" />
+          </Key>
+          <Property Name="Ugovor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vrsta_Ugovora" Type="String" Nullable="false" />
+          <Property Name="Datum_Vazenja" Type="DateTime" Nullable="false" />
+          <Property Name="Specijalizacija" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zdravstveni_Karton">
+          <Key>
+            <PropertyRef Name="Karton_Id" />
+          </Key>
+          <Property Name="Karton_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" Nullable="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" />
+          <Property Name="JMBG" Type="String" Nullable="false" />
+          <Property Name="Evidencija" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacijent">
+          <Key>
+            <PropertyRef Name="Pacijent_Id" />
+          </Key>
+          <Property Name="Pacijent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Korisnicko_Ime" Type="String" Nullable="false" />
+          <Property Name="Lozinka" Type="String" Nullable="false" />
+          <Property Name="Ime" Type="String" Nullable="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Grad" Type="String" Nullable="false" />
+          <Property Name="Ulica" Type="String" Nullable="false" />
+          <Property Name="Broj" Type="String" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" />
+          <Property Name="Hitan_Kontakt" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pregled">
+          <Key>
+            <PropertyRef Name="Pregled_Id" />
+          </Key>
+          <Property Name="Pregled_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doktor_id" Type="String" Nullable="false" />
+          <Property Name="Vrsta" Type="String" Nullable="false" />
+          <Property Name="Opis" Type="String" Nullable="false" />
+          <Property Name="Vreme" Type="String" Nullable="false" />
+          <Property Name="Zakazan" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terapija_Specijaliste">
+          <Key>
+            <PropertyRef Name="Terapija_Id" />
+          </Key>
+          <Property Name="Terapija_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" />
+          <Property Name="Opis" Type="String" Nullable="false" />
+          <Property Name="Vrsta_Terapije" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dijagnoza_Specijaliste">
+          <Key>
+            <PropertyRef Name="Dijagnoza_Id" />
+          </Key>
+          <Property Name="Dijagnoza_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" />
+          <Property Name="Opis" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terapija">
+          <Key>
+            <PropertyRef Name="Terapija_Id" />
+          </Key>
+          <Property Name="Terapija_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" />
+          <Property Name="Opis" Type="String" Nullable="false" />
+          <Property Name="Vrsta_Terapije" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="Ishod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" />
+          <Property Name="Opis" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dijagnoza">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Uput">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="ClinicModel" />
+        <Alias Key="Target" Value="ClinicModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="ClinicModelContainer" StorageEntityContainer="ClinicModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
