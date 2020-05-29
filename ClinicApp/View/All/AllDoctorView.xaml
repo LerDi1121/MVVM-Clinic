@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="ClinicApp.View.All.AllDoctorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicApp.View.All"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <!--Dvije kolone-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="460"/>
+            <ColumnDefinition Width="390"/>
+        </Grid.ColumnDefinitions>
+        <!--Tabela-->
+        <Border Name="Border1" BorderBrush="#009999" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="460" Height="480">
+            <Grid Grid.Column="0" Background="White" Height="480" >
+                <Label Content="All doctors" Margin="0,10,0,0"  HorizontalContentAlignment="Center" Height="50" VerticalAlignment="Top" Width="460" HorizontalAlignment="Left" FontFamily="Segoe UI" Foreground="#009999" FontSize="28"/>
+                <Button Content="Add"    HorizontalAlignment="Left" Height="30" Margin="0,370,0,0"   VerticalAlignment="Top" Width="150" FontFamily="Segoe UI" Background="#009999" Foreground="White" FontSize="18" Command="{Binding NavCommand}" CommandParameter="Add"/>
+                <Button Content="Change" HorizontalAlignment="Left" Height="30" Margin="154,370,0,0" VerticalAlignment="Top" Width="150" FontFamily="Segoe UI" Background="#009999" Foreground="White" FontSize="18" Command="{Binding NavCommand}" CommandParameter="Change"/>
+                <Button Content="Remove" HorizontalAlignment="Left" Height="30" Margin="308,370,0,0" VerticalAlignment="Top" Width="150" FontFamily="Segoe UI" Background="#009999" Foreground="White" FontSize="18" Command="{Binding RemovePlayListCommand}"/>
+                <DataGrid ItemsSource="{Binding PlayLists, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedIndex="{Binding SelectedDoctorIndex}"
+                      Background="{x:Null}"                        
+                      RowHeight="26"
+                      ColumnHeaderHeight="32"
+                      HorizontalGridLinesBrush="#009999"
+                      VerticalGridLinesBrush="#009999"
+                      FontSize="18"
+                      Foreground="White"                    
+                      FontFamily="Segoe UI"
+                      CanUserAddRows="false"
+					  CanUserDeleteRows="False"
+					  SelectionMode="Single"
+					  CanUserResizeColumns="False"
+					  IsReadOnly="true"
+					  AutoGenerateColumns="False"                        
+					  HeadersVisibility="Column" 
+                      Margin="0,68,0,113" >
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#009999"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="   Name"        Width="100" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged,        Mode=TwoWay}" Foreground="#009999"/>
+                        <DataGridTextColumn Header="Last name"      Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#009999"/>
+                        <DataGridTextColumn Header="Specialization" Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#009999"/>
+                        <DataGridTextColumn Header="     Contact"   Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#009999"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

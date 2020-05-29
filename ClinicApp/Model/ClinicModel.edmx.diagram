@@ -4,22 +4,46 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="35211f202eb248789f45ef3b7d0f14d7" Name="Diagram1" >
-        <EntityTypeShape EntityType="ClinicModel.Klinika" Width="1.5" PointX="5.5" PointY="0.5" />
-        <EntityTypeShape EntityType="ClinicModel.Departman" Width="1.5" PointX="6.375" PointY="3.5" />
-        <EntityTypeShape EntityType="ClinicModel.Doktor" Width="1.5" PointX="3.875" PointY="3.5" />
-        <EntityTypeShape EntityType="ClinicModel.Ugovor" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="ClinicModel.Zdravstveni_Karton" Width="2" PointX="8.375" PointY="1.25" />
-        <EntityTypeShape EntityType="ClinicModel.Pacijent" Width="1.5" PointX="10.375" PointY="4.125" />
-        <EntityTypeShape EntityType="ClinicModel.Pregled" Width="1.5" PointX="1.5" PointY="3.875" />
-        <EntityTypeShape EntityType="ClinicModel.Terapija_Specijaliste" Width="1.5" PointX="2.125" PointY="9.125" />
-        <EntityTypeShape EntityType="ClinicModel.Dijagnoza_Specijaliste" Width="1.875" PointX="6.75" PointY="9.5" />
-        <EntityTypeShape EntityType="ClinicModel.Terapija" Width="1.5" PointX="10.75" PointY="10.375" />
-        <EntityTypeShape EntityType="ClinicModel.Ishod_Pregleda" Width="1.5" PointX="11.125" PointY="8.125" />
-        <EntityTypeShape EntityType="ClinicModel.Dijagnoza" Width="1.5" PointX="14" PointY="5.75" />
-        <EntityTypeShape EntityType="ClinicModel.Uput" Width="1.5" PointX="14.75" PointY="7.875" />
+      <Diagram DiagramId="35211f202eb248789f45ef3b7d0f14d7" Name="Diagram1" ZoomLevel="80" >
+        <EntityTypeShape EntityType="ClinicModel.Klinika" Width="1.75" PointX="6.875" PointY="0.5" />
+        <EntityTypeShape EntityType="ClinicModel.Departman" Width="2" PointX="6.75" PointY="6" />
+        <EntityTypeShape EntityType="ClinicModel.Doktor" Width="1.875" PointX="1.375" PointY="3.25" />
+        <EntityTypeShape EntityType="ClinicModel.Ugovor" Width="1.875" PointX="4.125" PointY="0.5" />
+        <EntityTypeShape EntityType="ClinicModel.Zdravstveni_Karton" Width="2" PointX="9.375" PointY="0.5" />
+        <EntityTypeShape EntityType="ClinicModel.Pacijent" Width="2.5" PointX="12.125" PointY="3.25" />
+        <EntityTypeShape EntityType="ClinicModel.Pregled" Width="2.875" PointX="0.5" PointY="12" />
+        <EntityTypeShape EntityType="ClinicModel.Terapija_Specijaliste" Width="1.875" PointX="0.625" PointY="16.375" />
+        <EntityTypeShape EntityType="ClinicModel.Dijagnoza_Specijaliste" Width="2.25" PointX="3.375" PointY="15.375" />
+        <EntityTypeShape EntityType="ClinicModel.Terapija" Width="1.5" PointX="9" PointY="16.625" />
+        <EntityTypeShape EntityType="ClinicModel.Ishod_Pregleda" Width="2.25" PointX="7.25" PointY="12" />
+        <EntityTypeShape EntityType="ClinicModel.Dijagnoza" Width="1.625" PointX="8.875" PointY="14.625" />
+        <EntityTypeShape EntityType="ClinicModel.Uput" Width="2" PointX="6.125" PointY="14.625" />
         <InheritanceConnector EntityType="ClinicModel.Dijagnoza" />
         <InheritanceConnector EntityType="ClinicModel.Uput" />
+        <EntityTypeShape EntityType="ClinicModel.Klinika_Departman" Width="2" PointX="6.75" PointY="3.375" />
+        <EntityTypeShape EntityType="ClinicModel.Pacijent_Departman" Width="1.875" PointX="9.5" PointY="3.25" />
+        <EntityTypeShape EntityType="ClinicModel.Doktor_Departman" Width="1.875" PointX="4.125" PointY="3.25" />
+        <EntityTypeShape EntityType="ClinicModel.Doktor_opste_prakse_Pregled" Width="2.5" PointX="0.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.Doktor_op_pr_Pregled_Pacijent" Width="2.625" PointX="6.5" PointY="8.875" />
+        <EntityTypeShape EntityType="ClinicModel.Doktor_specijalista_Uput" Width="2.75" PointX="3.75" PointY="12" />
+        <AssociationConnector Association="ClinicModel.Doktor_DepartmanDoktor" />
+        <AssociationConnector Association="ClinicModel.KlinikaKlinika_Departman" />
+        <AssociationConnector Association="ClinicModel.Zdravstveni_KartonPacijent_Departman" />
+        <AssociationConnector Association="ClinicModel.Pacijent_DepartmanPacijent" />
+        <AssociationConnector Association="ClinicModel.Doktor_specijalista_UputDijagnoza_Specijaliste" />
+        <AssociationConnector Association="ClinicModel.Dijagnoza_SpecijalisteTerapija_Specijaliste" />
+        <AssociationConnector Association="ClinicModel.Doktor_specijalista_UputUput" />
+        <AssociationConnector Association="ClinicModel.Doktor_pregled_PacijentIshod_Pregleda" />
+        <AssociationConnector Association="ClinicModel.DijagnozaTerapija" />
+        <AssociationConnector Association="ClinicModel.Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" />
+        <AssociationConnector Association="ClinicModel.Klinika_DepartmanDepartman" />
+        <AssociationConnector Association="ClinicModel.Doktor_DepartmanUgovor" />
+        <AssociationConnector Association="ClinicModel.Klinika_DepartmanPacijent_Departman" />
+        <AssociationConnector Association="ClinicModel.PregledDoktor_opste_prakse_Pregled" />
+        <AssociationConnector Association="ClinicModel.Doktor_opste_prakse_PregledDoktor" />
+        <AssociationConnector Association="ClinicModel.Doktor_specijalista_UputDoktor" />
+        <AssociationConnector Association="ClinicModel.Doktor_op_pr_Pregled_PacijentPacijent" />
+        <AssociationConnector Association="ClinicModel.Doktor_DepartmanKlinika_Departman" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
