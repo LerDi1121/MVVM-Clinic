@@ -1,5 +1,4 @@
 ﻿using ClinicApp.Core;
-using ClinicApp.View.Add;
 using ClinicApp.View.All;
 using GalaSoft.MvvmLight.Command;
 using System;

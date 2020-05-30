@@ -1,6 +1,4 @@
 ﻿using ClinicApp.Core;
-using ClinicApp.View.Add;
-using ClinicApp.View.Change;
 using System;
 using System.Collections.Generic;
 using System.Linq;
