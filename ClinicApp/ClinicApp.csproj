@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -89,6 +90,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\BindableBase.cs" />
+    <Compile Include="Core\MyICommand.cs" />
     <Compile Include="Core\ValidationBase.cs" />
     <Compile Include="Core\ValidationErrors.cs" />
     <Compile Include="Model\ClinicModel.Context1.cs">
@@ -109,11 +111,38 @@
     <Compile Include="ViewModel\ReviewOutcomeViewModel.cs" />
     <Compile Include="ViewModel\ReviewViewModel.cs" />
     <Compile Include="ViewModel\TherapyViewModel.cs" />
+    <Compile Include="View\Add\AddDiagnosisView.xaml.cs">
+      <DependentUpon>AddDiagnosisView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Add\AddDoctorView.xaml.cs">
       <DependentUpon>AddDoctorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\All\AllDepartment.xaml.cs">
+      <DependentUpon>AllDepartment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\All\AllDiagnosisView.xaml.cs">
+      <DependentUpon>AllDiagnosisView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\All\AllDoctorView.xaml.cs">
       <DependentUpon>AllDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\All\AllPatientView.xaml.cs">
+      <DependentUpon>AllPatientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\All\AllReviewOutcome.xaml.cs">
+      <DependentUpon>AllReviewOutcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\All\AllReviewView.xaml.cs">
+      <DependentUpon>AllReviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\All\AllTherapyView.xaml.cs">
+      <DependentUpon>AllTherapyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Change\ChangeDiagnosisView.xaml.cs">
+      <DependentUpon>ChangeDiagnosisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Change\ChangeDoctorView.xaml.cs">
+      <DependentUpon>ChangeDoctorView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -127,11 +156,47 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Add\AddDiagnosisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Add\AddDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\All\AllDepartment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\All\AllDiagnosisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\All\AllDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\All\AllPatientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\All\AllReviewOutcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\All\AllReviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\All\AllTherapyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Change\ChangeDiagnosisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Change\ChangeDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

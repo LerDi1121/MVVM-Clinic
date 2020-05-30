@@ -3,60 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:View="clr-namespace:ClinicApp.View.All"
-        xmlns:ViewModel="clr-namespace:ClinicApp.ViewModel" 
         xmlns:local="clr-namespace:ClinicApp"
         mc:Ignorable="d"
-        Title="Clinic" Height="500" Width="850" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="Clinic" Height="550" Width="950" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         Icon="/Images/Logo.jpg">
     <Grid>
         <!--Pozadina-->
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Background.jpg"/>
+            <ImageBrush ImageSource="/Images/Background.jpg" Opacity="0.7"/>
         </Grid.Background>
-
-        <!--3 reda-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="400"/>
-            <RowDefinition Height="40"/>
-        </Grid.RowDefinitions>
-
-        <!--Margina na vrhu-->
-        <DockPanel Grid.Row="0" Width="840" Background="Transparent" HorizontalAlignment="Left">
-            <Menu DockPanel.Dock="Left" Width="845" Background="Transparent" HorizontalAlignment="Left">
-                <TabControl SelectedIndex="{Binding SelectedTab}" Background="Transparent" >
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="16" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllDoctorTab}" Header="Doctors"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="16" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllPatientTab}" Header="Patients"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="16" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllReviewTab}" Header="Review"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="16" Foreground="#009999" BorderBrush="White" Height="30" Width="143" Content="{Binding AllReviewOutcomeTab}" Header="Review outcome"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="16" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllDiagnosisTab}" Header="Diagnosis"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="16" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllTherapyTab}" Header="Therapy"/>
+        <!--Naslov-->
+        <TextBlock Text="Clinic Center" FontSize="30" TextAlignment="Left" Height="40" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontFamily="Segoe UI" Foreground="#006666" FontWeight="SemiBold"/>
+        <!--Tabovi-->
+        <DockPanel Width="950" Background="Transparent" HorizontalAlignment="Left" Margin="0,40,0,0">
+            <Menu DockPanel.Dock="Left" Width="925" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
+                <TabControl SelectedIndex="{Binding SelectedTab}" Background="Transparent" BorderBrush="Transparent" Height="448" Width="925">
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllDepartmentTab}" Header="Departments"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllDoctorTab}" Header="Doctors"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllPatientTab}" Header="Patients"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllReviewTab}" Header="Reviews"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="143" Content="{Binding AllReviewOutcomeTab}" Header="Review outcomes"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllDiagnosisTab}" Header="Diagnosis"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllTherapyTab}" Header="Therapies"/>
                 </TabControl>
             </Menu>
         </DockPanel>
+        <!--Dugmad-->
+        <Button Content="Change" HorizontalAlignment="Left" Height="30" Margin="15,455,0,0" VerticalAlignment="Top" Width="222" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding NavCommand}" CommandParameter="Change"/>
+        <Button Content="Remove" HorizontalAlignment="Left" Height="30" Margin="244,455,0,0" VerticalAlignment="Top" Width="222" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding RemovePlayListCommand}"/>
 
-        <!--Centralni prozor-->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="154*"/>
-                <ColumnDefinition Width="67*"/>
-                <ColumnDefinition Width="623*"/>
-            </Grid.ColumnDefinitions>
-
-            <!--gostujuci prozori-->
-            <!--<ContentControl Content="{
-            CurrentContentViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>-->
-            <!--<ContentControl Content="{Binding CurrentView, Mode=OneWay}" Grid.ColumnSpan="3" />-->
-        </Grid>
         <!--Margina na dnu-->
-        <DockPanel Grid.Row="2">
+        <!--<DockPanel Grid.Row="2">
             <TabControl SelectedIndex="{Binding SelectedTab}" >
                 <TabItem Header="Details" Content="{Binding PacijentDetailsTab}"/>
                 <TabItem Header="My Examinations" Content="{Binding PacijentExamsTab}"/>
                 <TabItem Header="All Examinations" Content="{Binding PacijentAllExamsTab}"/>
             </TabControl>
-        </DockPanel>
+        </DockPanel>-->
 
     </Grid>
 </Window>

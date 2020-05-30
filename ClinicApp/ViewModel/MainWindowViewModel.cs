@@ -1,4 +1,5 @@
 ﻿using ClinicApp.Core;
+using ClinicApp.View.Add;
 using ClinicApp.View.All;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -9,36 +10,19 @@ using System.Threading.Tasks;
 
 namespace ClinicApp.ViewModel
 {
-    public enum ViewType
-    {
-        DOCTOR_VIEW,
-        PATIENT_VIEW,
-        DIAGNOSIS_VIEW,
-        REVIEW_VIEW,
-        REVIEW_OUTCOME_VIEW,
-        THERAPY_VIEW
-    }
-
     public class MainWindowViewModel: ValidationBase
     {
         #region Fields and properties
-        private object currentView;
+
         private int selectedTab;
+        private object allDepartmentTab;
         private object allDoctorTab;
         private object allPatientTab;
         private object allReviewTab;
         private object allReviewOutcomeTab;
         private object allDiagnosisTab;
         private object allTherapyTab;
-        public object CurrentView
-        {
-            get { return currentView; }
-            set
-            {
-                currentView = value;
-                OnPropertyChanged("CurrentView");
-            }
-        }
+
         public int SelectedTab
         {
             get { return selectedTab; }
@@ -48,6 +32,18 @@ namespace ClinicApp.ViewModel
                 {
                     selectedTab = value;
                     OnPropertyChanged("SelectedTab");
+                }
+            }
+        }
+        public object AllDepartmentTab
+        {
+            get { return allDepartmentTab; }
+            set
+            {
+                if (allDepartmentTab != value)
+                {
+                    allDepartmentTab = value;
+                    OnPropertyChanged("AllDepartmentTab");
                 }
             }
         }
@@ -124,68 +120,36 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        #endregion Fields and properties
 
         public static RelayCommand<int> ChangeTabCommand { get; set; }
-        public static RelayCommand<ViewType> ChangeViewCommand { get; set; }
 
+        #endregion Fields and properties
+
+        #region Constructor
         public MainWindowViewModel()
         {
             ChangeTabCommand = new RelayCommand<int>(OnChangeTab);
-            // ChangeViewCommand = new RelayCommand<ViewType>(OnChangeView);
+
+            AllDepartmentTab = new AllDepartment();
             AllDoctorTab = new AllDoctorView();
-            AllPatientTab = new AllDoctorView();
-            AllReviewTab = new AllDoctorView();
-            AllReviewOutcomeTab = new AllDoctorView();
-            AllDiagnosisTab = new AllDoctorView();
-            AllTherapyTab = new AllDoctorView();
-
-
+            AllPatientTab = new AllPatientView();
+            AllReviewTab = new AllReviewView();
+            AllReviewOutcomeTab = new AllReviewOutcome();
+            AllDiagnosisTab = new AllDiagnosisView();
+            AllTherapyTab = new AllTherapyView();
         }
+        #endregion
 
+        #region Methods
         public void OnChangeTab(int tabNum)
         {
-            SelectedTab = tabNum; 
-            //if(SelectedTab == 0)
-            //{
-            //    ChangeViewCommand.Execute(ViewType.DOCTOR_VIEW);
-            //}
+            SelectedTab = tabNum;
         }
-
-        public void OnChangeView(ViewType nextView)
-        {
-            switch (nextView)
-            {
-                case ViewType.DOCTOR_VIEW:
-                    CurrentView = new AllDoctorView();
-                    break;
-
-                //case ViewType.PATIENT_VIEW:
-                //    CurrentView = new AllDoctorView();
-                //    break;
-
-                //case ViewType.REVIEW_VIEW:
-                //    CurrentView = new AllDoctorView();
-                //    break;
-
-                //case ViewType.REVIEW_OUTCOME_VIEW:
-                //    CurrentView = new AllDoctorView();
-                //    break;
-
-                //case ViewType.DIAGNOSIS_VIEW:
-                //    CurrentView = new AllDoctorView();
-                //    break;
-                //case ViewType.THERAPY_VIEW:
-                //    CurrentView = new AllDoctorView();
-                //    break;
-                default:
-                    break;
-            }
-        }
-
+      
         protected override void ValidateSelf()
         {
            // throw new NotImplementedException();
         }
+        #endregion
     }
 }

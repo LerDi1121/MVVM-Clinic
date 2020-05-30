@@ -5,29 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClinicApp.View.All"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="950">
     <Grid>
-        <!--Dvije kolone-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="460"/>
-            <ColumnDefinition Width="390"/>
-        </Grid.ColumnDefinitions>
         <!--Tabela-->
-        <Border Name="Border1" BorderBrush="#009999" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="460" Height="480">
-            <Grid Grid.Column="0" Background="White" Height="480" >
-                <Label Content="All doctors" Margin="0,10,0,0"  HorizontalContentAlignment="Center" Height="50" VerticalAlignment="Top" Width="460" HorizontalAlignment="Left" FontFamily="Segoe UI" Foreground="#009999" FontSize="28"/>
-                <Button Content="Add"    HorizontalAlignment="Left" Height="30" Margin="0,370,0,0"   VerticalAlignment="Top" Width="150" FontFamily="Segoe UI" Background="#009999" Foreground="White" FontSize="18" Command="{Binding NavCommand}" CommandParameter="Add"/>
-                <Button Content="Change" HorizontalAlignment="Left" Height="30" Margin="154,370,0,0" VerticalAlignment="Top" Width="150" FontFamily="Segoe UI" Background="#009999" Foreground="White" FontSize="18" Command="{Binding NavCommand}" CommandParameter="Change"/>
-                <Button Content="Remove" HorizontalAlignment="Left" Height="30" Margin="308,370,0,0" VerticalAlignment="Top" Width="150" FontFamily="Segoe UI" Background="#009999" Foreground="White" FontSize="18" Command="{Binding RemovePlayListCommand}"/>
+        <Border Name="Border1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Height="450">
+            <Grid Background="Transparent" Height="450" >
+                <Label Content="All Doctors" Margin="0,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="37" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#009999" Background="#f8f8ff" FontSize="20" FontWeight="SemiBold"/>
                 <DataGrid ItemsSource="{Binding PlayLists, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedIndex="{Binding SelectedDoctorIndex}"
-                      Background="{x:Null}"                        
+                      Background="{x:Null}" 
+                      BorderBrush="White"
                       RowHeight="26"
                       ColumnHeaderHeight="32"
-                      HorizontalGridLinesBrush="#009999"
-                      VerticalGridLinesBrush="#009999"
+                      HorizontalGridLinesBrush="White"
+                      VerticalGridLinesBrush="White"
                       FontSize="18"
-                      Foreground="White"                    
+                      Foreground="#006666"                    
                       FontFamily="Segoe UI"
                       CanUserAddRows="false"
 					  CanUserDeleteRows="False"
@@ -36,20 +29,47 @@
 					  IsReadOnly="true"
 					  AutoGenerateColumns="False"                        
 					  HeadersVisibility="Column" 
-                      Margin="0,68,0,113" >
+                      Margin="0,50,0,75" >
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Background" Value="#009999"/>
-                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="   Name"        Width="100" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged,        Mode=TwoWay}" Foreground="#009999"/>
-                        <DataGridTextColumn Header="Last name"      Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#009999"/>
-                        <DataGridTextColumn Header="Specialization" Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#009999"/>
-                        <DataGridTextColumn Header="     Contact"   Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#009999"/>
+                        <DataGridTextColumn Header="Name"  Width="70" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged,        Mode=TwoWay}" Foreground="#006666"/>
+                        <DataGridTextColumn Header="Lastname" Width="90" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666"/>
+                        <DataGridTextColumn Header="Contact"  Width="70" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged,        Mode=TwoWay}" Foreground="#006666"/>
+                        <DataGridTextColumn Header="Specialization" Width="120" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666"/>
+                        <DataGridTextColumn Header="Departman" Width="*" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666"/>
                     </DataGrid.Columns>
                 </DataGrid>
+            </Grid>
+        </Border>
+        <!--Forma za dodavanje-->
+        <Border Name="Border2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="480" Height="450" BorderBrush="White">
+            <Grid Background="Transparent" Height="450" VerticalAlignment="Top" Margin="0,0,0,75">
+                <!--Naslov-->
+                <Label Content="New Doctor" Margin="0,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="37" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#009999" Background="#f8f8ff" FontSize="20" FontWeight="SemiBold"/>
+                <!--Name-->
+                <Label  Content="Name and lastname:"  HorizontalAlignment="Left" Height="40" Margin="30,50,0,0"  VerticalAlignment="Top" Width="175" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBox x:Name="name"   HorizontalAlignment="Left" Height="30" Margin="220,55,0,0" VerticalAlignment="Top" Width="250" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="222,88,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <!--Patient-->
+                <Label  Content="Contact:" HorizontalAlignment="Left" Height="40" Margin="30,116,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" RenderTransformOrigin="0.5,1.25"/>
+                <TextBox x:Name="contact"  HorizontalAlignment="Left" Height="30" Margin="220,120,0,0" VerticalAlignment="Top" Width="202" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="222,152,36,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <!--Doctor-->
+                <Label  Content="Specialization:" HorizontalAlignment="Left" Height="40" Margin="30,182,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBox x:Name="specialization"  HorizontalAlignment="Left" Height="30" Margin="220,186,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="220,219,40,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+               
+                <Label  Content="Departman:" HorizontalAlignment="Left" Height="40" Margin="30,248,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBox x:Name="departman"  HorizontalAlignment="Left" Height="30" Margin="220,252,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="220,287,40,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+
+                <Button Content="Add"    HorizontalAlignment="Left" Height="30" Margin="220,320,0,0" VerticalAlignment="Top" Width="200" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" FontSize="18" BorderBrush="White" Command="{Binding AddPlayListCommand}"/>
+                <TextBlock FontSize="14" TextAlignment="Left" Width="220" Height="25" TextWrapping="Wrap" Margin="220,353,40,0" Text="{Binding ValidationErrors[City]}" Foreground="Red" VerticalAlignment="Top"/>
             </Grid>
         </Border>
 
