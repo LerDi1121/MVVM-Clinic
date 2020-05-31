@@ -54,25 +54,26 @@
                 <!--Naslov-->
                 <Label Content="New Review outcome" Margin="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="37" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#009999" Background="#f8f8ff" FontSize="20" FontWeight="SemiBold"/>
                 <!--Date nad time-->
+                <!--<DatePicker SelectedDate="{Binding SelectedDate}" Height="30" Canvas.Left="605" Canvas.Top="22" Width="173"/>-->
                 <Label  Content="Date nad time:"  HorizontalAlignment="Left" Height="40" Margin="20,37,0,0"  VerticalAlignment="Top" Width="130" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="date"   HorizontalAlignment="Left" Height="30" Margin="150,39,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,71,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <TextBox x:Name="date"   HorizontalAlignment="Left" Height="30" Margin="150,39,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding DateAndTime}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,71,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[DateAndTime]}" Foreground="Red"/>
                 <!--Description-->
                 <Label  Content="Description:" HorizontalAlignment="Left" Height="40" Margin="20,95,0,0"  VerticalAlignment="Top" Width="110" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="description"  HorizontalAlignment="Left" Height="50" Margin="150,100,0,0" VerticalAlignment="Top" Width="288" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,153,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <TextBox x:Name="description"  HorizontalAlignment="Left" Height="50" Margin="150,100,0,0" VerticalAlignment="Top" Width="288" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,153,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Description]}" Foreground="Red"/>
                 <!--Patient-->
                 <Label  Content="Patient:" HorizontalAlignment="Left" Height="40" Margin="20,178,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="patient"  HorizontalAlignment="Left" Height="30" Margin="150,182,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,215,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <TextBox x:Name="patient"  HorizontalAlignment="Left" Height="30" Margin="150,182,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Patient}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,215,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Patient]}" Foreground="Red"/>
                 <!--Doctor-->
                 <Label  Content="Doctor:" HorizontalAlignment="Left" Height="40" Margin="20,240,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="doctor"  HorizontalAlignment="Left" Height="30" Margin="150,244,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,277,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <TextBox x:Name="doctor"  HorizontalAlignment="Left" Height="30" Margin="150,244,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Doctor}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,277,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Doctor]}" Foreground="Red"/>
                 <!--Outcome-->
                 <Label  Content="Outcome:" HorizontalAlignment="Left" Height="40" Margin="20,300,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="Outcome"  HorizontalAlignment="Left" Height="30" Margin="150,304,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,335,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[City]}" Foreground="Red"/>
+                <TextBox x:Name="Outcome"  HorizontalAlignment="Left" Height="30" Margin="150,304,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Outcome}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,335,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Outcome]}" Foreground="Red"/>
             </Grid>
         </Border>
     </Grid>

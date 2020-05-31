@@ -103,7 +103,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClinicModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ContentViewModel.cs" />
+    <Compile Include="ViewModel\DepartmentViewModel.cs" />
     <Compile Include="ViewModel\DiagnosisViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
