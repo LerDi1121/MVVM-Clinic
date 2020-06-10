@@ -1,6 +1,9 @@
 ﻿using ClinicApp.Core;
+using ClinicApp.Model;
 using ClinicApp.View.All;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
 namespace ClinicApp.ViewModel
@@ -12,7 +15,10 @@ namespace ClinicApp.ViewModel
         private string lastname;
         private string contact;
         private string specialization;
-        private string department;
+        private List<string> departments = new List<string>();
+        private string selectedType;
+
+        private ObservableCollection<Doktor> doktori = new ObservableCollection<Doktor>();
 
         public string Name
         {
@@ -62,19 +68,47 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        public string Department
+        public List<string> Departments
         {
-            get { return department; }
+            get { return departments; }
             set
             {
-                if (department != value)
+                if (departments != value)
                 {
-                    department = value;
-                    OnPropertyChanged("Department");
+                    departments = value;
+                    OnPropertyChanged("Departments");
+                }
+            }
+        }
+        public string SelectedType
+        {
+            get { return selectedType; }
+            set
+            {
+                if (selectedType != value)
+                {
+                    selectedType = value;
+                    OnPropertyChanged("SelectedType");
+                }
+            }
+        }
+
+
+
+        public ObservableCollection<Doktor> Doktori
+        {
+            get { return doktori; }
+            set
+            {
+                if (doktori != value)
+                {
+                    doktori = value;
+                    OnPropertyChanged("Doktori");
                 }
             }
         }
         #endregion
+
         #region Validation
         protected override void ValidateSelf()
         {
@@ -87,6 +121,15 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Name"] = "Can't start with number!";
             }
+            else if (this.name.Length < 3)
+            {
+                this.ValidationErrors["Name"] = "Must have more than 3 characters";
+            }
+            else if (this.name.Length > 20)
+            {
+                this.ValidationErrors["Name"] = "Must be less than 20 characters";
+            }
+
             // LAST NAME
             if (String.IsNullOrWhiteSpace(this.lastname))
             {
@@ -96,16 +139,33 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Lastname"] = "Can't start with number!";
             }
+            else if (this.lastname.Length < 3 )
+            {
+                this.ValidationErrors["Lastname"] = "Must have more than 3 characters";
+            }
+            else if (this.lastname.Length > 20)
+            {
+                this.ValidationErrors["Lastname"] = "Must be less than 20 characters";
+            }
+
             // SPECIALISATION
             if (String.IsNullOrWhiteSpace(this.specialization))
             {
                 this.ValidationErrors["Specialization"] = "Required field!";
             }
-           // else if(textBoxNazivVina.Text.Length > 20)
             else if (Regex.IsMatch(this.specialization.Substring(0, 1), "[0-9]"))
             {
                 this.ValidationErrors["Specialization"] = "Can't start with number!";
             }
+            else if (this.specialization.Length < 3)
+            {
+                this.ValidationErrors["Specialization"] = "Must have more than 3 characters";
+            }
+            else if (this.specialization.Length > 20)
+            {
+                this.ValidationErrors["Specialization"] = "Must be less than 20 characters";
+            }
+
             // CONTACT
             if (String.IsNullOrWhiteSpace(this.contact))
             {
@@ -116,10 +176,43 @@ namespace ClinicApp.ViewModel
                 this.ValidationErrors["Contact"] = "Must start with number!";
             }
             // DEPARTMENT
-            if (String.IsNullOrWhiteSpace(this.department))
+            if (String.IsNullOrWhiteSpace(this.selectedType))
             {
-                this.ValidationErrors["Department"] = "Required field!";
-            }  
+                this.ValidationErrors["Departments"] = "Required field!";
+            }
+        }
+        #endregion
+
+        #region Constructor and metods
+        public MyICommand AddCommand { get; set; }
+        public DoctorViewModel()
+        {
+            AddCommand = new MyICommand(OnAdd);
+            //punjenje liste tipova pregleda (citaju se iz baze)
+            //ExaminationTypes = DbContextHandler.Instance.GetExaminationTypes();
+
+            Departments = DbContextHandler.Instance.GetAllDepartments();
+
+            DbContextHandler.Instance.GetAllDoctors().ForEach(doktor => Doktori.Add(doktor));
+        }
+        public void OnAdd()
+        {
+            // VALIDACIJA
+            this.Validate();
+
+            if (this.IsValid)
+            {
+                int departmentId = DbContextHandler.Instance.GetDeparmentIdByName(this.selectedType);
+
+                // departman_id (druga jedinica promeniti)
+                DbContextHandler.Instance.CreateDoctor(Name, Lastname, Specialization, 1, departmentId, Contact);
+
+                Doktori.Clear();
+                DbContextHandler.Instance.GetAllDoctors().ForEach(doktor => Doktori.Add(doktor));
+
+                // DbContextHandler.Instance.AddExamination(SingletonUser.Instance.UserId, SelectedType, Description, SelectedDate);
+                // MainWindowViewModel.ChangeViewCommand.Execute(ViewType.DOKTOR_VIEW);
+            }
         }
         #endregion
     }

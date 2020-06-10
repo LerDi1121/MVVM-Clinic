@@ -53,6 +53,7 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -90,18 +91,81 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\BindableBase.cs" />
+    <Compile Include="Core\DbContextHandler.cs" />
     <Compile Include="Core\MyICommand.cs" />
     <Compile Include="Core\ValidationBase.cs" />
     <Compile Include="Core\ValidationErrors.cs" />
     <Compile Include="Model\ClinicModel.Context1.cs">
+      <DependentUpon>ClinicModel.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Model\ClinicModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClinicModel.Context.tt</DependentUpon>
+      <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ClinicModel1.Designer.cs">
+    <Compile Include="Model\ClinicModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClinicModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Departman.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Dijagnoza_Specijaliste.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Doktor.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Doktor_Departman.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Doktor_opste_prakse_Pregled1.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Doktor_op_pr_Pregled_Pacijent.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Doktor_specijalista_Uput.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ishod_Pregleda.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ishod_Pregleda_Dijagnoza.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ishod_Pregleda_Uput.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Klinika.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Klinika_Departman.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pacijent.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pacijent_Departman.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pregled.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Terapija.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Terapija_Specijaliste.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ugovor.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Zdravstveni_Karton.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
     <Compile Include="ViewModel\DiagnosisViewModel.cs" />
@@ -111,6 +175,9 @@
     <Compile Include="ViewModel\ReviewOutcomeViewModel.cs" />
     <Compile Include="ViewModel\ReviewViewModel.cs" />
     <Compile Include="ViewModel\TherapyViewModel.cs" />
+    <Compile Include="View\All\AllAgreementView.xaml.cs">
+      <DependentUpon>AllAgreementView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\All\AllDepartment.xaml.cs">
       <DependentUpon>AllDepartment.xaml</DependentUpon>
     </Compile>
@@ -119,6 +186,9 @@
     </Compile>
     <Compile Include="View\All\AllDoctorView.xaml.cs">
       <DependentUpon>AllDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\All\AllMedicalRecords.xaml.cs">
+      <DependentUpon>AllMedicalRecords.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\All\AllPatientView.xaml.cs">
       <DependentUpon>AllPatientView.xaml</DependentUpon>
@@ -144,6 +214,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\All\AllAgreementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\All\AllDepartment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\All\AllDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\All\AllMedicalRecords.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,9 +271,11 @@
     </EmbeddedResource>
     <EntityDeploy Include="Model\ClinicModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClinicModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ClinicModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\ClinicModel.edmx.diagram" />
+    <None Include="Model\ClinicModel.edmx.diagram">
+      <DependentUpon>ClinicModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -211,12 +291,18 @@
   <ItemGroup>
     <Resource Include="Images\Logo.jpg" />
     <Resource Include="Images\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\ClinicModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ClinicModel.Context1.cs</LastGenOutput>
     </Content>
     <Content Include="Model\ClinicModel.edmx.sql" />
+    <Content Include="Model\ClinicModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClinicModel.edmx</DependentUpon>
+      <LastGenOutput>ClinicModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

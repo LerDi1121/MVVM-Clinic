@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/28/2020 19:25:06
--- Generated from EDMX file: C:\Users\ivana\Desktop\MVVM-Clinic\ClinicApp\Model\ClinicModel.edmx
+-- Date Created: 06/10/2020 18:44:17
+-- Generated from EDMX file: C:\Users\ivana\Desktop\BAZE2\Projekat\MVVM-Clinic\ClinicApp\Model\ClinicModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -172,14 +172,12 @@ GO
 -- Creating table 'Doktors'
 CREATE TABLE [dbo].[Doktors] (
     [Doktor_Id] int IDENTITY(1,1) NOT NULL,
-    [Korisnicko_Ime] nvarchar(max)  NOT NULL,
-    [Lozinka] nvarchar(max)  NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
     [Specijalizacija] nvarchar(max)  NOT NULL,
     [Klinika_Id] int  NOT NULL,
     [Departman_Id] int  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL
+    [Kontakt] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -188,7 +186,8 @@ CREATE TABLE [dbo].[Ugovors] (
     [Ugovor_Id] int IDENTITY(1,1) NOT NULL,
     [Vrsta_Ugovora] nvarchar(max)  NOT NULL,
     [Datum_Vazenja] datetime  NOT NULL,
-    [Specijalizacija] bit  NOT NULL
+    [Specijalizacija] bit  NOT NULL,
+    [Doktor] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -208,26 +207,18 @@ GO
 -- Creating table 'Pacijents'
 CREATE TABLE [dbo].[Pacijents] (
     [Pacijent_Id] int IDENTITY(1,1) NOT NULL,
-    [Korisnicko_Ime] nvarchar(max)  NOT NULL,
-    [Lozinka] nvarchar(max)  NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL,
-    [Grad] nvarchar(max)  NOT NULL,
-    [Ulica] nvarchar(max)  NOT NULL,
-    [Broj] nvarchar(max)  NOT NULL,
-    [Telefon] nvarchar(max)  NOT NULL,
-    [Hitan_Kontakt] nvarchar(max)  NOT NULL
+    [Kontakt] nvarchar(max)  NOT NULL,
+    [Adresa] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Pregleds'
 CREATE TABLE [dbo].[Pregleds] (
     [Pregled_Id] int IDENTITY(1,1) NOT NULL,
-    [Vrsta] nvarchar(max)  NOT NULL,
     [Opis] nvarchar(max)  NOT NULL,
     [Vreme] nvarchar(max)  NOT NULL,
-    [Zakazan] nvarchar(max)  NOT NULL,
     [Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id] int  NOT NULL
 );
 GO

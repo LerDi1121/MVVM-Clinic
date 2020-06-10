@@ -18,28 +18,17 @@
         <DockPanel Width="950" Background="Transparent" HorizontalAlignment="Left" Margin="0,40,0,0">
             <Menu DockPanel.Dock="Left" Width="925" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
                 <TabControl SelectedIndex="{Binding SelectedTab}" Background="Transparent" BorderBrush="Transparent" Height="448" Width="925">
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="130" Content="{Binding AllDepartmentTab}" Header="Departments"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="127" Content="{Binding AllDoctorTab}" Header="Doctors"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="128" Content="{Binding AllPatientTab}" Header="Patients"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="127" Content="{Binding AllReviewTab}" Header="Reviews"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="143" Content="{Binding AllReviewOutcomeTab}" Header="Review outcomes"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="128" Content="{Binding AllDiagnosisTab}" Header="Diagnosis"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="128" Content="{Binding AllTherapyTab}" Header="Therapies"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="115" Content="{Binding AllDepartmentTab}" Header="Departments"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="79" Content="{Binding AllDoctorTab}" Header="Doctors"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="100" Content="{Binding AllTAgreementTab}" Header="Agreements"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="79" Content="{Binding AllPatientTab}" Header="Patients"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="140" Content="{Binding AllMedicalRecordTab}" Header="Medical records"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="79" Content="{Binding AllReviewTab}" Header="Reviews"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="142" Content="{Binding AllReviewOutcomeTab}" Header="Review outcomes"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="90" Content="{Binding AllDiagnosisTab}" Header="Diagnosis"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="90" Content="{Binding AllTherapyTab}" Header="Therapies"/>
                 </TabControl>
             </Menu>
         </DockPanel>
-        <!--Dugmad-->
-        <Button Content="Change" HorizontalAlignment="Left" Height="30" Margin="15,455,0,0" VerticalAlignment="Top" Width="220" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding NavCommand}" CommandParameter="Change"/>
-        <Button Content="Remove" HorizontalAlignment="Left" Height="30" Margin="242,455,0,0" VerticalAlignment="Top" Width="223" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding RemovePlayListCommand}"/>
-        <Button Content="Add"    HorizontalAlignment="Left" Height="30" Margin="477,455,0,0" VerticalAlignment="Top" Width="450" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding RemovePlayListCommand}"/>
-        <!--Margina na dnu-->
-        <!--<DockPanel Grid.Row="2">
-            <TabControl SelectedIndex="{Binding SelectedTab}" >
-                <TabItem Header="Details" Content="{Binding PacijentDetailsTab}"/>
-                <TabItem Header="My Examinations" Content="{Binding PacijentExamsTab}"/>
-                <TabItem Header="All Examinations" Content="{Binding PacijentAllExamsTab}"/>
-            </TabControl>
-        </DockPanel>-->
-
-    </Grid>
+         </Grid>
 </Window>

@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity;
 
 namespace ClinicApp.ViewModel
 {
     public class MainWindowViewModel: ValidationBase
     {
         #region Fields and properties
-
         private int selectedTab;
         private object allDepartmentTab;
         private object allDoctorTab;
@@ -21,6 +21,8 @@ namespace ClinicApp.ViewModel
         private object allReviewOutcomeTab;
         private object allDiagnosisTab;
         private object allTherapyTab;
+        private object allMedicalRecordTab;
+        private object allTAgreementTab;
 
         public int SelectedTab
         {
@@ -119,14 +121,46 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
+        public object AllMedicalRecordTab
+        {
+            get { return allMedicalRecordTab; }
+            set
+            {
+                if (allMedicalRecordTab != value)
+                {
+                    allMedicalRecordTab = value;
+                    OnPropertyChanged("AllMedicalRecordTab");
+                }
+            }
+        }
+        public object AllTAgreementTab
+        {
+            get { return allTAgreementTab; }
+            set
+            {
+                if (allTAgreementTab != value)
+                {
+                    allTAgreementTab = value;
+                    OnPropertyChanged("AllTAgreementTab");
+                }
+            }
+        }
         public static RelayCommand<int> ChangeTabCommand { get; set; }
 
         #endregion Fields and properties
 
         #region Constructor
+
+        public MyICommand AddCommand { get; set; }
+        public MyICommand RemoveCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
+
         public MainWindowViewModel()
         {
+            AddCommand = new MyICommand(OnAdd);
+            RemoveCommand = new MyICommand(OnRemove);
+            ChangeCommand = new MyICommand(OnChange);
+
             ChangeTabCommand = new RelayCommand<int>(OnChangeTab);
 
             AllDepartmentTab = new AllDepartment();
@@ -136,6 +170,8 @@ namespace ClinicApp.ViewModel
             AllReviewOutcomeTab = new AllReviewOutcome();
             AllDiagnosisTab = new AllDiagnosisView();
             AllTherapyTab = new AllTherapyView();
+            AllTAgreementTab = new AllAgreementView();
+            AllMedicalRecordTab = new AllMedicalRecords();
         }
         #endregion
 
@@ -144,7 +180,17 @@ namespace ClinicApp.ViewModel
         {
             SelectedTab = tabNum;
         }
-      
+        public void OnAdd()
+        {
+            
+        }
+        public void OnRemove()
+        {
+        }
+        public void OnChange()
+        {
+        }
+
         protected override void ValidateSelf()
         {
            // throw new NotImplementedException();

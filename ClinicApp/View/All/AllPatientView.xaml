@@ -72,13 +72,12 @@
                 <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,235,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Address]}" Foreground="Red"/>
                 <!--Department-->
                 <Label  Content="Department:" HorizontalAlignment="Left" Height="40" Margin="40,255,0,0"  VerticalAlignment="Top" Width="115" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="department"  HorizontalAlignment="Left" Height="30" Margin="170,258,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Department}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,290,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Department]}" Foreground="Red"/>
+                <ComboBox ItemsSource="{Binding Department}" SelectedItem="{Binding SelectedType}" Height="30" Width="202" Margin="166,218,74,119" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,290,10,0" Height="22" TextWrapping="Wrap" Text="{Binding ValidationErrors[Department]}" Foreground="Red"/>
                 <!--View-->
-                <Label  Content="View:" HorizontalAlignment="Left" Height="40" Margin="40,305,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="view"  HorizontalAlignment="Left" Height="30" Margin="170,310,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding View}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,340,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[View]}" Foreground="Red"/>
-
+                <Label  Content="View:" HorizontalAlignment="Left" Height="40" Margin="40,307,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <ComboBox ItemsSource="{Binding View}" SelectedItem="{Binding SelectedType}" Height="30" Width="202" Margin="168,310,78,104" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,343,10,0" Height="20" TextWrapping="Wrap" Text="{Binding ValidationErrors[View]}" Foreground="Red"/>
             </Grid>
         </Border>
     </Grid>

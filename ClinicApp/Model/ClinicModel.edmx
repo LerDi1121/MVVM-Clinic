@@ -4,829 +4,30 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ClinicModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="ClinicModelStoreContainer">
-    <EntitySet Name="Klinikas" EntityType="ClinicModel.Store.Klinikas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Departmen" EntityType="ClinicModel.Store.Departmen" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doktors" EntityType="ClinicModel.Store.Doktors" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ugovors" EntityType="ClinicModel.Store.Ugovors" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Zdravstveni_Karton" EntityType="ClinicModel.Store.Zdravstveni_Karton" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Pacijents" EntityType="ClinicModel.Store.Pacijents" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Pregleds" EntityType="ClinicModel.Store.Pregleds" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Terapija_Specijaliste" EntityType="ClinicModel.Store.Terapija_Specijaliste" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Dijagnoza_Specijaliste" EntityType="ClinicModel.Store.Dijagnoza_Specijaliste" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Terapijas" EntityType="ClinicModel.Store.Terapijas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ishod_Pregleda" EntityType="ClinicModel.Store.Ishod_Pregleda" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Klinika_Departman" EntityType="ClinicModel.Store.Klinika_Departman" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Pacijent_Departman" EntityType="ClinicModel.Store.Pacijent_Departman" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doktor_Departman" EntityType="ClinicModel.Store.Doktor_Departman" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doktor_opste_prakse_Pregled1" EntityType="ClinicModel.Store.Doktor_opste_prakse_Pregled1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doktor_op_pr_Pregled_Pacijent" EntityType="ClinicModel.Store.Doktor_op_pr_Pregled_Pacijent" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doktor_specijalista_Uput" EntityType="ClinicModel.Store.Doktor_specijalista_Uput" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ishod_Pregleda_Uput" EntityType="ClinicModel.Store.Ishod_Pregleda_Uput" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ishod_Pregleda_Dijagnoza" EntityType="ClinicModel.Store.Ishod_Pregleda_Dijagnoza" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Dijagnoza_SpecijalisteTerapija_Specijaliste" EntityType="ClinicModel.Store.Dijagnoza_SpecijalisteTerapija_Specijaliste" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="Doktor_DepartmanDoktor" Association="ClinicModel.Store.Doktor_DepartmanDoktor">
-      <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
-      <End Role="Doktor" EntitySet="Doktors" />
-    </AssociationSet>
-    <AssociationSet Name="KlinikaKlinika_Departman" Association="ClinicModel.Store.KlinikaKlinika_Departman">
-      <End Role="Klinika" EntitySet="Klinikas" />
-      <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-    </AssociationSet>
-    <AssociationSet Name="Zdravstveni_KartonPacijent_Departman" Association="ClinicModel.Store.Zdravstveni_KartonPacijent_Departman">
-      <End Role="Zdravstveni_Karton" EntitySet="Zdravstveni_Karton" />
-      <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
-    </AssociationSet>
-    <AssociationSet Name="Pacijent_DepartmanPacijent" Association="ClinicModel.Store.Pacijent_DepartmanPacijent">
-      <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
-      <End Role="Pacijent" EntitySet="Pacijents" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_specijalista_UputDijagnoza_Specijaliste" Association="ClinicModel.Store.Doktor_specijalista_UputDijagnoza_Specijaliste">
-      <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
-      <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Dijagnoza_Specijaliste" Association="ClinicModel.Store.FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Dijagnoza_Specijaliste">
-      <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
-      <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" EntitySet="Dijagnoza_SpecijalisteTerapija_Specijaliste" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Terapija_Specijaliste" Association="ClinicModel.Store.FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Terapija_Specijaliste">
-      <End Role="Terapija_Specijaliste" EntitySet="Terapija_Specijaliste" />
-      <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" EntitySet="Dijagnoza_SpecijalisteTerapija_Specijaliste" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_specijalista_UputUput" Association="ClinicModel.Store.Doktor_specijalista_UputUput">
-      <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
-      <End Role="Uput" EntitySet="Ishod_Pregleda_Uput" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_pregled_PacijentIshod_Pregleda" Association="ClinicModel.Store.Doktor_pregled_PacijentIshod_Pregleda">
-      <End Role="Doktor_pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-      <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
-    </AssociationSet>
-    <AssociationSet Name="DijagnozaTerapija" Association="ClinicModel.Store.DijagnozaTerapija">
-      <End Role="Dijagnoza" EntitySet="Ishod_Pregleda_Dijagnoza" />
-      <End Role="Terapija" EntitySet="Terapijas" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" Association="ClinicModel.Store.Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-      <End Role="Doktor_opste_prakse_Pregled" EntitySet="Doktor_opste_prakse_Pregled1" />
-      <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-    </AssociationSet>
-    <AssociationSet Name="Klinika_DepartmanDepartman" Association="ClinicModel.Store.Klinika_DepartmanDepartman">
-      <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-      <End Role="Departman" EntitySet="Departmen" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_DepartmanUgovor" Association="ClinicModel.Store.Doktor_DepartmanUgovor">
-      <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
-      <End Role="Ugovor" EntitySet="Ugovors" />
-    </AssociationSet>
-    <AssociationSet Name="Klinika_DepartmanPacijent_Departman" Association="ClinicModel.Store.Klinika_DepartmanPacijent_Departman">
-      <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-      <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
-    </AssociationSet>
-    <AssociationSet Name="PregledDoktor_opste_prakse_Pregled" Association="ClinicModel.Store.PregledDoktor_opste_prakse_Pregled">
-      <End Role="Pregled" EntitySet="Pregleds" />
-      <End Role="Doktor_opste_prakse_Pregled" EntitySet="Doktor_opste_prakse_Pregled1" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_opste_prakse_PregledDoktor" Association="ClinicModel.Store.Doktor_opste_prakse_PregledDoktor">
-      <End Role="Doktor_opste_prakse_Pregled" EntitySet="Doktor_opste_prakse_Pregled1" />
-      <End Role="Doktor" EntitySet="Doktors" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_specijalista_UputDoktor" Association="ClinicModel.Store.Doktor_specijalista_UputDoktor">
-      <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
-      <End Role="Doktor" EntitySet="Doktors" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_op_pr_Pregled_PacijentPacijent" Association="ClinicModel.Store.Doktor_op_pr_Pregled_PacijentPacijent">
-      <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-      <End Role="Pacijent" EntitySet="Pacijents" />
-    </AssociationSet>
-    <AssociationSet Name="Doktor_DepartmanKlinika_Departman" Association="ClinicModel.Store.Doktor_DepartmanKlinika_Departman">
-      <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
-      <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Uput_inherits_Ishod_Pregleda" Association="ClinicModel.Store.FK_Uput_inherits_Ishod_Pregleda">
-      <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
-      <End Role="Uput" EntitySet="Ishod_Pregleda_Uput" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Dijagnoza_inherits_Ishod_Pregleda" Association="ClinicModel.Store.FK_Dijagnoza_inherits_Ishod_Pregleda">
-      <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
-      <End Role="Dijagnoza" EntitySet="Ishod_Pregleda_Dijagnoza" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Klinikas">
-    <Key>
-      <PropertyRef Name="Klinika_Id" />
-    </Key>
-    <Property Name="Klinika_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Grad" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ulica" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Broj" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Departmen">
-    <Key>
-      <PropertyRef Name="Departman_Id" />
-    </Key>
-    <Property Name="Departman_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Sprat" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doktors">
-    <Key>
-      <PropertyRef Name="Doktor_Id" />
-    </Key>
-    <Property Name="Doktor_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Korisnicko_Ime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Lozinka" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Specijalizacija" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Klinika_Id" Type="int" Nullable="false" />
-    <Property Name="Departman_Id" Type="int" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Ugovors">
-    <Key>
-      <PropertyRef Name="Ugovor_Id" />
-    </Key>
-    <Property Name="Ugovor_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Vrsta_Ugovora" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Datum_Vazenja" Type="datetime" Nullable="false" />
-    <Property Name="Specijalizacija" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Zdravstveni_Karton">
-    <Key>
-      <PropertyRef Name="Karton_Id" />
-    </Key>
-    <Property Name="Karton_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="JMBG" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Evidencija" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Pacijent_Departman_PacijentPacijent_Id" Type="int" Nullable="false" />
-    <Property Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" Type="int" Nullable="false" />
-    <Property Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Pacijents">
-    <Key>
-      <PropertyRef Name="Pacijent_Id" />
-    </Key>
-    <Property Name="Pacijent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Korisnicko_Ime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Lozinka" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Grad" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ulica" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Broj" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Hitan_Kontakt" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Pregleds">
-    <Key>
-      <PropertyRef Name="Pregled_Id" />
-    </Key>
-    <Property Name="Pregled_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Vrsta" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Vreme" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Zakazan" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Terapija_Specijaliste">
-    <Key>
-      <PropertyRef Name="Terapija_Id" />
-    </Key>
-    <Property Name="Terapija_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Vrsta_Terapije" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Dijagnoza_Specijaliste">
-    <Key>
-      <PropertyRef Name="Dijagnoza_Id" />
-    </Key>
-    <Property Name="Dijagnoza_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Terapijas">
-    <Key>
-      <PropertyRef Name="Terapija_Id" />
-    </Key>
-    <Property Name="Terapija_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Vrsta_Terapije" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Ishod_Pregleda">
-    <Key>
-      <PropertyRef Name="Ishod_Id" />
-    </Key>
-    <Property Name="Ishod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Klinika_Departman">
-    <Key>
-      <PropertyRef Name="KlinikaKlinika_Id" />
-      <PropertyRef Name="DepartmanDepartman_Id" />
-    </Key>
-    <Property Name="KlinikaKlinika_Id" Type="int" Nullable="false" />
-    <Property Name="DepartmanDepartman_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Pacijent_Departman">
-    <Key>
-      <PropertyRef Name="PacijentPacijent_Id" />
-      <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-      <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-    </Key>
-    <Property Name="Datum_Prijave" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Datum_Odjave" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Soba" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PacijentPacijent_Id" Type="int" Nullable="false" />
-    <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="int" Nullable="false" />
-    <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doktor_Departman">
-    <Key>
-      <PropertyRef Name="DoktorDoktor_Id" />
-      <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-      <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-    </Key>
-    <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
-    <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="int" Nullable="false" />
-    <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="int" Nullable="false" />
-    <Property Name="Doktor_Doktor_Id" Type="int" Nullable="false" />
-    <Property Name="Ugovor_Ugovor_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doktor_opste_prakse_Pregled1">
-    <Key>
-      <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-    </Key>
-    <Property Name="Doktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
-    <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doktor_op_pr_Pregled_Pacijent">
-    <Key>
-      <PropertyRef Name="PacijentPacijent_Id" />
-    </Key>
-    <Property Name="PacijentPacijent_Id" Type="int" Nullable="false" />
-    <Property Name="PacijentPacijent_Id1" Type="int" Nullable="false" />
-    <Property Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doktor_specijalista_Uput">
-    <Key>
-      <PropertyRef Name="Doktor_specijalistaDoktor_Id" />
-    </Key>
-    <Property Name="Doktor_specijalistaDoktor_Id" Type="int" Nullable="false" />
-    <Property Name="Dijagnoza_SpecijalisteDijagnoza_Id" Type="int" Nullable="true" />
-    <Property Name="UputIshod_Id" Type="int" Nullable="true" />
-    <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Ishod_Pregleda_Uput">
-    <Key>
-      <PropertyRef Name="Ishod_Id" />
-    </Key>
-    <Property Name="Ishod_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Ishod_Pregleda_Dijagnoza">
-    <Key>
-      <PropertyRef Name="Ishod_Id" />
-    </Key>
-    <Property Name="TerapijaTerapija_Id" Type="int" Nullable="true" />
-    <Property Name="Ishod_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Dijagnoza_SpecijalisteTerapija_Specijaliste">
-    <Key>
-      <PropertyRef Name="Dijagnoza_Specijaliste_Dijagnoza_Id" />
-      <PropertyRef Name="Terapija_Specijaliste_Terapija_Id" />
-    </Key>
-    <Property Name="Dijagnoza_Specijaliste_Dijagnoza_Id" Type="int" Nullable="false" />
-    <Property Name="Terapija_Specijaliste_Terapija_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="Doktor_DepartmanDoktor">
-    <End Role="Doktor_Departman" Type="ClinicModel.Store.Doktor_Departman" Multiplicity="*" />
-    <End Role="Doktor" Type="ClinicModel.Store.Doktors" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor">
-        <PropertyRef Name="Doktor_Id" />
-      </Principal>
-      <Dependent Role="Doktor_Departman">
-        <PropertyRef Name="Doktor_Doktor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="KlinikaKlinika_Departman">
-    <End Role="Klinika" Type="ClinicModel.Store.Klinikas" Multiplicity="1" />
-    <End Role="Klinika_Departman" Type="ClinicModel.Store.Klinika_Departman" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Klinika">
-        <PropertyRef Name="Klinika_Id" />
-      </Principal>
-      <Dependent Role="Klinika_Departman">
-        <PropertyRef Name="KlinikaKlinika_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Zdravstveni_KartonPacijent_Departman">
-    <End Role="Zdravstveni_Karton" Type="ClinicModel.Store.Zdravstveni_Karton" Multiplicity="*" />
-    <End Role="Pacijent_Departman" Type="ClinicModel.Store.Pacijent_Departman" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Pacijent_Departman">
-        <PropertyRef Name="PacijentPacijent_Id" />
-        <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-        <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-      </Principal>
-      <Dependent Role="Zdravstveni_Karton">
-        <PropertyRef Name="Pacijent_Departman_PacijentPacijent_Id" />
-        <PropertyRef Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" />
-        <PropertyRef Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Pacijent_DepartmanPacijent">
-    <End Role="Pacijent_Departman" Type="ClinicModel.Store.Pacijent_Departman" Multiplicity="*" />
-    <End Role="Pacijent" Type="ClinicModel.Store.Pacijents" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Pacijent">
-        <PropertyRef Name="Pacijent_Id" />
-      </Principal>
-      <Dependent Role="Pacijent_Departman">
-        <PropertyRef Name="PacijentPacijent_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_specijalista_UputDijagnoza_Specijaliste">
-    <End Role="Doktor_specijalista_Uput" Type="ClinicModel.Store.Doktor_specijalista_Uput" Multiplicity="*" />
-    <End Role="Dijagnoza_Specijaliste" Type="ClinicModel.Store.Dijagnoza_Specijaliste" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Dijagnoza_Specijaliste">
-        <PropertyRef Name="Dijagnoza_Id" />
-      </Principal>
-      <Dependent Role="Doktor_specijalista_Uput">
-        <PropertyRef Name="Dijagnoza_SpecijalisteDijagnoza_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_specijalista_UputUput">
-    <End Role="Doktor_specijalista_Uput" Type="ClinicModel.Store.Doktor_specijalista_Uput" Multiplicity="*" />
-    <End Role="Uput" Type="ClinicModel.Store.Ishod_Pregleda_Uput" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Uput">
-        <PropertyRef Name="Ishod_Id" />
-      </Principal>
-      <Dependent Role="Doktor_specijalista_Uput">
-        <PropertyRef Name="UputIshod_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_pregled_PacijentIshod_Pregleda">
-    <End Role="Doktor_pregled_Pacijent" Type="ClinicModel.Store.Doktor_op_pr_Pregled_Pacijent" Multiplicity="1" />
-    <End Role="Ishod_Pregleda" Type="ClinicModel.Store.Ishod_Pregleda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor_pregled_Pacijent">
-        <PropertyRef Name="PacijentPacijent_Id" />
-      </Principal>
-      <Dependent Role="Ishod_Pregleda">
-        <PropertyRef Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="DijagnozaTerapija">
-    <End Role="Dijagnoza" Type="ClinicModel.Store.Ishod_Pregleda_Dijagnoza" Multiplicity="*" />
-    <End Role="Terapija" Type="ClinicModel.Store.Terapijas" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Terapija">
-        <PropertyRef Name="Terapija_Id" />
-      </Principal>
-      <Dependent Role="Dijagnoza">
-        <PropertyRef Name="TerapijaTerapija_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-    <End Role="Doktor_opste_prakse_Pregled" Type="ClinicModel.Store.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
-    <End Role="Doktor_op_pr_Pregled_Pacijent" Type="ClinicModel.Store.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor_opste_prakse_Pregled">
-        <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-      </Principal>
-      <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
-        <PropertyRef Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Klinika_DepartmanDepartman">
-    <End Role="Klinika_Departman" Type="ClinicModel.Store.Klinika_Departman" Multiplicity="*" />
-    <End Role="Departman" Type="ClinicModel.Store.Departmen" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Departman">
-        <PropertyRef Name="Departman_Id" />
-      </Principal>
-      <Dependent Role="Klinika_Departman">
-        <PropertyRef Name="DepartmanDepartman_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_DepartmanUgovor">
-    <End Role="Doktor_Departman" Type="ClinicModel.Store.Doktor_Departman" Multiplicity="*" />
-    <End Role="Ugovor" Type="ClinicModel.Store.Ugovors" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Ugovor">
-        <PropertyRef Name="Ugovor_Id" />
-      </Principal>
-      <Dependent Role="Doktor_Departman">
-        <PropertyRef Name="Ugovor_Ugovor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Klinika_DepartmanPacijent_Departman">
-    <End Role="Klinika_Departman" Type="ClinicModel.Store.Klinika_Departman" Multiplicity="1" />
-    <End Role="Pacijent_Departman" Type="ClinicModel.Store.Pacijent_Departman" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Klinika_Departman">
-        <PropertyRef Name="KlinikaKlinika_Id" />
-        <PropertyRef Name="DepartmanDepartman_Id" />
-      </Principal>
-      <Dependent Role="Pacijent_Departman">
-        <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-        <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PregledDoktor_opste_prakse_Pregled">
-    <End Role="Pregled" Type="ClinicModel.Store.Pregleds" Multiplicity="*" />
-    <End Role="Doktor_opste_prakse_Pregled" Type="ClinicModel.Store.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor_opste_prakse_Pregled">
-        <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-      </Principal>
-      <Dependent Role="Pregled">
-        <PropertyRef Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_opste_prakse_PregledDoktor">
-    <End Role="Doktor_opste_prakse_Pregled" Type="ClinicModel.Store.Doktor_opste_prakse_Pregled1" Multiplicity="*" />
-    <End Role="Doktor" Type="ClinicModel.Store.Doktors" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor">
-        <PropertyRef Name="Doktor_Id" />
-      </Principal>
-      <Dependent Role="Doktor_opste_prakse_Pregled">
-        <PropertyRef Name="DoktorDoktor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_specijalista_UputDoktor">
-    <End Role="Doktor_specijalista_Uput" Type="ClinicModel.Store.Doktor_specijalista_Uput" Multiplicity="*" />
-    <End Role="Doktor" Type="ClinicModel.Store.Doktors" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor">
-        <PropertyRef Name="Doktor_Id" />
-      </Principal>
-      <Dependent Role="Doktor_specijalista_Uput">
-        <PropertyRef Name="DoktorDoktor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_op_pr_Pregled_PacijentPacijent">
-    <End Role="Doktor_op_pr_Pregled_Pacijent" Type="ClinicModel.Store.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
-    <End Role="Pacijent" Type="ClinicModel.Store.Pacijents" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Pacijent">
-        <PropertyRef Name="Pacijent_Id" />
-      </Principal>
-      <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
-        <PropertyRef Name="PacijentPacijent_Id1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Doktor_DepartmanKlinika_Departman">
-    <End Role="Doktor_Departman" Type="ClinicModel.Store.Doktor_Departman" Multiplicity="*" />
-    <End Role="Klinika_Departman" Type="ClinicModel.Store.Klinika_Departman" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Klinika_Departman">
-        <PropertyRef Name="KlinikaKlinika_Id" />
-        <PropertyRef Name="DepartmanDepartman_Id" />
-      </Principal>
-      <Dependent Role="Doktor_Departman">
-        <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-        <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Dijagnoza_Specijaliste">
-    <End Role="Dijagnoza_Specijaliste" Type="ClinicModel.Store.Dijagnoza_Specijaliste" Multiplicity="1" />
-    <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" Type="ClinicModel.Store.Dijagnoza_SpecijalisteTerapija_Specijaliste" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Dijagnoza_Specijaliste">
-        <PropertyRef Name="Dijagnoza_Id" />
-      </Principal>
-      <Dependent Role="Dijagnoza_SpecijalisteTerapija_Specijaliste">
-        <PropertyRef Name="Dijagnoza_Specijaliste_Dijagnoza_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Terapija_Specijaliste">
-    <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" Type="ClinicModel.Store.Dijagnoza_SpecijalisteTerapija_Specijaliste" Multiplicity="*" />
-    <End Role="Terapija_Specijaliste" Type="ClinicModel.Store.Terapija_Specijaliste" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Terapija_Specijaliste">
-        <PropertyRef Name="Terapija_Id" />
-      </Principal>
-      <Dependent Role="Dijagnoza_SpecijalisteTerapija_Specijaliste">
-        <PropertyRef Name="Terapija_Specijaliste_Terapija_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Uput_inherits_Ishod_Pregleda">
-    <End Role="Ishod_Pregleda" Type="ClinicModel.Store.Ishod_Pregleda" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Uput" Type="ClinicModel.Store.Ishod_Pregleda_Uput" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Ishod_Pregleda">
-        <PropertyRef Name="Ishod_Id" />
-      </Principal>
-      <Dependent Role="Uput">
-        <PropertyRef Name="Ishod_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Dijagnoza_inherits_Ishod_Pregleda">
-    <End Role="Ishod_Pregleda" Type="ClinicModel.Store.Ishod_Pregleda" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Dijagnoza" Type="ClinicModel.Store.Ishod_Pregleda_Dijagnoza" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Ishod_Pregleda">
-        <PropertyRef Name="Ishod_Id" />
-      </Principal>
-      <Dependent Role="Dijagnoza">
-        <PropertyRef Name="Ishod_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ClinicModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="ClinicModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Klinikas" EntityType="ClinicModel.Klinika" />
-          <EntitySet Name="Departmen" EntityType="ClinicModel.Departman" />
-          <EntitySet Name="Doktors" EntityType="ClinicModel.Doktor" />
-          <EntitySet Name="Ugovors" EntityType="ClinicModel.Ugovor" />
-          <EntitySet Name="Zdravstveni_Karton" EntityType="ClinicModel.Zdravstveni_Karton" />
-          <EntitySet Name="Pacijents" EntityType="ClinicModel.Pacijent" />
-          <EntitySet Name="Pregleds" EntityType="ClinicModel.Pregled" />
-          <EntitySet Name="Terapija_Specijaliste" EntityType="ClinicModel.Terapija_Specijaliste" />
-          <EntitySet Name="Dijagnoza_Specijaliste" EntityType="ClinicModel.Dijagnoza_Specijaliste" />
-          <EntitySet Name="Terapijas" EntityType="ClinicModel.Terapija" />
-          <EntitySet Name="Ishod_Pregleda" EntityType="ClinicModel.Ishod_Pregleda" />
-          <EntitySet Name="Klinika_Departman" EntityType="ClinicModel.Klinika_Departman" />
-          <EntitySet Name="Pacijent_Departman" EntityType="ClinicModel.Pacijent_Departman" />
-          <EntitySet Name="Doktor_Departman" EntityType="ClinicModel.Doktor_Departman" />
-          <EntitySet Name="Doktor_opste_prakse_Pregled1" EntityType="ClinicModel.Doktor_opste_prakse_Pregled" />
-          <EntitySet Name="Doktor_op_pr_Pregled_Pacijent" EntityType="ClinicModel.Doktor_op_pr_Pregled_Pacijent" />
-          <EntitySet Name="Doktor_specijalista_Uput" EntityType="ClinicModel.Doktor_specijalista_Uput" />
-          <AssociationSet Name="Doktor_DepartmanDoktor" Association="ClinicModel.Doktor_DepartmanDoktor">
-            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
-            <End Role="Doktor" EntitySet="Doktors" />
-          </AssociationSet>
-          <AssociationSet Name="KlinikaKlinika_Departman" Association="ClinicModel.KlinikaKlinika_Departman">
-            <End Role="Klinika" EntitySet="Klinikas" />
-            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-          </AssociationSet>
-          <AssociationSet Name="Zdravstveni_KartonPacijent_Departman" Association="ClinicModel.Zdravstveni_KartonPacijent_Departman">
-            <End Role="Zdravstveni_Karton" EntitySet="Zdravstveni_Karton" />
-            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
-          </AssociationSet>
-          <AssociationSet Name="Pacijent_DepartmanPacijent" Association="ClinicModel.Pacijent_DepartmanPacijent">
-            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
-            <End Role="Pacijent" EntitySet="Pacijents" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_specijalista_UputDijagnoza_Specijaliste" Association="ClinicModel.Doktor_specijalista_UputDijagnoza_Specijaliste">
-            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
-            <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
-          </AssociationSet>
-          <AssociationSet Name="Dijagnoza_SpecijalisteTerapija_Specijaliste" Association="ClinicModel.Dijagnoza_SpecijalisteTerapija_Specijaliste">
-            <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
-            <End Role="Terapija_Specijaliste" EntitySet="Terapija_Specijaliste" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_specijalista_UputUput" Association="ClinicModel.Doktor_specijalista_UputUput">
-            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
-            <End Role="Uput" EntitySet="Ishod_Pregleda" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_pregled_PacijentIshod_Pregleda" Association="ClinicModel.Doktor_pregled_PacijentIshod_Pregleda">
-            <End Role="Doktor_pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
-          </AssociationSet>
-          <AssociationSet Name="DijagnozaTerapija" Association="ClinicModel.DijagnozaTerapija">
-            <End Role="Dijagnoza" EntitySet="Ishod_Pregleda" />
-            <End Role="Terapija" EntitySet="Terapijas" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" Association="ClinicModel.Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-            <End Role="Doktor_opste_prakse_Pregled" EntitySet="Doktor_opste_prakse_Pregled1" />
-            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-          </AssociationSet>
-          <AssociationSet Name="Klinika_DepartmanDepartman" Association="ClinicModel.Klinika_DepartmanDepartman">
-            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-            <End Role="Departman" EntitySet="Departmen" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_DepartmanUgovor" Association="ClinicModel.Doktor_DepartmanUgovor">
-            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
-            <End Role="Ugovor" EntitySet="Ugovors" />
-          </AssociationSet>
-          <AssociationSet Name="Klinika_DepartmanPacijent_Departman" Association="ClinicModel.Klinika_DepartmanPacijent_Departman">
-            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
-          </AssociationSet>
-          <AssociationSet Name="PregledDoktor_opste_prakse_Pregled" Association="ClinicModel.PregledDoktor_opste_prakse_Pregled">
-            <End Role="Pregled" EntitySet="Pregleds" />
-            <End Role="Doktor_opste_prakse_Pregled" EntitySet="Doktor_opste_prakse_Pregled1" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_opste_prakse_PregledDoktor" Association="ClinicModel.Doktor_opste_prakse_PregledDoktor">
-            <End Role="Doktor_opste_prakse_Pregled" EntitySet="Doktor_opste_prakse_Pregled1" />
-            <End Role="Doktor" EntitySet="Doktors" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_specijalista_UputDoktor" Association="ClinicModel.Doktor_specijalista_UputDoktor">
-            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
-            <End Role="Doktor" EntitySet="Doktors" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_op_pr_Pregled_PacijentPacijent" Association="ClinicModel.Doktor_op_pr_Pregled_PacijentPacijent">
-            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-            <End Role="Pacijent" EntitySet="Pacijents" />
-          </AssociationSet>
-          <AssociationSet Name="Doktor_DepartmanKlinika_Departman" Association="ClinicModel.Doktor_DepartmanKlinika_Departman">
-            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
-            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Klinika">
-          <Key>
-            <PropertyRef Name="Klinika_Id" />
-          </Key>
-          <Property Name="Klinika_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" />
-          <Property Name="Grad" Type="String" Nullable="false" />
-          <Property Name="Ulica" Type="String" Nullable="false" />
-          <Property Name="Broj" Type="String" Nullable="false" />
-          <Property Name="Telefon" Type="String" Nullable="false" />
-          <NavigationProperty Name="Klinika_Departmans" Relationship="ClinicModel.KlinikaKlinika_Departman" FromRole="Klinika" ToRole="Klinika_Departman" />
-        </EntityType>
-        <EntityType Name="Departman">
+      <Schema Namespace="ClinicDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departmen">
           <Key>
             <PropertyRef Name="Departman_Id" />
           </Key>
-          <Property Name="Departman_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" />
-          <Property Name="Sprat" Type="String" Nullable="false" />
-          <NavigationProperty Name="Klinika_Departmans" Relationship="ClinicModel.Klinika_DepartmanDepartman" FromRole="Departman" ToRole="Klinika_Departman" />
-        </EntityType>
-        <EntityType Name="Doktor">
-          <Key>
-            <PropertyRef Name="Doktor_Id" />
-          </Key>
-          <Property Name="Doktor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Korisnicko_Ime" Type="String" Nullable="false" />
-          <Property Name="Lozinka" Type="String" Nullable="false" />
-          <Property Name="Ime" Type="String" Nullable="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="Specijalizacija" Type="String" Nullable="false" />
-          <Property Name="Klinika_Id" Type="Int32" Nullable="false" />
-          <Property Name="Departman_Id" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" />
-          <NavigationProperty Name="Doktor_Departman" Relationship="ClinicModel.Doktor_DepartmanDoktor" FromRole="Doktor" ToRole="Doktor_Departman" />
-          <NavigationProperty Name="Doktor_opste_prakse_Pregled" Relationship="ClinicModel.Doktor_opste_prakse_PregledDoktor" FromRole="Doktor" ToRole="Doktor_opste_prakse_Pregled" />
-          <NavigationProperty Name="Doktor_specijalista_Uput" Relationship="ClinicModel.Doktor_specijalista_UputDoktor" FromRole="Doktor" ToRole="Doktor_specijalista_Uput" />
-        </EntityType>
-        <EntityType Name="Ugovor">
-          <Key>
-            <PropertyRef Name="Ugovor_Id" />
-          </Key>
-          <Property Name="Ugovor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Vrsta_Ugovora" Type="String" Nullable="false" />
-          <Property Name="Datum_Vazenja" Type="DateTime" Nullable="false" />
-          <Property Name="Specijalizacija" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Doktor_Departman" Relationship="ClinicModel.Doktor_DepartmanUgovor" FromRole="Ugovor" ToRole="Doktor_Departman" />
-        </EntityType>
-        <EntityType Name="Zdravstveni_Karton">
-          <Key>
-            <PropertyRef Name="Karton_Id" />
-          </Key>
-          <Property Name="Karton_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ime" Type="String" Nullable="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="JMBG" Type="String" Nullable="false" />
-          <Property Name="Evidencija" Type="String" Nullable="false" />
-          <NavigationProperty Name="Pacijent_Departman" Relationship="ClinicModel.Zdravstveni_KartonPacijent_Departman" FromRole="Zdravstveni_Karton" ToRole="Pacijent_Departman" />
-        </EntityType>
-        <EntityType Name="Pacijent">
-          <Key>
-            <PropertyRef Name="Pacijent_Id" />
-          </Key>
-          <Property Name="Pacijent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Korisnicko_Ime" Type="String" Nullable="false" />
-          <Property Name="Lozinka" Type="String" Nullable="false" />
-          <Property Name="Ime" Type="String" Nullable="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="Grad" Type="String" Nullable="false" />
-          <Property Name="Ulica" Type="String" Nullable="false" />
-          <Property Name="Broj" Type="String" Nullable="false" />
-          <Property Name="Telefon" Type="String" Nullable="false" />
-          <Property Name="Hitan_Kontakt" Type="String" Nullable="false" />
-          <NavigationProperty Name="Pacijent_Departman" Relationship="ClinicModel.Pacijent_DepartmanPacijent" FromRole="Pacijent" ToRole="Pacijent_Departman" />
-          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="ClinicModel.Doktor_op_pr_Pregled_PacijentPacijent" FromRole="Pacijent" ToRole="Doktor_op_pr_Pregled_Pacijent" />
-        </EntityType>
-        <EntityType Name="Pregled">
-          <Key>
-            <PropertyRef Name="Pregled_Id" />
-          </Key>
-          <Property Name="Pregled_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Vrsta" Type="String" Nullable="false" />
-          <Property Name="Opis" Type="String" Nullable="false" />
-          <Property Name="Vreme" Type="String" Nullable="false" />
-          <Property Name="Zakazan" Type="String" Nullable="false" />
-          <NavigationProperty Name="Doktor_opste_prakse_Pregled" Relationship="ClinicModel.PregledDoktor_opste_prakse_Pregled" FromRole="Pregled" ToRole="Doktor_opste_prakse_Pregled" />
-          <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Terapija_Specijaliste">
-          <Key>
-            <PropertyRef Name="Terapija_Id" />
-          </Key>
-          <Property Name="Terapija_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" />
-          <Property Name="Opis" Type="String" Nullable="false" />
-          <Property Name="Vrsta_Terapije" Type="String" Nullable="false" />
-          <NavigationProperty Name="Dijagnoza_Specijaliste" Relationship="ClinicModel.Dijagnoza_SpecijalisteTerapija_Specijaliste" FromRole="Terapija_Specijaliste" ToRole="Dijagnoza_Specijaliste" />
+          <Property Name="Departman_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sprat" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Dijagnoza_Specijaliste">
           <Key>
             <PropertyRef Name="Dijagnoza_Id" />
           </Key>
-          <Property Name="Dijagnoza_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" />
-          <Property Name="Opis" Type="String" Nullable="false" />
-          <NavigationProperty Name="Doktor_specijalista_Uputs" Relationship="ClinicModel.Doktor_specijalista_UputDijagnoza_Specijaliste" FromRole="Dijagnoza_Specijaliste" ToRole="Doktor_specijalista_Uput" />
-          <NavigationProperty Name="Terapija_Specijaliste" Relationship="ClinicModel.Dijagnoza_SpecijalisteTerapija_Specijaliste" FromRole="Dijagnoza_Specijaliste" ToRole="Terapija_Specijaliste" />
+          <Property Name="Dijagnoza_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="Terapija">
+        <EntityType Name="Dijagnoza_SpecijalisteTerapija_Specijaliste">
           <Key>
-            <PropertyRef Name="Terapija_Id" />
+            <PropertyRef Name="Dijagnoza_Specijaliste_Dijagnoza_Id" />
+            <PropertyRef Name="Terapija_Specijaliste_Terapija_Id" />
           </Key>
-          <Property Name="Terapija_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" />
-          <Property Name="Opis" Type="String" Nullable="false" />
-          <Property Name="Vrsta_Terapije" Type="String" Nullable="false" />
-          <NavigationProperty Name="Dijagnozas" Relationship="ClinicModel.DijagnozaTerapija" FromRole="Terapija" ToRole="Dijagnoza" />
-        </EntityType>
-        <EntityType Name="Ishod_Pregleda">
-          <Key>
-            <PropertyRef Name="Ishod_Id" />
-          </Key>
-          <Property Name="Ishod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" />
-          <Property Name="Opis" Type="String" Nullable="false" />
-          <NavigationProperty Name="Doktor_pregled_Pacijent" Relationship="ClinicModel.Doktor_pregled_PacijentIshod_Pregleda" FromRole="Ishod_Pregleda" ToRole="Doktor_pregled_Pacijent" />
-        </EntityType>
-        <EntityType Name="Dijagnoza" BaseType="ClinicModel.Ishod_Pregleda">
-          <NavigationProperty Name="Terapija" Relationship="ClinicModel.DijagnozaTerapija" FromRole="Dijagnoza" ToRole="Terapija" />
-          <Property Name="TerapijaTerapija_Id" Type="Int32" Nullable="true" />
-        </EntityType>
-        <EntityType Name="Uput" BaseType="ClinicModel.Ishod_Pregleda">
-          <NavigationProperty Name="Doktor_specijalista_Uputs" Relationship="ClinicModel.Doktor_specijalista_UputUput" FromRole="Uput" ToRole="Doktor_specijalista_Uput" />
-        </EntityType>
-        <EntityType Name="Klinika_Departman">
-          <Key>
-            <PropertyRef Name="KlinikaKlinika_Id" />
-            <PropertyRef Name="DepartmanDepartman_Id" />
-          </Key>
-          <NavigationProperty Name="Klinika" Relationship="ClinicModel.KlinikaKlinika_Departman" FromRole="Klinika_Departman" ToRole="Klinika" />
-          <Property Name="KlinikaKlinika_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Departman" Relationship="ClinicModel.Klinika_DepartmanDepartman" FromRole="Klinika_Departman" ToRole="Departman" />
-          <Property Name="DepartmanDepartman_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pacijent_Departman" Relationship="ClinicModel.Klinika_DepartmanPacijent_Departman" FromRole="Klinika_Departman" ToRole="Pacijent_Departman" />
-          <NavigationProperty Name="Doktor_Departman" Relationship="ClinicModel.Doktor_DepartmanKlinika_Departman" FromRole="Klinika_Departman" ToRole="Doktor_Departman" />
-        </EntityType>
-        <EntityType Name="Pacijent_Departman">
-          <Key>
-            <PropertyRef Name="PacijentPacijent_Id" />
-            <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-            <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-          </Key>
-          <Property Name="Datum_Prijave" Type="String" Nullable="false" />
-          <Property Name="Datum_Odjave" Type="String" Nullable="false" />
-          <Property Name="Soba" Type="String" Nullable="false" />
-          <NavigationProperty Name="Zdravstveni_Karton" Relationship="ClinicModel.Zdravstveni_KartonPacijent_Departman" FromRole="Pacijent_Departman" ToRole="Zdravstveni_Karton" />
-          <NavigationProperty Name="Pacijent" Relationship="ClinicModel.Pacijent_DepartmanPacijent" FromRole="Pacijent_Departman" ToRole="Pacijent" />
-          <Property Name="PacijentPacijent_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Klinika_Departman" Relationship="ClinicModel.Klinika_DepartmanPacijent_Departman" FromRole="Pacijent_Departman" ToRole="Klinika_Departman" />
-          <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="Int32" Nullable="false" />
-          <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="Int32" Nullable="false" />
+          <Property Name="Dijagnoza_Specijaliste_Dijagnoza_Id" Type="int" Nullable="false" />
+          <Property Name="Terapija_Specijaliste_Terapija_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Doktor_Departman">
           <Key>
@@ -834,206 +35,227 @@
             <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
             <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
           </Key>
-          <NavigationProperty Name="Doktor" Relationship="ClinicModel.Doktor_DepartmanDoktor" FromRole="Doktor_Departman" ToRole="Doktor" />
-          <NavigationProperty Name="Ugovor" Relationship="ClinicModel.Doktor_DepartmanUgovor" FromRole="Doktor_Departman" ToRole="Ugovor" />
-          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Klinika_Departman" Relationship="ClinicModel.Doktor_DepartmanKlinika_Departman" FromRole="Doktor_Departman" ToRole="Klinika_Departman" />
-          <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="Int32" Nullable="false" />
-          <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Doktor_opste_prakse_Pregled">
-          <Key>
-            <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-          </Key>
-          <Property Name="Doktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="ClinicModel.Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_opste_prakse_Pregled" ToRole="Doktor_op_pr_Pregled_Pacijent" />
-          <NavigationProperty Name="Pregleds" Relationship="ClinicModel.PregledDoktor_opste_prakse_Pregled" FromRole="Doktor_opste_prakse_Pregled" ToRole="Pregled" />
-          <NavigationProperty Name="Doktor" Relationship="ClinicModel.Doktor_opste_prakse_PregledDoktor" FromRole="Doktor_opste_prakse_Pregled" ToRole="Doktor" />
-          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
+          <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
+          <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="int" Nullable="false" />
+          <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="int" Nullable="false" />
+          <Property Name="Doktor_Doktor_Id" Type="int" Nullable="false" />
+          <Property Name="Ugovor_Ugovor_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Doktor_op_pr_Pregled_Pacijent">
           <Key>
             <PropertyRef Name="PacijentPacijent_Id" />
           </Key>
-          <NavigationProperty Name="Ishod_Pregleda" Relationship="ClinicModel.Doktor_pregled_PacijentIshod_Pregleda" FromRole="Doktor_pregled_Pacijent" ToRole="Ishod_Pregleda" />
-          <NavigationProperty Name="Doktor_opste_prakse_Pregled" Relationship="ClinicModel.Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Doktor_opste_prakse_Pregled" />
-          <Property Name="PacijentPacijent_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pacijent" Relationship="ClinicModel.Doktor_op_pr_Pregled_PacijentPacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Pacijent" />
-          <Property Name="PacijentPacijent_Id1" Type="Int32" Nullable="false" />
+          <Property Name="PacijentPacijent_Id" Type="int" Nullable="false" />
+          <Property Name="PacijentPacijent_Id1" Type="int" Nullable="false" />
+          <Property Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doktor_opste_prakse_Pregled1">
+          <Key>
+            <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
+          </Key>
+          <Property Name="Doktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
+          <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Doktor_specijalista_Uput">
           <Key>
             <PropertyRef Name="Doktor_specijalistaDoktor_Id" />
           </Key>
-          <Property Name="Doktor_specijalistaDoktor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Dijagnoza_Specijaliste" Relationship="ClinicModel.Doktor_specijalista_UputDijagnoza_Specijaliste" FromRole="Doktor_specijalista_Uput" ToRole="Dijagnoza_Specijaliste" />
-          <Property Name="Dijagnoza_SpecijalisteDijagnoza_Id" Type="Int32" Nullable="true" />
-          <NavigationProperty Name="Uput" Relationship="ClinicModel.Doktor_specijalista_UputUput" FromRole="Doktor_specijalista_Uput" ToRole="Uput" />
-          <Property Name="UputIshod_Id" Type="Int32" Nullable="true" />
-          <NavigationProperty Name="Doktor" Relationship="ClinicModel.Doktor_specijalista_UputDoktor" FromRole="Doktor_specijalista_Uput" ToRole="Doktor" />
-          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Doktor_specijalistaDoktor_Id" Type="int" Nullable="false" />
+          <Property Name="Dijagnoza_SpecijalisteDijagnoza_Id" Type="int" />
+          <Property Name="UputIshod_Id" Type="int" />
+          <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="Doktor_DepartmanDoktor">
-          <End Type="ClinicModel.Doktor_Departman" Role="Doktor_Departman" Multiplicity="0..1" />
-          <End Type="ClinicModel.Doktor" Role="Doktor" Multiplicity="1" />
-        </Association>
-        <Association Name="KlinikaKlinika_Departman">
-          <End Type="ClinicModel.Klinika" Role="Klinika" Multiplicity="1" />
-          <End Type="ClinicModel.Klinika_Departman" Role="Klinika_Departman" Multiplicity="*" />
+        <EntityType Name="Doktors">
+          <Key>
+            <PropertyRef Name="Doktor_Id" />
+          </Key>
+          <Property Name="Doktor_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Specijalizacija" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Klinika_Id" Type="int" Nullable="false" />
+          <Property Name="Departman_Id" Type="int" Nullable="false" />
+          <Property Name="Kontakt" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="Ishod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda_Dijagnoza">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="TerapijaTerapija_Id" Type="int" />
+          <Property Name="Ishod_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda_Uput">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="Ishod_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klinika_Departman">
+          <Key>
+            <PropertyRef Name="KlinikaKlinika_Id" />
+            <PropertyRef Name="DepartmanDepartman_Id" />
+          </Key>
+          <Property Name="KlinikaKlinika_Id" Type="int" Nullable="false" />
+          <Property Name="DepartmanDepartman_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klinikas">
+          <Key>
+            <PropertyRef Name="Klinika_Id" />
+          </Key>
+          <Property Name="Klinika_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Grad" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Broj" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacijent_Departman">
+          <Key>
+            <PropertyRef Name="PacijentPacijent_Id" />
+            <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+            <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+          </Key>
+          <Property Name="Datum_Prijave" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Datum_Odjave" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Soba" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PacijentPacijent_Id" Type="int" Nullable="false" />
+          <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="int" Nullable="false" />
+          <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacijents">
+          <Key>
+            <PropertyRef Name="Pacijent_Id" />
+          </Key>
+          <Property Name="Pacijent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kontakt" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pregleds">
+          <Key>
+            <PropertyRef Name="Pregled_Id" />
+          </Key>
+          <Property Name="Pregled_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Vreme" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terapija_Specijaliste">
+          <Key>
+            <PropertyRef Name="Terapija_Id" />
+          </Key>
+          <Property Name="Terapija_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Vrsta_Terapije" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terapijas">
+          <Key>
+            <PropertyRef Name="Terapija_Id" />
+          </Key>
+          <Property Name="Terapija_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Vrsta_Terapije" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ugovors">
+          <Key>
+            <PropertyRef Name="Ugovor_Id" />
+          </Key>
+          <Property Name="Ugovor_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vrsta_Ugovora" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Datum_Vazenja" Type="datetime" Nullable="false" />
+          <Property Name="Specijalizacija" Type="bit" Nullable="false" />
+          <Property Name="Doktor" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zdravstveni_Karton">
+          <Key>
+            <PropertyRef Name="Karton_Id" />
+          </Key>
+          <Property Name="Karton_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="JMBG" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Evidencija" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Pacijent_Departman_PacijentPacijent_Id" Type="int" Nullable="false" />
+          <Property Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" Type="int" Nullable="false" />
+          <Property Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dijagnoza_inherits_Ishod_Pregleda">
+          <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ishod_Pregleda_Dijagnoza" Type="Self.Ishod_Pregleda_Dijagnoza" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Klinika">
-              <PropertyRef Name="Klinika_Id" />
+            <Principal Role="Ishod_Pregleda">
+              <PropertyRef Name="Ishod_Id" />
             </Principal>
-            <Dependent Role="Klinika_Departman">
-              <PropertyRef Name="KlinikaKlinika_Id" />
+            <Dependent Role="Ishod_Pregleda_Dijagnoza">
+              <PropertyRef Name="Ishod_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Zdravstveni_KartonPacijent_Departman">
-          <End Type="ClinicModel.Zdravstveni_Karton" Role="Zdravstveni_Karton" Multiplicity="0..1" />
-          <End Type="ClinicModel.Pacijent_Departman" Role="Pacijent_Departman" Multiplicity="1" />
-        </Association>
-        <Association Name="Pacijent_DepartmanPacijent">
-          <End Type="ClinicModel.Pacijent_Departman" Role="Pacijent_Departman" Multiplicity="*" />
-          <End Type="ClinicModel.Pacijent" Role="Pacijent" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Pacijent">
-              <PropertyRef Name="Pacijent_Id" />
-            </Principal>
-            <Dependent Role="Pacijent_Departman">
-              <PropertyRef Name="PacijentPacijent_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Doktor_specijalista_UputDijagnoza_Specijaliste">
-          <End Type="ClinicModel.Doktor_specijalista_Uput" Role="Doktor_specijalista_Uput" Multiplicity="*" />
-          <End Type="ClinicModel.Dijagnoza_Specijaliste" Role="Dijagnoza_Specijaliste" Multiplicity="0..1" />
+        <Association Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Dijagnoza_Specijaliste">
+          <End Role="Dijagnoza_Specijaliste" Type="Self.Dijagnoza_Specijaliste" Multiplicity="1" />
+          <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" Type="Self.Dijagnoza_SpecijalisteTerapija_Specijaliste" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dijagnoza_Specijaliste">
               <PropertyRef Name="Dijagnoza_Id" />
             </Principal>
-            <Dependent Role="Doktor_specijalista_Uput">
-              <PropertyRef Name="Dijagnoza_SpecijalisteDijagnoza_Id" />
+            <Dependent Role="Dijagnoza_SpecijalisteTerapija_Specijaliste">
+              <PropertyRef Name="Dijagnoza_Specijaliste_Dijagnoza_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Dijagnoza_SpecijalisteTerapija_Specijaliste">
-          <End Type="ClinicModel.Dijagnoza_Specijaliste" Role="Dijagnoza_Specijaliste" Multiplicity="*" />
-          <End Type="ClinicModel.Terapija_Specijaliste" Role="Terapija_Specijaliste" Multiplicity="*" />
-        </Association>
-        <Association Name="Doktor_specijalista_UputUput">
-          <End Type="ClinicModel.Doktor_specijalista_Uput" Role="Doktor_specijalista_Uput" Multiplicity="*" />
-          <End Type="ClinicModel.Uput" Role="Uput" Multiplicity="0..1" />
+        <Association Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Terapija_Specijaliste">
+          <End Role="Terapija_Specijaliste" Type="Self.Terapija_Specijaliste" Multiplicity="1" />
+          <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" Type="Self.Dijagnoza_SpecijalisteTerapija_Specijaliste" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Uput">
-              <PropertyRef Name="Ishod_Id" />
-            </Principal>
-            <Dependent Role="Doktor_specijalista_Uput">
-              <PropertyRef Name="UputIshod_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Doktor_pregled_PacijentIshod_Pregleda">
-          <End Type="ClinicModel.Doktor_op_pr_Pregled_Pacijent" Role="Doktor_pregled_Pacijent" Multiplicity="1" />
-          <End Type="ClinicModel.Ishod_Pregleda" Role="Ishod_Pregleda" Multiplicity="0..1" />
-        </Association>
-        <Association Name="DijagnozaTerapija">
-          <End Type="ClinicModel.Dijagnoza" Role="Dijagnoza" Multiplicity="*" />
-          <End Type="ClinicModel.Terapija" Role="Terapija" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Terapija">
+            <Principal Role="Terapija_Specijaliste">
               <PropertyRef Name="Terapija_Id" />
             </Principal>
-            <Dependent Role="Dijagnoza">
+            <Dependent Role="Dijagnoza_SpecijalisteTerapija_Specijaliste">
+              <PropertyRef Name="Terapija_Specijaliste_Terapija_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DijagnozaTerapija">
+          <End Role="Terapijas" Type="Self.Terapijas" Multiplicity="0..1" />
+          <End Role="Ishod_Pregleda_Dijagnoza" Type="Self.Ishod_Pregleda_Dijagnoza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terapijas">
+              <PropertyRef Name="Terapija_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda_Dijagnoza">
               <PropertyRef Name="TerapijaTerapija_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-          <End Type="ClinicModel.Doktor_opste_prakse_Pregled" Role="Doktor_opste_prakse_Pregled" Multiplicity="1" />
-          <End Type="ClinicModel.Doktor_op_pr_Pregled_Pacijent" Role="Doktor_op_pr_Pregled_Pacijent" Multiplicity="0..1" />
-        </Association>
-        <Association Name="Klinika_DepartmanDepartman">
-          <End Type="ClinicModel.Klinika_Departman" Role="Klinika_Departman" Multiplicity="*" />
-          <End Type="ClinicModel.Departman" Role="Departman" Multiplicity="1" />
+        <Association Name="FK_Doktor_DepartmanDoktor">
+          <End Role="Doktors" Type="Self.Doktors" Multiplicity="1" />
+          <End Role="Doktor_Departman" Type="Self.Doktor_Departman" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Departman">
-              <PropertyRef Name="Departman_Id" />
-            </Principal>
-            <Dependent Role="Klinika_Departman">
-              <PropertyRef Name="DepartmanDepartman_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Doktor_DepartmanUgovor">
-          <End Type="ClinicModel.Doktor_Departman" Role="Doktor_Departman" Multiplicity="0..1" />
-          <End Type="ClinicModel.Ugovor" Role="Ugovor" Multiplicity="1" />
-        </Association>
-        <Association Name="Klinika_DepartmanPacijent_Departman">
-          <End Type="ClinicModel.Klinika_Departman" Role="Klinika_Departman" Multiplicity="1" />
-          <End Type="ClinicModel.Pacijent_Departman" Role="Pacijent_Departman" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Klinika_Departman">
-              <PropertyRef Name="KlinikaKlinika_Id" />
-              <PropertyRef Name="DepartmanDepartman_Id" />
-            </Principal>
-            <Dependent Role="Pacijent_Departman">
-              <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
-              <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="PregledDoktor_opste_prakse_Pregled">
-          <End Type="ClinicModel.Pregled" Role="Pregled" Multiplicity="*" />
-          <End Type="ClinicModel.Doktor_opste_prakse_Pregled" Role="Doktor_opste_prakse_Pregled" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Doktor_opste_prakse_Pregled">
-              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-            </Principal>
-            <Dependent Role="Pregled">
-              <PropertyRef Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Doktor_opste_prakse_PregledDoktor">
-          <End Type="ClinicModel.Doktor_opste_prakse_Pregled" Role="Doktor_opste_prakse_Pregled" Multiplicity="*" />
-          <End Type="ClinicModel.Doktor" Role="Doktor" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Doktor">
+            <Principal Role="Doktors">
               <PropertyRef Name="Doktor_Id" />
             </Principal>
-            <Dependent Role="Doktor_opste_prakse_Pregled">
-              <PropertyRef Name="DoktorDoktor_Id" />
+            <Dependent Role="Doktor_Departman">
+              <PropertyRef Name="Doktor_Doktor_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Doktor_specijalista_UputDoktor">
-          <End Type="ClinicModel.Doktor_specijalista_Uput" Role="Doktor_specijalista_Uput" Multiplicity="*" />
-          <End Type="ClinicModel.Doktor" Role="Doktor" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Doktor">
-              <PropertyRef Name="Doktor_Id" />
-            </Principal>
-            <Dependent Role="Doktor_specijalista_Uput">
-              <PropertyRef Name="DoktorDoktor_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Doktor_op_pr_Pregled_PacijentPacijent">
-          <End Type="ClinicModel.Doktor_op_pr_Pregled_Pacijent" Role="Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
-          <End Type="ClinicModel.Pacijent" Role="Pacijent" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Pacijent">
-              <PropertyRef Name="Pacijent_Id" />
-            </Principal>
-            <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
-              <PropertyRef Name="PacijentPacijent_Id1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Doktor_DepartmanKlinika_Departman">
-          <End Type="ClinicModel.Doktor_Departman" Role="Doktor_Departman" Multiplicity="*" />
-          <End Type="ClinicModel.Klinika_Departman" Role="Klinika_Departman" Multiplicity="1" />
+        <Association Name="FK_Doktor_DepartmanKlinika_Departman">
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="1" />
+          <End Role="Doktor_Departman" Type="Self.Doktor_Departman" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klinika_Departman">
               <PropertyRef Name="KlinikaKlinika_Id" />
@@ -1045,276 +267,1095 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Doktor_DepartmanUgovor">
+          <End Role="Ugovors" Type="Self.Ugovors" Multiplicity="1" />
+          <End Role="Doktor_Departman" Type="Self.Doktor_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugovors">
+              <PropertyRef Name="Ugovor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_Departman">
+              <PropertyRef Name="Ugovor_Ugovor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_op_pr_Pregled_PacijentPacijent">
+          <End Role="Pacijents" Type="Self.Pacijents" Multiplicity="1" />
+          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijents">
+              <PropertyRef Name="Pacijent_Id" />
+            </Principal>
+            <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
+              <PropertyRef Name="PacijentPacijent_Id1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_opste_prakse_PregledDoktor">
+          <End Role="Doktors" Type="Self.Doktors" Multiplicity="1" />
+          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktors">
+              <PropertyRef Name="Doktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_opste_prakse_Pregled1">
+              <PropertyRef Name="DoktorDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
+          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
+          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor_opste_prakse_Pregled1">
+              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
+              <PropertyRef Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_pregled_PacijentIshod_Pregleda">
+          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="1" />
+          <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor_op_pr_Pregled_Pacijent">
+              <PropertyRef Name="PacijentPacijent_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda">
+              <PropertyRef Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_specijalista_UputDijagnoza_Specijaliste">
+          <End Role="Dijagnoza_Specijaliste" Type="Self.Dijagnoza_Specijaliste" Multiplicity="0..1" />
+          <End Role="Doktor_specijalista_Uput" Type="Self.Doktor_specijalista_Uput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dijagnoza_Specijaliste">
+              <PropertyRef Name="Dijagnoza_Id" />
+            </Principal>
+            <Dependent Role="Doktor_specijalista_Uput">
+              <PropertyRef Name="Dijagnoza_SpecijalisteDijagnoza_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_specijalista_UputDoktor">
+          <End Role="Doktors" Type="Self.Doktors" Multiplicity="1" />
+          <End Role="Doktor_specijalista_Uput" Type="Self.Doktor_specijalista_Uput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktors">
+              <PropertyRef Name="Doktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_specijalista_Uput">
+              <PropertyRef Name="DoktorDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_specijalista_UputUput">
+          <End Role="Ishod_Pregleda_Uput" Type="Self.Ishod_Pregleda_Uput" Multiplicity="0..1" />
+          <End Role="Doktor_specijalista_Uput" Type="Self.Doktor_specijalista_Uput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ishod_Pregleda_Uput">
+              <PropertyRef Name="Ishod_Id" />
+            </Principal>
+            <Dependent Role="Doktor_specijalista_Uput">
+              <PropertyRef Name="UputIshod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klinika_DepartmanDepartman">
+          <End Role="Departmen" Type="Self.Departmen" Multiplicity="1" />
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departmen">
+              <PropertyRef Name="Departman_Id" />
+            </Principal>
+            <Dependent Role="Klinika_Departman">
+              <PropertyRef Name="DepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klinika_DepartmanPacijent_Departman">
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="1" />
+          <End Role="Pacijent_Departman" Type="Self.Pacijent_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinika_Departman">
+              <PropertyRef Name="KlinikaKlinika_Id" />
+              <PropertyRef Name="DepartmanDepartman_Id" />
+            </Principal>
+            <Dependent Role="Pacijent_Departman">
+              <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KlinikaKlinika_Departman">
+          <End Role="Klinikas" Type="Self.Klinikas" Multiplicity="1" />
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinikas">
+              <PropertyRef Name="Klinika_Id" />
+            </Principal>
+            <Dependent Role="Klinika_Departman">
+              <PropertyRef Name="KlinikaKlinika_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacijent_DepartmanPacijent">
+          <End Role="Pacijents" Type="Self.Pacijents" Multiplicity="1" />
+          <End Role="Pacijent_Departman" Type="Self.Pacijent_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijents">
+              <PropertyRef Name="Pacijent_Id" />
+            </Principal>
+            <Dependent Role="Pacijent_Departman">
+              <PropertyRef Name="PacijentPacijent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PregledDoktor_opste_prakse_Pregled">
+          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
+          <End Role="Pregleds" Type="Self.Pregleds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor_opste_prakse_Pregled1">
+              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
+            </Principal>
+            <Dependent Role="Pregleds">
+              <PropertyRef Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uput_inherits_Ishod_Pregleda">
+          <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ishod_Pregleda_Uput" Type="Self.Ishod_Pregleda_Uput" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ishod_Pregleda">
+              <PropertyRef Name="Ishod_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda_Uput">
+              <PropertyRef Name="Ishod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdravstveni_KartonPacijent_Departman">
+          <End Role="Pacijent_Departman" Type="Self.Pacijent_Departman" Multiplicity="1" />
+          <End Role="Zdravstveni_Karton" Type="Self.Zdravstveni_Karton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijent_Departman">
+              <PropertyRef Name="PacijentPacijent_Id" />
+              <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+            </Principal>
+            <Dependent Role="Zdravstveni_Karton">
+              <PropertyRef Name="Pacijent_Departman_PacijentPacijent_Id" />
+              <PropertyRef Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClinicDBModelStoreContainer">
+          <EntitySet Name="Departmen" EntityType="Self.Departmen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dijagnoza_Specijaliste" EntityType="Self.Dijagnoza_Specijaliste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dijagnoza_SpecijalisteTerapija_Specijaliste" EntityType="Self.Dijagnoza_SpecijalisteTerapija_Specijaliste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktor_Departman" EntityType="Self.Doktor_Departman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktor_op_pr_Pregled_Pacijent" EntityType="Self.Doktor_op_pr_Pregled_Pacijent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktor_opste_prakse_Pregled1" EntityType="Self.Doktor_opste_prakse_Pregled1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktor_specijalista_Uput" EntityType="Self.Doktor_specijalista_Uput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktors" EntityType="Self.Doktors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ishod_Pregleda" EntityType="Self.Ishod_Pregleda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ishod_Pregleda_Dijagnoza" EntityType="Self.Ishod_Pregleda_Dijagnoza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ishod_Pregleda_Uput" EntityType="Self.Ishod_Pregleda_Uput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klinika_Departman" EntityType="Self.Klinika_Departman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klinikas" EntityType="Self.Klinikas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacijent_Departman" EntityType="Self.Pacijent_Departman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacijents" EntityType="Self.Pacijents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregleds" EntityType="Self.Pregleds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terapija_Specijaliste" EntityType="Self.Terapija_Specijaliste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terapijas" EntityType="Self.Terapijas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ugovors" EntityType="Self.Ugovors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zdravstveni_Karton" EntityType="Self.Zdravstveni_Karton" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dijagnoza_inherits_Ishod_Pregleda" Association="Self.FK_Dijagnoza_inherits_Ishod_Pregleda">
+            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
+            <End Role="Ishod_Pregleda_Dijagnoza" EntitySet="Ishod_Pregleda_Dijagnoza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Dijagnoza_Specijaliste" Association="Self.FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Dijagnoza_Specijaliste">
+            <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
+            <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" EntitySet="Dijagnoza_SpecijalisteTerapija_Specijaliste" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Terapija_Specijaliste" Association="Self.FK_Dijagnoza_SpecijalisteTerapija_Specijaliste_Terapija_Specijaliste">
+            <End Role="Terapija_Specijaliste" EntitySet="Terapija_Specijaliste" />
+            <End Role="Dijagnoza_SpecijalisteTerapija_Specijaliste" EntitySet="Dijagnoza_SpecijalisteTerapija_Specijaliste" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DijagnozaTerapija" Association="Self.FK_DijagnozaTerapija">
+            <End Role="Terapijas" EntitySet="Terapijas" />
+            <End Role="Ishod_Pregleda_Dijagnoza" EntitySet="Ishod_Pregleda_Dijagnoza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_DepartmanDoktor" Association="Self.FK_Doktor_DepartmanDoktor">
+            <End Role="Doktors" EntitySet="Doktors" />
+            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_DepartmanKlinika_Departman" Association="Self.FK_Doktor_DepartmanKlinika_Departman">
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_DepartmanUgovor" Association="Self.FK_Doktor_DepartmanUgovor">
+            <End Role="Ugovors" EntitySet="Ugovors" />
+            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_op_pr_Pregled_PacijentPacijent" Association="Self.FK_Doktor_op_pr_Pregled_PacijentPacijent">
+            <End Role="Pacijents" EntitySet="Pacijents" />
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_opste_prakse_PregledDoktor" Association="Self.FK_Doktor_opste_prakse_PregledDoktor">
+            <End Role="Doktors" EntitySet="Doktors" />
+            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" Association="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
+            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_pregled_PacijentIshod_Pregleda" Association="Self.FK_Doktor_pregled_PacijentIshod_Pregleda">
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_specijalista_UputDijagnoza_Specijaliste" Association="Self.FK_Doktor_specijalista_UputDijagnoza_Specijaliste">
+            <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
+            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_specijalista_UputDoktor" Association="Self.FK_Doktor_specijalista_UputDoktor">
+            <End Role="Doktors" EntitySet="Doktors" />
+            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_specijalista_UputUput" Association="Self.FK_Doktor_specijalista_UputUput">
+            <End Role="Ishod_Pregleda_Uput" EntitySet="Ishod_Pregleda_Uput" />
+            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klinika_DepartmanDepartman" Association="Self.FK_Klinika_DepartmanDepartman">
+            <End Role="Departmen" EntitySet="Departmen" />
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klinika_DepartmanPacijent_Departman" Association="Self.FK_Klinika_DepartmanPacijent_Departman">
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KlinikaKlinika_Departman" Association="Self.FK_KlinikaKlinika_Departman">
+            <End Role="Klinikas" EntitySet="Klinikas" />
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacijent_DepartmanPacijent" Association="Self.FK_Pacijent_DepartmanPacijent">
+            <End Role="Pacijents" EntitySet="Pacijents" />
+            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PregledDoktor_opste_prakse_Pregled" Association="Self.FK_PregledDoktor_opste_prakse_Pregled">
+            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
+            <End Role="Pregleds" EntitySet="Pregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uput_inherits_Ishod_Pregleda" Association="Self.FK_Uput_inherits_Ishod_Pregleda">
+            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
+            <End Role="Ishod_Pregleda_Uput" EntitySet="Ishod_Pregleda_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdravstveni_KartonPacijent_Departman" Association="Self.FK_Zdravstveni_KartonPacijent_Departman">
+            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
+            <End Role="Zdravstveni_Karton" EntitySet="Zdravstveni_Karton" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClinicDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Departman">
+          <Key>
+            <PropertyRef Name="Departman_Id" />
+          </Key>
+          <Property Name="Departman_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sprat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Klinika_Departman" Relationship="Self.FK_Klinika_DepartmanDepartman" FromRole="Departmen" ToRole="Klinika_Departman" />
+        </EntityType>
+        <EntityType Name="Dijagnoza_Specijaliste">
+          <Key>
+            <PropertyRef Name="Dijagnoza_Id" />
+          </Key>
+          <Property Name="Dijagnoza_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doktor_specijalista_Uput" Relationship="Self.FK_Doktor_specijalista_UputDijagnoza_Specijaliste" FromRole="Dijagnoza_Specijaliste" ToRole="Doktor_specijalista_Uput" />
+          <NavigationProperty Name="Terapija_Specijaliste" Relationship="Self.Dijagnoza_SpecijalisteTerapija_Specijaliste" FromRole="Dijagnoza_Specijaliste" ToRole="Terapija_Specijaliste" />
+        </EntityType>
+        <EntityType Name="Doktor_Departman">
+          <Key>
+            <PropertyRef Name="DoktorDoktor_Id" />
+            <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+            <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+          </Key>
+          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="Int32" Nullable="false" />
+          <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="Int32" Nullable="false" />
+          <Property Name="Doktor_Doktor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ugovor_Ugovor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doktor" Relationship="Self.FK_Doktor_DepartmanDoktor" FromRole="Doktor_Departman" ToRole="Doktors" />
+          <NavigationProperty Name="Klinika_Departman" Relationship="Self.FK_Doktor_DepartmanKlinika_Departman" FromRole="Doktor_Departman" ToRole="Klinika_Departman" />
+          <NavigationProperty Name="Ugovor" Relationship="Self.FK_Doktor_DepartmanUgovor" FromRole="Doktor_Departman" ToRole="Ugovors" />
+        </EntityType>
+        <EntityType Name="Doktor_op_pr_Pregled_Pacijent">
+          <Key>
+            <PropertyRef Name="PacijentPacijent_Id" />
+          </Key>
+          <Property Name="PacijentPacijent_Id" Type="Int32" Nullable="false" />
+          <Property Name="PacijentPacijent_Id1" Type="Int32" Nullable="false" />
+          <Property Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pacijent" Relationship="Self.FK_Doktor_op_pr_Pregled_PacijentPacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Pacijents" />
+          <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Doktor_opste_prakse_Pregled1" />
+          <NavigationProperty Name="Ishod_Pregleda" Relationship="Self.FK_Doktor_pregled_PacijentIshod_Pregleda" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Ishod_Pregleda" />
+        </EntityType>
+        <EntityType Name="Doktor_opste_prakse_Pregled1">
+          <Key>
+            <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
+          </Key>
+          <Property Name="Doktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
+          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_opste_prakse_Pregled1" ToRole="Doktor_op_pr_Pregled_Pacijent" />
+          <NavigationProperty Name="Doktor" Relationship="Self.FK_Doktor_opste_prakse_PregledDoktor" FromRole="Doktor_opste_prakse_Pregled1" ToRole="Doktors" />
+          <NavigationProperty Name="Pregleds" Relationship="Self.FK_PregledDoktor_opste_prakse_Pregled" FromRole="Doktor_opste_prakse_Pregled1" ToRole="Pregleds" />
+        </EntityType>
+        <EntityType Name="Doktor_specijalista_Uput">
+          <Key>
+            <PropertyRef Name="Doktor_specijalistaDoktor_Id" />
+          </Key>
+          <Property Name="Doktor_specijalistaDoktor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Dijagnoza_SpecijalisteDijagnoza_Id" Type="Int32" />
+          <Property Name="UputIshod_Id" Type="Int32" />
+          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dijagnoza_Specijaliste" Relationship="Self.FK_Doktor_specijalista_UputDijagnoza_Specijaliste" FromRole="Doktor_specijalista_Uput" ToRole="Dijagnoza_Specijaliste" />
+          <NavigationProperty Name="Doktor" Relationship="Self.FK_Doktor_specijalista_UputDoktor" FromRole="Doktor_specijalista_Uput" ToRole="Doktors" />
+          <NavigationProperty Name="Ishod_Pregleda_Uput" Relationship="Self.FK_Doktor_specijalista_UputUput" FromRole="Doktor_specijalista_Uput" ToRole="Ishod_Pregleda_Uput" />
+        </EntityType>
+        <EntityType Name="Doktor">
+          <Key>
+            <PropertyRef Name="Doktor_Id" />
+          </Key>
+          <Property Name="Doktor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Specijalizacija" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Klinika_Id" Type="Int32" Nullable="false" />
+          <Property Name="Departman_Id" Type="Int32" Nullable="false" />
+          <Property Name="Kontakt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doktor_Departman" Relationship="Self.FK_Doktor_DepartmanDoktor" FromRole="Doktors" ToRole="Doktor_Departman" />
+          <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="Self.FK_Doktor_opste_prakse_PregledDoktor" FromRole="Doktors" ToRole="Doktor_opste_prakse_Pregled1" />
+          <NavigationProperty Name="Doktor_specijalista_Uput" Relationship="Self.FK_Doktor_specijalista_UputDoktor" FromRole="Doktors" ToRole="Doktor_specijalista_Uput" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="Ishod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="Self.FK_Doktor_pregled_PacijentIshod_Pregleda" FromRole="Ishod_Pregleda" ToRole="Doktor_op_pr_Pregled_Pacijent" />
+          <NavigationProperty Name="Ishod_Pregleda_Dijagnoza" Relationship="Self.FK_Dijagnoza_inherits_Ishod_Pregleda" FromRole="Ishod_Pregleda" ToRole="Ishod_Pregleda_Dijagnoza" />
+          <NavigationProperty Name="Ishod_Pregleda_Uput" Relationship="Self.FK_Uput_inherits_Ishod_Pregleda" FromRole="Ishod_Pregleda" ToRole="Ishod_Pregleda_Uput" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda_Dijagnoza">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="TerapijaTerapija_Id" Type="Int32" />
+          <Property Name="Ishod_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ishod_Pregleda" Relationship="Self.FK_Dijagnoza_inherits_Ishod_Pregleda" FromRole="Ishod_Pregleda_Dijagnoza" ToRole="Ishod_Pregleda" />
+          <NavigationProperty Name="Terapija" Relationship="Self.FK_DijagnozaTerapija" FromRole="Ishod_Pregleda_Dijagnoza" ToRole="Terapijas" />
+        </EntityType>
+        <EntityType Name="Ishod_Pregleda_Uput">
+          <Key>
+            <PropertyRef Name="Ishod_Id" />
+          </Key>
+          <Property Name="Ishod_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doktor_specijalista_Uput" Relationship="Self.FK_Doktor_specijalista_UputUput" FromRole="Ishod_Pregleda_Uput" ToRole="Doktor_specijalista_Uput" />
+          <NavigationProperty Name="Ishod_Pregleda" Relationship="Self.FK_Uput_inherits_Ishod_Pregleda" FromRole="Ishod_Pregleda_Uput" ToRole="Ishod_Pregleda" />
+        </EntityType>
+        <EntityType Name="Klinika_Departman">
+          <Key>
+            <PropertyRef Name="KlinikaKlinika_Id" />
+            <PropertyRef Name="DepartmanDepartman_Id" />
+          </Key>
+          <Property Name="KlinikaKlinika_Id" Type="Int32" Nullable="false" />
+          <Property Name="DepartmanDepartman_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departman" Relationship="Self.FK_Klinika_DepartmanDepartman" FromRole="Klinika_Departman" ToRole="Departmen" />
+          <NavigationProperty Name="Doktor_Departman" Relationship="Self.FK_Doktor_DepartmanKlinika_Departman" FromRole="Klinika_Departman" ToRole="Doktor_Departman" />
+          <NavigationProperty Name="Pacijent_Departman" Relationship="Self.FK_Klinika_DepartmanPacijent_Departman" FromRole="Klinika_Departman" ToRole="Pacijent_Departman" />
+          <NavigationProperty Name="Klinika" Relationship="Self.FK_KlinikaKlinika_Departman" FromRole="Klinika_Departman" ToRole="Klinikas" />
+        </EntityType>
+        <EntityType Name="Klinika">
+          <Key>
+            <PropertyRef Name="Klinika_Id" />
+          </Key>
+          <Property Name="Klinika_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Grad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Broj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Klinika_Departman" Relationship="Self.FK_KlinikaKlinika_Departman" FromRole="Klinikas" ToRole="Klinika_Departman" />
+        </EntityType>
+        <EntityType Name="Pacijent_Departman">
+          <Key>
+            <PropertyRef Name="PacijentPacijent_Id" />
+            <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+            <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+          </Key>
+          <Property Name="Datum_Prijave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Datum_Odjave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soba" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PacijentPacijent_Id" Type="Int32" Nullable="false" />
+          <Property Name="Klinika_DepartmanKlinikaKlinika_Id" Type="Int32" Nullable="false" />
+          <Property Name="Klinika_DepartmanDepartmanDepartman_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klinika_Departman" Relationship="Self.FK_Klinika_DepartmanPacijent_Departman" FromRole="Pacijent_Departman" ToRole="Klinika_Departman" />
+          <NavigationProperty Name="Pacijent" Relationship="Self.FK_Pacijent_DepartmanPacijent" FromRole="Pacijent_Departman" ToRole="Pacijents" />
+          <NavigationProperty Name="Zdravstveni_Karton" Relationship="Self.FK_Zdravstveni_KartonPacijent_Departman" FromRole="Pacijent_Departman" ToRole="Zdravstveni_Karton" />
+        </EntityType>
+        <EntityType Name="Pacijent">
+          <Key>
+            <PropertyRef Name="Pacijent_Id" />
+          </Key>
+          <Property Name="Pacijent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kontakt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="Self.FK_Doktor_op_pr_Pregled_PacijentPacijent" FromRole="Pacijents" ToRole="Doktor_op_pr_Pregled_Pacijent" />
+          <NavigationProperty Name="Pacijent_Departman" Relationship="Self.FK_Pacijent_DepartmanPacijent" FromRole="Pacijents" ToRole="Pacijent_Departman" />
+        </EntityType>
+        <EntityType Name="Pregled">
+          <Key>
+            <PropertyRef Name="Pregled_Id" />
+          </Key>
+          <Property Name="Pregled_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vreme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="Self.FK_PregledDoktor_opste_prakse_Pregled" FromRole="Pregleds" ToRole="Doktor_opste_prakse_Pregled1" />
+        </EntityType>
+        <EntityType Name="Terapija_Specijaliste">
+          <Key>
+            <PropertyRef Name="Terapija_Id" />
+          </Key>
+          <Property Name="Terapija_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vrsta_Terapije" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dijagnoza_Specijaliste" Relationship="Self.Dijagnoza_SpecijalisteTerapija_Specijaliste" FromRole="Terapija_Specijaliste" ToRole="Dijagnoza_Specijaliste" />
+        </EntityType>
+        <EntityType Name="Terapija">
+          <Key>
+            <PropertyRef Name="Terapija_Id" />
+          </Key>
+          <Property Name="Terapija_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vrsta_Terapije" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ishod_Pregleda_Dijagnoza" Relationship="Self.FK_DijagnozaTerapija" FromRole="Terapijas" ToRole="Ishod_Pregleda_Dijagnoza" />
+        </EntityType>
+        <EntityType Name="Ugovor">
+          <Key>
+            <PropertyRef Name="Ugovor_Id" />
+          </Key>
+          <Property Name="Ugovor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vrsta_Ugovora" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Datum_Vazenja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Specijalizacija" Type="Boolean" Nullable="false" />
+          <Property Name="Doktor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doktor_Departman" Relationship="Self.FK_Doktor_DepartmanUgovor" FromRole="Ugovors" ToRole="Doktor_Departman" />
+        </EntityType>
+        <EntityType Name="Zdravstveni_Karton">
+          <Key>
+            <PropertyRef Name="Karton_Id" />
+          </Key>
+          <Property Name="Karton_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JMBG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Evidencija" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pacijent_Departman_PacijentPacijent_Id" Type="Int32" Nullable="false" />
+          <Property Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" Type="Int32" Nullable="false" />
+          <Property Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pacijent_Departman" Relationship="Self.FK_Zdravstveni_KartonPacijent_Departman" FromRole="Zdravstveni_Karton" ToRole="Pacijent_Departman" />
+        </EntityType>
+        <Association Name="FK_Klinika_DepartmanDepartman">
+          <End Role="Departmen" Type="Self.Departman" Multiplicity="1" />
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departmen">
+              <PropertyRef Name="Departman_Id" />
+            </Principal>
+            <Dependent Role="Klinika_Departman">
+              <PropertyRef Name="DepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_specijalista_UputDijagnoza_Specijaliste">
+          <End Role="Dijagnoza_Specijaliste" Type="Self.Dijagnoza_Specijaliste" Multiplicity="0..1" />
+          <End Role="Doktor_specijalista_Uput" Type="Self.Doktor_specijalista_Uput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dijagnoza_Specijaliste">
+              <PropertyRef Name="Dijagnoza_Id" />
+            </Principal>
+            <Dependent Role="Doktor_specijalista_Uput">
+              <PropertyRef Name="Dijagnoza_SpecijalisteDijagnoza_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_DepartmanDoktor">
+          <End Role="Doktors" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Doktor_Departman" Type="Self.Doktor_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktors">
+              <PropertyRef Name="Doktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_Departman">
+              <PropertyRef Name="Doktor_Doktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_DepartmanKlinika_Departman">
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="1" />
+          <End Role="Doktor_Departman" Type="Self.Doktor_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinika_Departman">
+              <PropertyRef Name="KlinikaKlinika_Id" />
+              <PropertyRef Name="DepartmanDepartman_Id" />
+            </Principal>
+            <Dependent Role="Doktor_Departman">
+              <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_DepartmanUgovor">
+          <End Role="Ugovors" Type="Self.Ugovor" Multiplicity="1" />
+          <End Role="Doktor_Departman" Type="Self.Doktor_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugovors">
+              <PropertyRef Name="Ugovor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_Departman">
+              <PropertyRef Name="Ugovor_Ugovor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_op_pr_Pregled_PacijentPacijent">
+          <End Role="Pacijents" Type="Self.Pacijent" Multiplicity="1" />
+          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijents">
+              <PropertyRef Name="Pacijent_Id" />
+            </Principal>
+            <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
+              <PropertyRef Name="PacijentPacijent_Id1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
+          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
+          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor_opste_prakse_Pregled1">
+              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
+              <PropertyRef Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_pregled_PacijentIshod_Pregleda">
+          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="1" />
+          <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor_op_pr_Pregled_Pacijent">
+              <PropertyRef Name="PacijentPacijent_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda">
+              <PropertyRef Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_opste_prakse_PregledDoktor">
+          <End Role="Doktors" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktors">
+              <PropertyRef Name="Doktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_opste_prakse_Pregled1">
+              <PropertyRef Name="DoktorDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PregledDoktor_opste_prakse_Pregled">
+          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
+          <End Role="Pregleds" Type="Self.Pregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor_opste_prakse_Pregled1">
+              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
+            </Principal>
+            <Dependent Role="Pregleds">
+              <PropertyRef Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_specijalista_UputDoktor">
+          <End Role="Doktors" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Doktor_specijalista_Uput" Type="Self.Doktor_specijalista_Uput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktors">
+              <PropertyRef Name="Doktor_Id" />
+            </Principal>
+            <Dependent Role="Doktor_specijalista_Uput">
+              <PropertyRef Name="DoktorDoktor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doktor_specijalista_UputUput">
+          <End Role="Ishod_Pregleda_Uput" Type="Self.Ishod_Pregleda_Uput" Multiplicity="0..1" />
+          <End Role="Doktor_specijalista_Uput" Type="Self.Doktor_specijalista_Uput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ishod_Pregleda_Uput">
+              <PropertyRef Name="Ishod_Id" />
+            </Principal>
+            <Dependent Role="Doktor_specijalista_Uput">
+              <PropertyRef Name="UputIshod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dijagnoza_inherits_Ishod_Pregleda">
+          <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ishod_Pregleda_Dijagnoza" Type="Self.Ishod_Pregleda_Dijagnoza" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ishod_Pregleda">
+              <PropertyRef Name="Ishod_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda_Dijagnoza">
+              <PropertyRef Name="Ishod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uput_inherits_Ishod_Pregleda">
+          <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ishod_Pregleda_Uput" Type="Self.Ishod_Pregleda_Uput" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ishod_Pregleda">
+              <PropertyRef Name="Ishod_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda_Uput">
+              <PropertyRef Name="Ishod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DijagnozaTerapija">
+          <End Role="Terapijas" Type="Self.Terapija" Multiplicity="0..1" />
+          <End Role="Ishod_Pregleda_Dijagnoza" Type="Self.Ishod_Pregleda_Dijagnoza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terapijas">
+              <PropertyRef Name="Terapija_Id" />
+            </Principal>
+            <Dependent Role="Ishod_Pregleda_Dijagnoza">
+              <PropertyRef Name="TerapijaTerapija_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klinika_DepartmanPacijent_Departman">
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="1" />
+          <End Role="Pacijent_Departman" Type="Self.Pacijent_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinika_Departman">
+              <PropertyRef Name="KlinikaKlinika_Id" />
+              <PropertyRef Name="DepartmanDepartman_Id" />
+            </Principal>
+            <Dependent Role="Pacijent_Departman">
+              <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KlinikaKlinika_Departman">
+          <End Role="Klinikas" Type="Self.Klinika" Multiplicity="1" />
+          <End Role="Klinika_Departman" Type="Self.Klinika_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinikas">
+              <PropertyRef Name="Klinika_Id" />
+            </Principal>
+            <Dependent Role="Klinika_Departman">
+              <PropertyRef Name="KlinikaKlinika_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacijent_DepartmanPacijent">
+          <End Role="Pacijents" Type="Self.Pacijent" Multiplicity="1" />
+          <End Role="Pacijent_Departman" Type="Self.Pacijent_Departman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijents">
+              <PropertyRef Name="Pacijent_Id" />
+            </Principal>
+            <Dependent Role="Pacijent_Departman">
+              <PropertyRef Name="PacijentPacijent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zdravstveni_KartonPacijent_Departman">
+          <End Role="Pacijent_Departman" Type="Self.Pacijent_Departman" Multiplicity="1" />
+          <End Role="Zdravstveni_Karton" Type="Self.Zdravstveni_Karton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijent_Departman">
+              <PropertyRef Name="PacijentPacijent_Id" />
+              <PropertyRef Name="Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Klinika_DepartmanDepartmanDepartman_Id" />
+            </Principal>
+            <Dependent Role="Zdravstveni_Karton">
+              <PropertyRef Name="Pacijent_Departman_PacijentPacijent_Id" />
+              <PropertyRef Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" />
+              <PropertyRef Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Dijagnoza_SpecijalisteTerapija_Specijaliste">
+          <End Role="Dijagnoza_Specijaliste" Type="Self.Dijagnoza_Specijaliste" Multiplicity="*" />
+          <End Role="Terapija_Specijaliste" Type="Self.Terapija_Specijaliste" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ClinicDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departmen" EntityType="Self.Departman" />
+          <EntitySet Name="Dijagnoza_Specijaliste" EntityType="Self.Dijagnoza_Specijaliste" />
+          <EntitySet Name="Doktor_Departman" EntityType="Self.Doktor_Departman" />
+          <EntitySet Name="Doktor_op_pr_Pregled_Pacijent" EntityType="Self.Doktor_op_pr_Pregled_Pacijent" />
+          <EntitySet Name="Doktor_opste_prakse_Pregled1" EntityType="Self.Doktor_opste_prakse_Pregled1" />
+          <EntitySet Name="Doktor_specijalista_Uput" EntityType="Self.Doktor_specijalista_Uput" />
+          <EntitySet Name="Doktors" EntityType="Self.Doktor" />
+          <EntitySet Name="Ishod_Pregleda" EntityType="Self.Ishod_Pregleda" />
+          <EntitySet Name="Ishod_Pregleda_Dijagnoza" EntityType="Self.Ishod_Pregleda_Dijagnoza" />
+          <EntitySet Name="Ishod_Pregleda_Uput" EntityType="Self.Ishod_Pregleda_Uput" />
+          <EntitySet Name="Klinika_Departman" EntityType="Self.Klinika_Departman" />
+          <EntitySet Name="Klinikas" EntityType="Self.Klinika" />
+          <EntitySet Name="Pacijent_Departman" EntityType="Self.Pacijent_Departman" />
+          <EntitySet Name="Pacijents" EntityType="Self.Pacijent" />
+          <EntitySet Name="Pregleds" EntityType="Self.Pregled" />
+          <EntitySet Name="Terapija_Specijaliste" EntityType="Self.Terapija_Specijaliste" />
+          <EntitySet Name="Terapijas" EntityType="Self.Terapija" />
+          <EntitySet Name="Ugovors" EntityType="Self.Ugovor" />
+          <EntitySet Name="Zdravstveni_Karton" EntityType="Self.Zdravstveni_Karton" />
+          <AssociationSet Name="FK_Klinika_DepartmanDepartman" Association="Self.FK_Klinika_DepartmanDepartman">
+            <End Role="Departmen" EntitySet="Departmen" />
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_specijalista_UputDijagnoza_Specijaliste" Association="Self.FK_Doktor_specijalista_UputDijagnoza_Specijaliste">
+            <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
+            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_DepartmanDoktor" Association="Self.FK_Doktor_DepartmanDoktor">
+            <End Role="Doktors" EntitySet="Doktors" />
+            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_DepartmanKlinika_Departman" Association="Self.FK_Doktor_DepartmanKlinika_Departman">
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_DepartmanUgovor" Association="Self.FK_Doktor_DepartmanUgovor">
+            <End Role="Ugovors" EntitySet="Ugovors" />
+            <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_op_pr_Pregled_PacijentPacijent" Association="Self.FK_Doktor_op_pr_Pregled_PacijentPacijent">
+            <End Role="Pacijents" EntitySet="Pacijents" />
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" Association="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
+            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_pregled_PacijentIshod_Pregleda" Association="Self.FK_Doktor_pregled_PacijentIshod_Pregleda">
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_opste_prakse_PregledDoktor" Association="Self.FK_Doktor_opste_prakse_PregledDoktor">
+            <End Role="Doktors" EntitySet="Doktors" />
+            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PregledDoktor_opste_prakse_Pregled" Association="Self.FK_PregledDoktor_opste_prakse_Pregled">
+            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
+            <End Role="Pregleds" EntitySet="Pregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_specijalista_UputDoktor" Association="Self.FK_Doktor_specijalista_UputDoktor">
+            <End Role="Doktors" EntitySet="Doktors" />
+            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doktor_specijalista_UputUput" Association="Self.FK_Doktor_specijalista_UputUput">
+            <End Role="Ishod_Pregleda_Uput" EntitySet="Ishod_Pregleda_Uput" />
+            <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dijagnoza_inherits_Ishod_Pregleda" Association="Self.FK_Dijagnoza_inherits_Ishod_Pregleda">
+            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
+            <End Role="Ishod_Pregleda_Dijagnoza" EntitySet="Ishod_Pregleda_Dijagnoza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uput_inherits_Ishod_Pregleda" Association="Self.FK_Uput_inherits_Ishod_Pregleda">
+            <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
+            <End Role="Ishod_Pregleda_Uput" EntitySet="Ishod_Pregleda_Uput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DijagnozaTerapija" Association="Self.FK_DijagnozaTerapija">
+            <End Role="Terapijas" EntitySet="Terapijas" />
+            <End Role="Ishod_Pregleda_Dijagnoza" EntitySet="Ishod_Pregleda_Dijagnoza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klinika_DepartmanPacijent_Departman" Association="Self.FK_Klinika_DepartmanPacijent_Departman">
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KlinikaKlinika_Departman" Association="Self.FK_KlinikaKlinika_Departman">
+            <End Role="Klinikas" EntitySet="Klinikas" />
+            <End Role="Klinika_Departman" EntitySet="Klinika_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacijent_DepartmanPacijent" Association="Self.FK_Pacijent_DepartmanPacijent">
+            <End Role="Pacijents" EntitySet="Pacijents" />
+            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zdravstveni_KartonPacijent_Departman" Association="Self.FK_Zdravstveni_KartonPacijent_Departman">
+            <End Role="Pacijent_Departman" EntitySet="Pacijent_Departman" />
+            <End Role="Zdravstveni_Karton" EntitySet="Zdravstveni_Karton" />
+          </AssociationSet>
+          <AssociationSet Name="Dijagnoza_SpecijalisteTerapija_Specijaliste" Association="Self.Dijagnoza_SpecijalisteTerapija_Specijaliste">
+            <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
+            <End Role="Terapija_Specijaliste" EntitySet="Terapija_Specijaliste" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ClinicModelStoreContainer" CdmEntityContainer="ClinicModelContainer">
-    <EntitySetMapping Name="Klinikas">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Klinika)">
-        <MappingFragment StoreEntitySet="Klinikas">
-          <ScalarProperty Name="Klinika_Id" ColumnName="Klinika_Id" />
-          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-          <ScalarProperty Name="Grad" ColumnName="Grad" />
-          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
-          <ScalarProperty Name="Broj" ColumnName="Broj" />
-          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Departmen">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Departman)">
-        <MappingFragment StoreEntitySet="Departmen">
-          <ScalarProperty Name="Departman_Id" ColumnName="Departman_Id" />
-          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-          <ScalarProperty Name="Sprat" ColumnName="Sprat" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doktors">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Doktor)">
-        <MappingFragment StoreEntitySet="Doktors">
-          <ScalarProperty Name="Doktor_Id" ColumnName="Doktor_Id" />
-          <ScalarProperty Name="Korisnicko_Ime" ColumnName="Korisnicko_Ime" />
-          <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
-          <ScalarProperty Name="Ime" ColumnName="Ime" />
-          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-          <ScalarProperty Name="Specijalizacija" ColumnName="Specijalizacija" />
-          <ScalarProperty Name="Klinika_Id" ColumnName="Klinika_Id" />
-          <ScalarProperty Name="Departman_Id" ColumnName="Departman_Id" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ugovors">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Ugovor)">
-        <MappingFragment StoreEntitySet="Ugovors">
-          <ScalarProperty Name="Ugovor_Id" ColumnName="Ugovor_Id" />
-          <ScalarProperty Name="Vrsta_Ugovora" ColumnName="Vrsta_Ugovora" />
-          <ScalarProperty Name="Datum_Vazenja" ColumnName="Datum_Vazenja" />
-          <ScalarProperty Name="Specijalizacija" ColumnName="Specijalizacija" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Zdravstveni_Karton">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Zdravstveni_Karton)">
-        <MappingFragment StoreEntitySet="Zdravstveni_Karton">
-          <ScalarProperty Name="Karton_Id" ColumnName="Karton_Id" />
-          <ScalarProperty Name="Ime" ColumnName="Ime" />
-          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-          <ScalarProperty Name="Evidencija" ColumnName="Evidencija" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pacijents">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Pacijent)">
-        <MappingFragment StoreEntitySet="Pacijents">
-          <ScalarProperty Name="Pacijent_Id" ColumnName="Pacijent_Id" />
-          <ScalarProperty Name="Korisnicko_Ime" ColumnName="Korisnicko_Ime" />
-          <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
-          <ScalarProperty Name="Ime" ColumnName="Ime" />
-          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Grad" ColumnName="Grad" />
-          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
-          <ScalarProperty Name="Broj" ColumnName="Broj" />
-          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-          <ScalarProperty Name="Hitan_Kontakt" ColumnName="Hitan_Kontakt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pregleds">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Pregled)">
-        <MappingFragment StoreEntitySet="Pregleds">
-          <ScalarProperty Name="Pregled_Id" ColumnName="Pregled_Id" />
-          <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
-          <ScalarProperty Name="Opis" ColumnName="Opis" />
-          <ScalarProperty Name="Vreme" ColumnName="Vreme" />
-          <ScalarProperty Name="Zakazan" ColumnName="Zakazan" />
-          <ScalarProperty Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Terapija_Specijaliste">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Terapija_Specijaliste)">
-        <MappingFragment StoreEntitySet="Terapija_Specijaliste">
-          <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Id" />
-          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-          <ScalarProperty Name="Opis" ColumnName="Opis" />
-          <ScalarProperty Name="Vrsta_Terapije" ColumnName="Vrsta_Terapije" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Dijagnoza_Specijaliste">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Dijagnoza_Specijaliste)">
-        <MappingFragment StoreEntitySet="Dijagnoza_Specijaliste">
-          <ScalarProperty Name="Dijagnoza_Id" ColumnName="Dijagnoza_Id" />
-          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-          <ScalarProperty Name="Opis" ColumnName="Opis" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Terapijas">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Terapija)">
-        <MappingFragment StoreEntitySet="Terapijas">
-          <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Id" />
-          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-          <ScalarProperty Name="Opis" ColumnName="Opis" />
-          <ScalarProperty Name="Vrsta_Terapije" ColumnName="Vrsta_Terapije" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ishod_Pregleda">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Ishod_Pregleda)">
-        <MappingFragment StoreEntitySet="Ishod_Pregleda">
-          <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
-          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-          <ScalarProperty Name="Opis" ColumnName="Opis" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Uput)">
-        <MappingFragment StoreEntitySet="Ishod_Pregleda_Uput">
-          <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Dijagnoza)">
-        <MappingFragment StoreEntitySet="Ishod_Pregleda_Dijagnoza">
-          <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
-          <ScalarProperty Name="TerapijaTerapija_Id" ColumnName="TerapijaTerapija_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Klinika_Departman">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Klinika_Departman)">
-        <MappingFragment StoreEntitySet="Klinika_Departman">
-          <ScalarProperty Name="KlinikaKlinika_Id" ColumnName="KlinikaKlinika_Id" />
-          <ScalarProperty Name="DepartmanDepartman_Id" ColumnName="DepartmanDepartman_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pacijent_Departman">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Pacijent_Departman)">
-        <MappingFragment StoreEntitySet="Pacijent_Departman">
-          <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
-          <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Klinika_DepartmanKlinikaKlinika_Id" />
-          <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
-          <ScalarProperty Name="Datum_Prijave" ColumnName="Datum_Prijave" />
-          <ScalarProperty Name="Datum_Odjave" ColumnName="Datum_Odjave" />
-          <ScalarProperty Name="Soba" ColumnName="Soba" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doktor_Departman">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Doktor_Departman)">
-        <MappingFragment StoreEntitySet="Doktor_Departman">
-          <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
-          <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Klinika_DepartmanKlinikaKlinika_Id" />
-          <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doktor_opste_prakse_Pregled1">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Doktor_opste_prakse_Pregled)">
-        <MappingFragment StoreEntitySet="Doktor_opste_prakse_Pregled1">
-          <ScalarProperty Name="Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakseDoktor_Id" />
-          <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doktor_op_pr_Pregled_Pacijent">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Doktor_op_pr_Pregled_Pacijent)">
-        <MappingFragment StoreEntitySet="Doktor_op_pr_Pregled_Pacijent">
-          <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
-          <ScalarProperty Name="PacijentPacijent_Id1" ColumnName="PacijentPacijent_Id1" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doktor_specijalista_Uput">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicModel.Doktor_specijalista_Uput)">
-        <MappingFragment StoreEntitySet="Doktor_specijalista_Uput">
-          <ScalarProperty Name="Doktor_specijalistaDoktor_Id" ColumnName="Doktor_specijalistaDoktor_Id" />
-          <ScalarProperty Name="Dijagnoza_SpecijalisteDijagnoza_Id" ColumnName="Dijagnoza_SpecijalisteDijagnoza_Id" />
-          <ScalarProperty Name="UputIshod_Id" ColumnName="UputIshod_Id" />
-          <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="Doktor_DepartmanDoktor" TypeName="ClinicModel.Doktor_DepartmanDoktor" StoreEntitySet="Doktor_Departman">
-      <EndProperty Name="Doktor">
-        <ScalarProperty Name="Doktor_Id" ColumnName="Doktor_Doktor_Id" />
-      </EndProperty>
-      <EndProperty Name="Doktor_Departman">
-        <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
-        <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Klinika_DepartmanKlinikaKlinika_Id" />
-        <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="Zdravstveni_KartonPacijent_Departman" TypeName="ClinicModel.Zdravstveni_KartonPacijent_Departman" StoreEntitySet="Zdravstveni_Karton">
-      <EndProperty Name="Pacijent_Departman">
-        <ScalarProperty Name="PacijentPacijent_Id" ColumnName="Pacijent_Departman_PacijentPacijent_Id" />
-        <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" />
-        <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" />
-      </EndProperty>
-      <EndProperty Name="Zdravstveni_Karton">
-        <ScalarProperty Name="Karton_Id" ColumnName="Karton_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="Dijagnoza_SpecijalisteTerapija_Specijaliste" TypeName="ClinicModel.Dijagnoza_SpecijalisteTerapija_Specijaliste" StoreEntitySet="Dijagnoza_SpecijalisteTerapija_Specijaliste">
-      <EndProperty Name="Dijagnoza_Specijaliste">
-        <ScalarProperty Name="Dijagnoza_Id" ColumnName="Dijagnoza_Specijaliste_Dijagnoza_Id" />
-      </EndProperty>
-      <EndProperty Name="Terapija_Specijaliste">
-        <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Specijaliste_Terapija_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="Doktor_pregled_PacijentIshod_Pregleda" TypeName="ClinicModel.Doktor_pregled_PacijentIshod_Pregleda" StoreEntitySet="Ishod_Pregleda">
-      <EndProperty Name="Doktor_pregled_Pacijent">
-        <ScalarProperty Name="PacijentPacijent_Id" ColumnName="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
-      </EndProperty>
-      <EndProperty Name="Ishod_Pregleda">
-        <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" TypeName="ClinicModel.Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" StoreEntitySet="Doktor_op_pr_Pregled_Pacijent">
-      <EndProperty Name="Doktor_opste_prakse_Pregled">
-        <ScalarProperty Name="Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
-      </EndProperty>
-      <EndProperty Name="Doktor_op_pr_Pregled_Pacijent">
-        <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="Doktor_DepartmanUgovor" TypeName="ClinicModel.Doktor_DepartmanUgovor" StoreEntitySet="Doktor_Departman">
-      <EndProperty Name="Ugovor">
-        <ScalarProperty Name="Ugovor_Id" ColumnName="Ugovor_Ugovor_Id" />
-      </EndProperty>
-      <EndProperty Name="Doktor_Departman">
-        <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
-        <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Klinika_DepartmanKlinikaKlinika_Id" />
-        <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClinicDBModelStoreContainer" CdmEntityContainer="ClinicDBEntities">
+          <EntitySetMapping Name="Departmen">
+            <EntityTypeMapping TypeName="ClinicDBModel.Departman">
+              <MappingFragment StoreEntitySet="Departmen">
+                <ScalarProperty Name="Departman_Id" ColumnName="Departman_Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Sprat" ColumnName="Sprat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dijagnoza_Specijaliste">
+            <EntityTypeMapping TypeName="ClinicDBModel.Dijagnoza_Specijaliste">
+              <MappingFragment StoreEntitySet="Dijagnoza_Specijaliste">
+                <ScalarProperty Name="Dijagnoza_Id" ColumnName="Dijagnoza_Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktor_Departman">
+            <EntityTypeMapping TypeName="ClinicDBModel.Doktor_Departman">
+              <MappingFragment StoreEntitySet="Doktor_Departman">
+                <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
+                <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Klinika_DepartmanKlinikaKlinika_Id" />
+                <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
+                <ScalarProperty Name="Doktor_Doktor_Id" ColumnName="Doktor_Doktor_Id" />
+                <ScalarProperty Name="Ugovor_Ugovor_Id" ColumnName="Ugovor_Ugovor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktor_op_pr_Pregled_Pacijent">
+            <EntityTypeMapping TypeName="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent">
+              <MappingFragment StoreEntitySet="Doktor_op_pr_Pregled_Pacijent">
+                <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
+                <ScalarProperty Name="PacijentPacijent_Id1" ColumnName="PacijentPacijent_Id1" />
+                <ScalarProperty Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktor_opste_prakse_Pregled1">
+            <EntityTypeMapping TypeName="ClinicDBModel.Doktor_opste_prakse_Pregled1">
+              <MappingFragment StoreEntitySet="Doktor_opste_prakse_Pregled1">
+                <ScalarProperty Name="Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakseDoktor_Id" />
+                <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktor_specijalista_Uput">
+            <EntityTypeMapping TypeName="ClinicDBModel.Doktor_specijalista_Uput">
+              <MappingFragment StoreEntitySet="Doktor_specijalista_Uput">
+                <ScalarProperty Name="Doktor_specijalistaDoktor_Id" ColumnName="Doktor_specijalistaDoktor_Id" />
+                <ScalarProperty Name="Dijagnoza_SpecijalisteDijagnoza_Id" ColumnName="Dijagnoza_SpecijalisteDijagnoza_Id" />
+                <ScalarProperty Name="UputIshod_Id" ColumnName="UputIshod_Id" />
+                <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktors">
+            <EntityTypeMapping TypeName="ClinicDBModel.Doktor">
+              <MappingFragment StoreEntitySet="Doktors">
+                <ScalarProperty Name="Doktor_Id" ColumnName="Doktor_Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Specijalizacija" ColumnName="Specijalizacija" />
+                <ScalarProperty Name="Klinika_Id" ColumnName="Klinika_Id" />
+                <ScalarProperty Name="Departman_Id" ColumnName="Departman_Id" />
+                <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ishod_Pregleda">
+            <EntityTypeMapping TypeName="ClinicDBModel.Ishod_Pregleda">
+              <MappingFragment StoreEntitySet="Ishod_Pregleda">
+                <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" ColumnName="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ishod_Pregleda_Dijagnoza">
+            <EntityTypeMapping TypeName="ClinicDBModel.Ishod_Pregleda_Dijagnoza">
+              <MappingFragment StoreEntitySet="Ishod_Pregleda_Dijagnoza">
+                <ScalarProperty Name="TerapijaTerapija_Id" ColumnName="TerapijaTerapija_Id" />
+                <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ishod_Pregleda_Uput">
+            <EntityTypeMapping TypeName="ClinicDBModel.Ishod_Pregleda_Uput">
+              <MappingFragment StoreEntitySet="Ishod_Pregleda_Uput">
+                <ScalarProperty Name="Ishod_Id" ColumnName="Ishod_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klinika_Departman">
+            <EntityTypeMapping TypeName="ClinicDBModel.Klinika_Departman">
+              <MappingFragment StoreEntitySet="Klinika_Departman">
+                <ScalarProperty Name="KlinikaKlinika_Id" ColumnName="KlinikaKlinika_Id" />
+                <ScalarProperty Name="DepartmanDepartman_Id" ColumnName="DepartmanDepartman_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klinikas">
+            <EntityTypeMapping TypeName="ClinicDBModel.Klinika">
+              <MappingFragment StoreEntitySet="Klinikas">
+                <ScalarProperty Name="Klinika_Id" ColumnName="Klinika_Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Grad" ColumnName="Grad" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Broj" ColumnName="Broj" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacijent_Departman">
+            <EntityTypeMapping TypeName="ClinicDBModel.Pacijent_Departman">
+              <MappingFragment StoreEntitySet="Pacijent_Departman">
+                <ScalarProperty Name="Datum_Prijave" ColumnName="Datum_Prijave" />
+                <ScalarProperty Name="Datum_Odjave" ColumnName="Datum_Odjave" />
+                <ScalarProperty Name="Soba" ColumnName="Soba" />
+                <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
+                <ScalarProperty Name="Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Klinika_DepartmanKlinikaKlinika_Id" />
+                <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacijents">
+            <EntityTypeMapping TypeName="ClinicDBModel.Pacijent">
+              <MappingFragment StoreEntitySet="Pacijents">
+                <ScalarProperty Name="Pacijent_Id" ColumnName="Pacijent_Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pregleds">
+            <EntityTypeMapping TypeName="ClinicDBModel.Pregled">
+              <MappingFragment StoreEntitySet="Pregleds">
+                <ScalarProperty Name="Pregled_Id" ColumnName="Pregled_Id" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Vreme" ColumnName="Vreme" />
+                <ScalarProperty Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terapija_Specijaliste">
+            <EntityTypeMapping TypeName="ClinicDBModel.Terapija_Specijaliste">
+              <MappingFragment StoreEntitySet="Terapija_Specijaliste">
+                <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Vrsta_Terapije" ColumnName="Vrsta_Terapije" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terapijas">
+            <EntityTypeMapping TypeName="ClinicDBModel.Terapija">
+              <MappingFragment StoreEntitySet="Terapijas">
+                <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Vrsta_Terapije" ColumnName="Vrsta_Terapije" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ugovors">
+            <EntityTypeMapping TypeName="ClinicDBModel.Ugovor">
+              <MappingFragment StoreEntitySet="Ugovors">
+                <ScalarProperty Name="Ugovor_Id" ColumnName="Ugovor_Id" />
+                <ScalarProperty Name="Vrsta_Ugovora" ColumnName="Vrsta_Ugovora" />
+                <ScalarProperty Name="Datum_Vazenja" ColumnName="Datum_Vazenja" />
+                <ScalarProperty Name="Specijalizacija" ColumnName="Specijalizacija" />
+                <ScalarProperty Name="Doktor" ColumnName="Doktor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zdravstveni_Karton">
+            <EntityTypeMapping TypeName="ClinicDBModel.Zdravstveni_Karton">
+              <MappingFragment StoreEntitySet="Zdravstveni_Karton">
+                <ScalarProperty Name="Karton_Id" ColumnName="Karton_Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Evidencija" ColumnName="Evidencija" />
+                <ScalarProperty Name="Pacijent_Departman_PacijentPacijent_Id" ColumnName="Pacijent_Departman_PacijentPacijent_Id" />
+                <ScalarProperty Name="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" ColumnName="Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id" />
+                <ScalarProperty Name="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Dijagnoza_SpecijalisteTerapija_Specijaliste" TypeName="ClinicDBModel.Dijagnoza_SpecijalisteTerapija_Specijaliste" StoreEntitySet="Dijagnoza_SpecijalisteTerapija_Specijaliste">
+            <EndProperty Name="Dijagnoza_Specijaliste">
+              <ScalarProperty Name="Dijagnoza_Id" ColumnName="Dijagnoza_Specijaliste_Dijagnoza_Id" />
+            </EndProperty>
+            <EndProperty Name="Terapija_Specijaliste">
+              <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Specijaliste_Terapija_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <edmx:Connection>
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
-    </edmx:Connection>
-    <edmx:Options>
+    </Connection>
+    <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
-    </edmx:Options>
+    </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams>
-    </edmx:Diagrams>
-  </edmx:Designer>
+    <Diagrams></Diagrams>
+  </Designer>
 </edmx:Edmx>

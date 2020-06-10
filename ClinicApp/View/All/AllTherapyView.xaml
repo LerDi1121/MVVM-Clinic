@@ -62,12 +62,12 @@
                 <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,156,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Description]}" Foreground="Red"/>
                 <!--Type-->
                 <Label  Content="Type:" HorizontalAlignment="Left" Height="40" Margin="20,186,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="type"  HorizontalAlignment="Left" Height="30" Margin="150,190,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Type}"/>
+                <ComboBox ItemsSource="{Binding Type}" SelectedItem="{Binding SelectedType}" Height="30" Width="202" Margin="150,190,96,223" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
                 <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,222,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Type]}" Foreground="Red"/>
                 <!--Diagnosis-->
                 <Label  Content="Diagnosis:" HorizontalAlignment="Left" Height="40" Margin="20,255,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="diagnosis"  HorizontalAlignment="Left" Height="30" Margin="150,260,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Diagnosis}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="154,290,22,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Diagnosis]}" Foreground="Red"/>
+                <ComboBox ItemsSource="{Binding Type}" SelectedItem="{Binding SelectedType}" Height="30" Width="202" Margin="150,260,98,159" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="150,290,26,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Diagnosis]}" Foreground="Red"/>
             </Grid>
         </Border>
     </Grid>

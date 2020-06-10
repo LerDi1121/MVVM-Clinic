@@ -54,17 +54,15 @@
                 <!--Name-->
                 <Label  Content="Name:"  HorizontalAlignment="Left" Height="40" Margin="60,37,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
                 <TextBox x:Name="name"   HorizontalAlignment="Left" Height="30" Margin="160,39,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Name}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="164,74,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Name]}" Foreground="Red"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="162,70,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Name]}" Foreground="Red"/>
                 <!--Floor-->
                 <Label  Content="Floor:" HorizontalAlignment="Left" Height="40" Margin="60,100,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
                 <TextBox x:Name="floor"  HorizontalAlignment="Left" Height="30" Margin="160,104,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Floor}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="162,139,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Floor]}" Foreground="Red"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="162,135,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Floor]}" Foreground="Red"/>
                 <!--Clinic-->
-                <!-- <ComboBox ItemsSource="{Binding ExaminationTypes}" SelectedItem="{Binding SelectedType}" Height="33" Canvas.Left="255" Canvas.Top="128" Width="200"/>
-               -->
-                <Label  Content="Clinic:" HorizontalAlignment="Left" Height="40" Margin="60,164,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="clinic"  HorizontalAlignment="Left" Height="30" Margin="160,168,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Clinic}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="162,202,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Clinic]}" Foreground="Red"/>
+                <Label Content="Clinic:" HorizontalAlignment="Left" Height="40" Margin="60,164,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <ComboBox ItemsSource="{Binding Clinic}" SelectedItem="{Binding SelectedType}" Height="30" Width="202" Margin="160,167,88,250" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="162,200,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Clinic]}" Foreground="Red"/>
             </Grid>
         </Border>
     </Grid>

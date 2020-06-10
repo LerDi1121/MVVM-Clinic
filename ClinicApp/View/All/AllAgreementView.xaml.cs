@@ -1,5 +1,4 @@
-﻿using ClinicApp.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace ClinicApp.View.All
 {
     /// <summary>
-    /// Interaction logic for AllDoctorView.xaml
+    /// Interaction logic for AllAgreementView.xaml
     /// </summary>
-    public partial class AllDoctorView : UserControl
+    public partial class AllAgreementView : UserControl
     {
-        public AllDoctorView()
+        public AllAgreementView()
         {
             InitializeComponent();
-            this.DataContext = new DoctorViewModel();
         }
     }
 }
