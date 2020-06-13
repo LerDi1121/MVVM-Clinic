@@ -48,6 +48,8 @@ namespace ClinicApp.Core
         }
         #endregion
         #region CRUD DOKTOR
+
+        // C-Create
         public void CreateDoctor(string ime, string prezime, string specijalizacija, int klinika_Id, int departman_Id, string kontakt)
         {
             Doktor doktor = new Doktor(ime, prezime, specijalizacija, klinika_Id, departman_Id, kontakt);
@@ -57,7 +59,7 @@ namespace ClinicApp.Core
                 db.SaveChanges();
             }
         }
-
+        // R-Read
         public List<Doktor> GetAllDoctors()
         {
             using (var db = new ClinicDBEntities())
@@ -65,6 +67,18 @@ namespace ClinicApp.Core
                 return (from doktor in db.Doktors
                         select doktor).ToList();
             }
+        }
+        // D-Delete
+        public void DeleteDoctorById(int doctorId)
+        {          
+            Doktor doktor;
+
+            using (var db = new ClinicDBEntities())
+            {
+                doktor = db.Doktors.Where(x => x.Doktor_Id == doctorId).FirstOrDefault();
+                db.Entry(doktor).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }         
         }
         #endregion
 
@@ -91,6 +105,18 @@ namespace ClinicApp.Core
             }
         }
 
+        // D-Delete
+        public void DeletePatientById(int patientId)
+        {
+            Pacijent pacijent;
+
+            using (var db = new ClinicDBEntities())
+            {
+                pacijent = db.Pacijents.Where(x => x.Pacijent_Id == patientId).FirstOrDefault();
+                db.Entry(pacijent).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
         #endregion
 
 
@@ -136,6 +162,18 @@ namespace ClinicApp.Core
             }
         }
 
+        // D-Delete
+        public void DeleteDepartmentById(int departmentId)
+        {
+            Departman departman;
+
+            using (var db = new ClinicDBEntities())
+            {
+                departman = db.Departmen.Where(x => x.Departman_Id== departmentId).FirstOrDefault();
+                db.Entry(departman).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
         #endregion
 
 
@@ -179,7 +217,7 @@ namespace ClinicApp.Core
             }
         }
         #endregion
-        #region CRUD DIAGNOZIS
+        #region CRUD DIAGNOSIS
 
         // C = CREATE
         public void CreateDiagnozis(string naziv, string opis)
@@ -197,6 +235,19 @@ namespace ClinicApp.Core
             {
                 return (from dijagnoza in db.Dijagnoza_Specijaliste
                         select dijagnoza).ToList();
+            }
+        }
+
+        // D-Delete
+        public void DeleteDiagnosisById(int diagnosisId)
+        {
+            Dijagnoza_Specijaliste dijagnoza;
+
+            using (var db = new ClinicDBEntities())
+            {
+                dijagnoza = db.Dijagnoza_Specijaliste.Where(x => x.Dijagnoza_Id == diagnosisId).FirstOrDefault();
+                db.Entry(dijagnoza).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
             }
         }
         #endregion
@@ -222,6 +273,20 @@ namespace ClinicApp.Core
                         select karton).ToList();
             }
         }
+
+        // D-Delete
+        public void DeleteRecordById(int recordId)
+        {
+            Zdravstveni_Karton karton;
+
+            using (var db = new ClinicDBEntities())
+            {
+                karton = db.Zdravstveni_Karton.Where(x => x.Karton_Id == recordId).FirstOrDefault();
+                db.Entry(karton).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+        
         #endregion
 
 
@@ -246,6 +311,18 @@ namespace ClinicApp.Core
             }
         }
 
+        // D-Delete
+        public void DeleteAgreementById(int agreementId)
+        {
+            Ugovor ugovor;
+
+            using (var db = new ClinicDBEntities())
+            {
+                ugovor = db.Ugovors.Where(x => x.Ugovor_Id == agreementId).FirstOrDefault();
+                db.Entry(ugovor).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
         #endregion  
 
 
@@ -270,6 +347,20 @@ namespace ClinicApp.Core
                         select pregled).ToList();
             }
         }
+
+        // D-Delete
+        public void DeleteReviewById(int reviewId)
+        {
+            Pregled pregled;
+
+            using (var db = new ClinicDBEntities())
+            {
+                pregled = db.Pregleds.Where(x => x.Pregled_Id == reviewId).FirstOrDefault();
+                db.Entry(pregled).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+        
         #endregion
 
 
@@ -294,6 +385,20 @@ namespace ClinicApp.Core
                         select ishod).ToList();
             }
         }
+
+        // D-Delete
+        public void DeleteOutcomeById(int outcomeId)
+        {
+            Ishod_Pregleda ishod;
+
+            using (var db = new ClinicDBEntities())
+            {
+                ishod = db.Ishod_Pregleda.Where(x => x.Ishod_Id == outcomeId).FirstOrDefault();
+                db.Entry(ishod).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+        
         #endregion
 
 
@@ -316,6 +421,20 @@ namespace ClinicApp.Core
             {
                 return (from terapija in db.Terapijas
                         select terapija).ToList();
+            }
+        }
+
+
+        // D-Delete
+        public void DeleteTherapyById(int therapyId)
+        {
+            Terapija terapija;
+
+            using (var db = new ClinicDBEntities())
+            {
+                terapija = db.Terapijas.Where(x => x.Terapija_Id == therapyId).FirstOrDefault();
+                db.Entry(terapija).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
             }
         }
         #endregion

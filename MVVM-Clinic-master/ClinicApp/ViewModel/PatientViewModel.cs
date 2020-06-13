@@ -1,5 +1,6 @@
 ﻿using ClinicApp.Core;
 using ClinicApp.Model;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +24,8 @@ namespace ClinicApp.ViewModel
         //private string selectedType2;
 
         private ObservableCollection<Pacijent> pacijenti = new ObservableCollection<Pacijent>();
+
+        private int currentIndex;
 
         public string Name
         {
@@ -134,6 +137,19 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    OnPropertyChanged("CurrentIndex");
+                }
+            }
+        }
         #endregion
 
         #region Validation
@@ -214,9 +230,12 @@ namespace ClinicApp.ViewModel
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public static RelayCommand DeleteCommand { get; set; }
+
         public PatientViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
+            DeleteCommand = new RelayCommand(OnDelete);
 
             //combobox
             //Departments = DbContextHandler.Instance.GetAllDepartmentsForDoctor();
@@ -237,6 +256,15 @@ namespace ClinicApp.ViewModel
                 Pacijenti.Clear();
                 DbContextHandler.Instance.GetAllPatients().ForEach(pacijent => Pacijenti.Add(pacijent));
             }
+        }
+
+        public void OnDelete()
+        {
+            int patientId = Pacijenti.ElementAt(CurrentIndex).Pacijent_Id;
+
+            DbContextHandler.Instance.DeletePatientById(patientId);
+
+            Pacijenti.RemoveAt(CurrentIndex);
         }
         #endregion
     }

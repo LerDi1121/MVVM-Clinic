@@ -1,9 +1,11 @@
 ﻿using ClinicApp.Core;
 using ClinicApp.Model;
 using ClinicApp.View.All;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ClinicApp.ViewModel
@@ -19,6 +21,8 @@ namespace ClinicApp.ViewModel
         private string selectedType;
 
         private ObservableCollection<Doktor> doktori = new ObservableCollection<Doktor>();
+
+        private int currentIndex;
 
         public string Name
         {
@@ -106,6 +110,20 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    OnPropertyChanged("CurrentIndex");
+                }
+            }
+        }
         #endregion
 
         #region Validation
@@ -184,10 +202,12 @@ namespace ClinicApp.ViewModel
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public static RelayCommand DeleteCommand { get; set; }
         public DoctorViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
-           
+            DeleteCommand = new RelayCommand(OnDelete);
+
             Departments = DbContextHandler.Instance.GetAllDepartmentsList();
 
             DbContextHandler.Instance.GetAllDoctors().ForEach(doktor => Doktori.Add(doktor));
@@ -205,6 +225,14 @@ namespace ClinicApp.ViewModel
                 Doktori.Clear();
                 DbContextHandler.Instance.GetAllDoctors().ForEach(doktor => Doktori.Add(doktor));
             }
+        }
+        public void OnDelete()
+        {
+            int doctorId = Doktori.ElementAt(CurrentIndex).Doktor_Id;
+
+            DbContextHandler.Instance.DeleteDoctorById(doctorId);
+
+            Doktori.RemoveAt(CurrentIndex);
         }
         #endregion
     }

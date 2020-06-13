@@ -13,7 +13,7 @@
                 <!--Naslov-->
                 <Label Content="All patients" Margin="0,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="37" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#009999" Background="#f8f8ff" FontSize="20" FontWeight="SemiBold"/>
                 <DataGrid ItemsSource="{Binding Pacijenti, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedIndex="{Binding SelectedPatientIndex}"
+                      SelectedIndex="{Binding CurrentIndex}"
                       Background="{x:Null}" 
                       BorderBrush="White"
                       RowHeight="26"
@@ -47,7 +47,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button Content="Change" HorizontalAlignment="Left" Height="30" Margin="0,377,0,0" VerticalAlignment="Top" Width="220" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18"  Command="{Binding ChangeCommand}"/>
-                <Button Content="Remove" HorizontalAlignment="Left" Height="30" Margin="227,377,0,0" VerticalAlignment="Top" Width="223" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding RemoveCommand}"/>
+                <Button Content="Delete" HorizontalAlignment="Left" Height="30" Margin="227,377,0,0" VerticalAlignment="Top" Width="223" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding DeleteCommand}"/>
             </Grid>
         </Border>
         <!--Forma za dodavanje-->

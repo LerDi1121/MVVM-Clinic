@@ -1,5 +1,6 @@
 ﻿using ClinicApp.Core;
 using ClinicApp.Model;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +21,8 @@ namespace ClinicApp.ViewModel
         private string doctor;
 
         private ObservableCollection<Ugovor> ugovori = new ObservableCollection<Ugovor>();
+
+        private int currentIndex;
 
         public string Type
         {
@@ -83,6 +86,20 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    OnPropertyChanged("CurrentIndex");
+                }
+            }
+        }
+
         #endregion
 
         #region Validation
@@ -148,10 +165,12 @@ namespace ClinicApp.ViewModel
         #region Constructor and metods
 
         public MyICommand AddCommand { get; set; }
+        public static RelayCommand DeleteCommand { get; set; }
 
         public AgreementViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
+            DeleteCommand = new RelayCommand(OnDelete);
 
             DbContextHandler.Instance.GetAllAgreements().ForEach(ugovor => Ugovori.Add(ugovor));
         }
@@ -165,6 +184,15 @@ namespace ClinicApp.ViewModel
                 Ugovori.Clear();
                 DbContextHandler.Instance.GetAllAgreements().ForEach(ugovor => Ugovori.Add(ugovor));
             }
+        }
+
+        public void OnDelete()
+        {
+            int ugovorId = Ugovori.ElementAt(CurrentIndex).Ugovor_Id;
+
+            DbContextHandler.Instance.DeleteAgreementById(ugovorId);
+
+            Ugovori.RemoveAt(CurrentIndex);
         }
         #endregion      
     }

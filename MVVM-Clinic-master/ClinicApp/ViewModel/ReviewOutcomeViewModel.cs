@@ -1,5 +1,6 @@
 ﻿using ClinicApp.Core;
 using ClinicApp.Model;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +20,10 @@ namespace ClinicApp.ViewModel
         private List<string> patients = new List<string>();
         private string selectedType;
         //private string outcome;
+
         private ObservableCollection<Ishod_Pregleda> ishodi = new ObservableCollection<Ishod_Pregleda>();
+
+        private int currentIndex;
 
         public string Name
         {
@@ -105,6 +109,19 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    OnPropertyChanged("CurrentIndex");
+                }
+            }
+        }
         #endregion
 
         #region Validations
@@ -168,9 +185,12 @@ namespace ClinicApp.ViewModel
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public static RelayCommand DeleteCommand { get; set; }
+
         public ReviewOutcomeViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
+            DeleteCommand = new RelayCommand(OnDelete);
 
             //combobox
             Patients = DbContextHandler.Instance.GetAllPatientsList();
@@ -190,6 +210,15 @@ namespace ClinicApp.ViewModel
                 Ishodi.Clear();
                 DbContextHandler.Instance.GetAllReviewOutcome().ForEach(ishod => Ishodi.Add(ishod));
             }
+        }
+
+        public void OnDelete()
+        {
+            int ishodId = Ishodi.ElementAt(CurrentIndex).Ishod_Id;
+
+            DbContextHandler.Instance.DeleteOutcomeById(ishodId);
+
+            Ishodi.RemoveAt(CurrentIndex);
         }
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using ClinicApp.Core;
 using ClinicApp.Model;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,6 +28,8 @@ namespace ClinicApp.ViewModel
         private string selectedType3;
 
         private ObservableCollection<Zdravstveni_Karton> kartoni = new ObservableCollection<Zdravstveni_Karton>();
+
+        private int currentIndex;
 
         public string Name
         {
@@ -163,6 +166,20 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    OnPropertyChanged("CurrentIndex");
+                }
+            }
+        }
+
         #endregion
 
         #region Validation
@@ -253,10 +270,12 @@ namespace ClinicApp.ViewModel
         #region Constructor and metods
 
         public MyICommand AddCommand { get; set; }
+        public static RelayCommand DeleteCommand { get; set; }
 
         public MedicalRecordsViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
+            DeleteCommand = new RelayCommand(OnDelete);
 
             Patients = DbContextHandler.Instance.GetAllPatientsList();
             Clinics = DbContextHandler.Instance.GetAllClinicsList();
@@ -278,6 +297,15 @@ namespace ClinicApp.ViewModel
                 Kartoni.Clear();
                 DbContextHandler.Instance.GetAllMedicalRecords().ForEach(karton => Kartoni.Add(karton));
             }
+        }
+
+        public void OnDelete()
+        {
+            int kartonId = Kartoni.ElementAt(CurrentIndex).Karton_Id;
+
+            DbContextHandler.Instance.DeleteRecordById(kartonId);
+
+            Kartoni.RemoveAt(CurrentIndex);
         }
         #endregion      
     }

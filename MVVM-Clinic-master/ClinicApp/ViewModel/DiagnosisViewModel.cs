@@ -1,5 +1,6 @@
 ﻿using ClinicApp.Core;
 using ClinicApp.Model;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,9 @@ namespace ClinicApp.ViewModel
         //private string selectedType2;
 
         private ObservableCollection<Dijagnoza_Specijaliste> dijagnoze = new ObservableCollection<Dijagnoza_Specijaliste>();
+
+        private int currentIndex;
+
         public string Name
         {
             get { return name; }
@@ -105,6 +109,19 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                if (currentIndex != value)
+                {
+                    currentIndex = value;
+                    OnPropertyChanged("CurrentIndex");
+                }
+            }
+        }
         #endregion
 
         #region Validation
@@ -159,9 +176,12 @@ namespace ClinicApp.ViewModel
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public static RelayCommand DeleteCommand { get; set; }
+
         public DiagnosisViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
+            DeleteCommand = new RelayCommand(OnDelete);
 
             //combobox
             //Patients = DbContextHandler.Instance.GetAllPatientForDiagnosis();
@@ -183,6 +203,15 @@ namespace ClinicApp.ViewModel
                 Dijagnoze.Clear();
                 DbContextHandler.Instance.GetAllDiagnozis().ForEach(dijagnoza => Dijagnoze.Add(dijagnoza));
             }
+        }
+
+        public void OnDelete()
+        {
+            int diagnosisId = Dijagnoze.ElementAt(CurrentIndex).Dijagnoza_Id;
+
+            DbContextHandler.Instance.DeleteDiagnosisById(diagnosisId);
+
+            Dijagnoze.RemoveAt(CurrentIndex);
         }
         #endregion
     }
