@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClinicApp.ViewModel
 {
@@ -16,10 +17,10 @@ namespace ClinicApp.ViewModel
         #region Fields and properties
         private string name;
         private string description;
-        //private List<string> patients = new List<string>();
-        //private string selectedType;
-        //private List<string> doctors = new List<string>();
-        //private string selectedType2;
+
+        private Dijagnoza_Specijaliste selectedItem;
+        private string btnContent;
+        private bool isUpdate = false;
 
         private ObservableCollection<Dijagnoza_Specijaliste> dijagnoze = new ObservableCollection<Dijagnoza_Specijaliste>();
 
@@ -49,54 +50,30 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        //public List<string> Patients
-        //{
-        //    get { return patients; }
-        //    set
-        //    {
-        //        if (patients != value)
-        //        {
-        //            patients = value;
-        //            OnPropertyChanged("Patients");
-        //        }
-        //    }
-        //}
-        //public string SelectedType
-        //{
-        //    get { return selectedType; }
-        //    set
-        //    {
-        //        if (selectedType != value)
-        //        {
-        //            selectedType = value;
-        //            OnPropertyChanged("SelectedType");
-        //        }
-        //    }
-        //}
-        //public List<string> Doctors
-        //{
-        //    get { return doctors; }
-        //    set
-        //    {
-        //        if (doctors != value)
-        //        {
-        //            doctors = value;
-        //            OnPropertyChanged("Doctors");
-        //        }
-        //    }
-        //}
-        //public string SelectedType2
-        //{
-        //    get { return selectedType2; }
-        //    set
-        //    {
-        //        if (selectedType2 != value)
-        //        {
-        //            selectedType2 = value;
-        //            OnPropertyChanged("SelectedType2");
-        //        }
-        //    }
-        //}
+        public string BtnContent
+        {
+            get { return btnContent; }
+            set
+            {
+                if (btnContent != value)
+                {
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
+                }
+            }
+        }
+        public Dijagnoza_Specijaliste SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+        }
         public ObservableCollection<Dijagnoza_Specijaliste> Dijagnoze
         {
             get { return dijagnoze; }
@@ -176,17 +153,16 @@ namespace ClinicApp.ViewModel
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
 
         public DiagnosisViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
+            ChangeCommand = new MyICommand(OnSaveChanges);
             DeleteCommand = new RelayCommand(OnDelete);
-
-            //combobox
-            //Patients = DbContextHandler.Instance.GetAllPatientForDiagnosis();
-            //Doctors = DbContextHandler.Instance.GetAllDoctorForDiagnosis();
-
+        
             //tabela
             DbContextHandler.Instance.GetAllDiagnozis().ForEach(dijagnoza => Dijagnoze.Add(dijagnoza));
         }
@@ -195,22 +171,47 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-                //int patientId = DbContextHandler.Instance.GetPatientIdByName(this.selectedType);
-                //int doctorId = DbContextHandler.Instance.GetDoctorIdByName(this.selectedType2);
+                if (!isUpdate)
+                {
+                    DbContextHandler.Instance.CreateDiagnozis(Name, Description);
 
-                DbContextHandler.Instance.CreateDiagnozis(Name, Description); // + patientId  + doctorId
+                    Dijagnoze.Clear();
+                    DbContextHandler.Instance.GetAllDiagnozis().ForEach(dijagnoza => Dijagnoze.Add(dijagnoza));
+                    Name = "";
+                    Description = "";
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
 
-                Dijagnoze.Clear();
-                DbContextHandler.Instance.GetAllDiagnozis().ForEach(dijagnoza => Dijagnoze.Add(dijagnoza));
+                    DbContextHandler.Instance.UpdateDiagnosis(SelectedItem.Dijagnoza_Id, name, description);
+
+                    Dijagnoze.Clear();
+                    DbContextHandler.Instance.GetAllDiagnozis().ForEach(dijagnoza => Dijagnoze.Add(dijagnoza));
+
+                    isUpdate = false;
+                    BtnContent = "Add";
+                    Name = "";
+                    Description = "";
+                }
             }
         }
+        public void OnSaveChanges()
+        {
+            Name = SelectedItem.Naziv;
+            Description = SelectedItem.Opis;
 
+            isUpdate = true;
+            BtnContent = "Update";
+        }
         public void OnDelete()
         {
             int diagnosisId = Dijagnoze.ElementAt(CurrentIndex).Dijagnoza_Id;
 
             DbContextHandler.Instance.DeleteDiagnosisById(diagnosisId);
 
+            MessageBox.Show("Delete data!");
             Dijagnoze.RemoveAt(CurrentIndex);
         }
         #endregion

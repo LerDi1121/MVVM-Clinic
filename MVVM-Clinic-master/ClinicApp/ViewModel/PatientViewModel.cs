@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClinicApp.ViewModel
 {
@@ -18,10 +19,10 @@ namespace ClinicApp.ViewModel
         private string lastname;
         private string contact;
         private string address;
-        //private List<string> departments = new List<string>();
-        //private string selectedType;
-        //private List<string> views = new List<string>();
-        //private string selectedType2;
+
+        private Pacijent selectedItem;
+        private string btnContent;
+        private bool isUpdate = false;
 
         private ObservableCollection<Pacijent> pacijenti = new ObservableCollection<Pacijent>();
 
@@ -76,55 +77,30 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        //public List<string> Departments
-        //{
-        //    get { return departments; }
-        //    set
-        //    {
-        //        if (departments != value)
-        //        {
-        //            departments = value;
-        //            OnPropertyChanged("Departments");
-        //        }
-        //    }
-        //}
-        //public string SelectedType
-        //{
-        //    get { return selectedType; }
-        //    set
-        //    {
-        //        if (selectedType != value)
-        //        {
-        //            selectedType = value;
-        //            OnPropertyChanged("SelectedType");
-        //        }
-        //    }
-        //}
-        //public List<string> Views
-        //{
-        //    get { return views; }
-        //    set
-        //    {
-        //        if (views != value)
-        //        {
-        //            views = value;
-        //            OnPropertyChanged("Views");
-        //        }
-        //    }
-        //}
-        //public string SelectedType2
-        //{
-        //    get { return selectedType2; }
-        //    set
-        //    {
-        //        if (selectedType2 != value)
-        //        {
-        //            selectedType2 = value;
-        //            OnPropertyChanged("SelectedType2");
-        //        }
-        //    }
-        //}
-
+        public string BtnContent
+        {
+            get { return btnContent; }
+            set
+            {
+                if (btnContent != value)
+                {
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
+                }
+            }
+        }
+        public Pacijent SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+        }
         public ObservableCollection<Pacijent> Pacijenti
         {
             get { return pacijenti; }
@@ -137,7 +113,6 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
         public int CurrentIndex
         {
             get { return currentIndex; }
@@ -160,9 +135,9 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Name"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.name.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.name.Substring(0, this.name.Length), "[0-9]"))
             {
-                this.ValidationErrors["Name"] = "Can't start with number!";
+                this.ValidationErrors["Name"] = "Can't contain a number!";
             }
             else if (this.name.Length < 3)
             {
@@ -172,14 +147,15 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Name"] = "Must be less than 20 characters";
             }
+
             // LAST NAME
             if (String.IsNullOrWhiteSpace(this.lastname))
             {
                 this.ValidationErrors["Lastname"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.lastname.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.lastname.Substring(0, this.lastname.Length), "[0-9]"))
             {
-                this.ValidationErrors["Lastname"] = "Can't start with number!";
+                this.ValidationErrors["Lastname"] = "Can't contain a number!";
             }
             else if (this.lastname.Length < 3)
             {
@@ -189,14 +165,25 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Lastname"] = "Must be less than 20 characters";
             }
+
+            // CONTACT
+            if (String.IsNullOrWhiteSpace(this.contact))
+            {
+                this.ValidationErrors["Contact"] = "Required field!";
+            }
+            else if (Regex.IsMatch(this.contact.Substring(0, this.contact.Length), "[^0-9]"))
+            {
+                this.ValidationErrors["Contact"] = "Must have a number!";
+            }
+
             // ADDRESS
             if (String.IsNullOrWhiteSpace(this.address))
             {
                 this.ValidationErrors["Address"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.address.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.address.Substring(0, this.address.Length), "[0-9]"))
             {
-                this.ValidationErrors["Address"] = "Can't start with number!";
+                this.ValidationErrors["Address"] = "Can't contain a number!";
             }
             else if (this.address.Length < 3)
             {
@@ -204,42 +191,23 @@ namespace ClinicApp.ViewModel
             }
             else if (this.address.Length > 40)
             {
-                this.ValidationErrors["Address"] = "Must be less than 20 characters";
-            }
-            // CONTACT
-            if (String.IsNullOrWhiteSpace(this.contact))
-            {
-                this.ValidationErrors["Contact"] = "Required field!";
-            }
-            else if (Regex.IsMatch(this.contact.Substring(0, 1), "[^0-9]"))
-            {
-                this.ValidationErrors["Contact"] = "Must start with number!";
-            }
-            //// DEPARTMENT
-            //if (String.IsNullOrWhiteSpace(this.selectedType))
-            //{
-            //    this.ValidationErrors["Departments"] = "Required field!";
-            //}
-            //// VIEW
-            //if (String.IsNullOrWhiteSpace(this.selectedType2))
-            //{
-            //    this.ValidationErrors["Views"] = "Required field!";
-            //}
+                this.ValidationErrors["Address"] = "Must be less than 40 characters";
+            }                
         }
         #endregion
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
 
         public PatientViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
-            DeleteCommand = new RelayCommand(OnDelete);
-
-            //combobox
-            //Departments = DbContextHandler.Instance.GetAllDepartmentsForDoctor();
-            //Views = DbContextHandler.Instance.GetAllViewsForPatient();
+            ChangeCommand = new MyICommand(OnSaveChanges);
+            DeleteCommand = new RelayCommand(OnDelete);       
+         
             //tabela
             DbContextHandler.Instance.GetAllPatients().ForEach(pacijent => Pacijenti.Add(pacijent));
         }
@@ -248,22 +216,52 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-               // int departmentId = DbContextHandler.Instance.GetDeparmentIdByName(this.selectedType);
-               // int viewId = DbContextHandler.Instance.GetPatientIdByName(this.selectedType2);
+                if (!isUpdate)
+                {
+                    DbContextHandler.Instance.CreatePatient(Name, Lastname, Contact, Address);
 
-                DbContextHandler.Instance.CreatePatient(Name, Lastname, Contact, Address);
+                    Pacijenti.Clear();
+                    DbContextHandler.Instance.GetAllPatients().ForEach(pacijent => Pacijenti.Add(pacijent));
+                    Name = "";
+                    Lastname = "";
+                    Contact = "";
+                    Address = "";
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
 
-                Pacijenti.Clear();
-                DbContextHandler.Instance.GetAllPatients().ForEach(pacijent => Pacijenti.Add(pacijent));
+                    DbContextHandler.Instance.UpdatePatient(SelectedItem.Pacijent_Id, name, lastname, contact, address);
+
+                    Pacijenti.Clear();
+                    DbContextHandler.Instance.GetAllPatients().ForEach(pacijent => Pacijenti.Add(pacijent));
+
+                    isUpdate = false;
+                    BtnContent = "Add";
+                    Name = "";
+                    Lastname = "";
+                    Contact = "";
+                    Address = "";
+                }
             }
         }
+        public void OnSaveChanges()
+        {
+            Name = SelectedItem.Ime;
+            Lastname = SelectedItem.Prezime;
+            Contact = SelectedItem.Kontakt;
+            Address = SelectedItem.Adresa;
 
+            isUpdate = true;
+            BtnContent = "Update";
+        }
         public void OnDelete()
         {
             int patientId = Pacijenti.ElementAt(CurrentIndex).Pacijent_Id;
 
             DbContextHandler.Instance.DeletePatientById(patientId);
-
+            MessageBox.Show("Delete data!");
             Pacijenti.RemoveAt(CurrentIndex);
         }
         #endregion

@@ -5,22 +5,26 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClinicApp.ViewModel
 {
     public class DepartmentViewModel : ValidationBase
     {
         #region Fields and properties
+
         private string name;
         private string floor;
-        //private List<string> clinics = new List<string>();
-        //private string selectedType;
+        private List<string> clinics = new List<string>();
+        private string selectedType;
 
-        private ObservableCollection<Departman> departmani = new ObservableCollection<Departman>();
+        private GetAllDepartments_Result selectedDepartment;
+        private string btnContent;
+        private bool isUpdate = false;
 
+        private ObservableCollection<GetAllDepartments_Result> departmani = new ObservableCollection<GetAllDepartments_Result>();
+      
         private int currentIndex;
 
         public string Name
@@ -47,32 +51,55 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        //public List<string> Clinics
-        //{
-        //    get { return clinics; }
-        //    set
-        //    {
-        //        if (clinics != value)
-        //        {
-        //            clinics = value;
-        //            OnPropertyChanged("Clinics");
-        //        }
-        //    }
-        //}
-        //public string SelectedType
-        //{
-        //    get { return selectedType; }
-        //    set
-        //    {
-        //        if (selectedType != value)
-        //        {
-        //            selectedType = value;
-        //            OnPropertyChanged("SelectedType");
-        //        }
-        //    }
-        //}
-
-        public ObservableCollection<Departman> Departmani
+        public List<string> Clinics
+        {
+            get { return clinics; }
+            set
+            {
+                if (clinics != value)
+                {
+                    clinics = value;
+                    OnPropertyChanged("Clinics");
+                }
+            }
+        }
+        public string SelectedType
+        {
+            get { return selectedType; }
+            set
+            {
+                if (selectedType != value)
+                {
+                    selectedType = value;
+                    OnPropertyChanged("SelectedType");
+                }
+            }
+        }
+        public GetAllDepartments_Result SelectedDepartment
+        {
+            get { return selectedDepartment; }
+            set
+            {
+                if (selectedDepartment != value)
+                {
+                    selectedDepartment = value;
+                    OnPropertyChanged("SelectedDepartment");
+                }
+            }
+        }
+        public string BtnContent
+        {
+            get { return btnContent; }
+            set
+            {
+                if (btnContent != value)
+                {
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
+                }
+            }
+        }
+        public ObservableCollection<GetAllDepartments_Result> Departmani
         {
             get { return departmani; }
             set
@@ -84,7 +111,6 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
         public int CurrentIndex
         {
             get { return currentIndex; }
@@ -107,9 +133,9 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Name"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.name.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.name.Substring(0, this.name.Length), "[0-9]"))
             {
-                this.ValidationErrors["Name"] = "Can't start with number!";
+                this.ValidationErrors["Name"] = "Can't contain a number!";
             }
             else if (this.name.Length < 3)
             {
@@ -125,39 +151,37 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Floor"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.floor.Substring(0, 1), "[^0-9]"))
+            else if (Regex.IsMatch(this.floor.Substring(0, this.floor.Length), "[^0-9]"))
             {
-                this.ValidationErrors["Floor"] = "Must start with number!";
-            }
-            else if (this.floor.Length < 1)
-            {
-                this.ValidationErrors["Floor"] = "Must have more than 1 characters";
-            }
+                this.ValidationErrors["Floor"] = "Must have a number!";
+            }           
             else if (this.floor.Length > 3)
             {
                 this.ValidationErrors["Floor"] = "Must be less than 3 characters";
             }
 
-            //// CLINIC
-            //if (String.IsNullOrWhiteSpace(this.selectedType))
-            //{
-            //    this.ValidationErrors["Clinics"] = "Required field!";
-            //}
+            // CLINIC
+            if (String.IsNullOrWhiteSpace(this.selectedType))
+            {
+                this.ValidationErrors["Clinics"] = "Required field!";
+            }
         }
         #endregion
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
 
         public DepartmentViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
+            ChangeCommand = new MyICommand(OnSaveChanges);
             DeleteCommand = new RelayCommand(OnDelete);
 
             //combobox
-            // Clinics = DbContextHandler.Instance.GetAllClinicsForDepartment();
-
+            Clinics = DbContextHandler.Instance.GetAllClinicsList();
             //tabela
             DbContextHandler.Instance.GetAllDepartments().ForEach(departman => Departmani.Add(departman));
         }
@@ -167,22 +191,54 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-                //int clinicId = DbContextHandler.Instance.GetClinicIdByName(this.selectedType);
+                if (!isUpdate)
+                {
+                    int clinicId = DbContextHandler.Instance.GetClinicIdByName(this.selectedType);
 
-                DbContextHandler.Instance.CreateDepartment(Name, Floor); // + clinicId
+                    DbContextHandler.Instance.CreateDepartment(Name, Floor, clinicId);
 
-                Departmani.Clear();
-                DbContextHandler.Instance.GetAllDepartments().ForEach(departman => Departmani.Add(departman));
+                    Departmani.Clear();
+                    DbContextHandler.Instance.GetAllDepartments().ForEach(departman => Departmani.Add(departman));
+                    Name = " ";
+                    Floor = " ";
+                    SelectedType = null;
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
+                  
+                    DbContextHandler.Instance.UpdateDepartment((int)SelectedDepartment.DepartmanId, name, floor);
+
+                    Departmani.Clear();
+                    DbContextHandler.Instance.GetAllDepartments().ForEach(departman => Departmani.Add(departman));
+
+                    isUpdate = false;
+                    BtnContent = "Add";
+                    Name = " ";
+                    Floor = " ";
+                    SelectedType = null;
+                }
             }
+        }
+        public void OnSaveChanges()
+        {
+            Name = SelectedDepartment.Name;
+            Floor = ((int)SelectedDepartment.Floor).ToString();
+          
+            isUpdate = true;
+            BtnContent = "Update";
         }
 
         public void OnDelete()
         {
-            int departmanId = Departmani.ElementAt(CurrentIndex).Departman_Id;
+            int departmanId = (int)Departmani.ElementAt(CurrentIndex).DepartmanId;
 
-            DbContextHandler.Instance.DeleteDepartmentById(departmanId);
-
-            Departmani.RemoveAt(CurrentIndex);
+            if(DbContextHandler.Instance.DeleteDepartmentById(departmanId))
+            {
+                MessageBox.Show("Delete data!");
+                Departmani.RemoveAt(CurrentIndex);
+            }
         }
         #endregion
     }

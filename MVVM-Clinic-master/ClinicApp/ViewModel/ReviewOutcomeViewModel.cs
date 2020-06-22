@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Documents;
 
 namespace ClinicApp.ViewModel
 {
@@ -16,12 +18,16 @@ namespace ClinicApp.ViewModel
         #region Fields and properties
         private string name;
         private string description;
-        //private string doctors;
         private List<string> patients = new List<string>();
         private string selectedType;
-        //private string outcome;
 
-        private ObservableCollection<Ishod_Pregleda> ishodi = new ObservableCollection<Ishod_Pregleda>();
+        private bool isDiagnozis;
+
+        private ExtendedOutcome selectedItem;
+        private string btnContent;
+        private bool isUpdate = false;
+
+        private ObservableCollection<ExtendedOutcome> ishodi = new ObservableCollection<ExtendedOutcome>();
 
         private int currentIndex;
 
@@ -34,6 +40,19 @@ namespace ClinicApp.ViewModel
                 {
                     name = value;
                     OnPropertyChanged("Name");
+                }
+            }
+        }
+
+        public bool IsDiagnozis
+        {
+            get { return isDiagnozis; }
+            set
+            {
+                if (isDiagnozis != value)
+                {
+                    isDiagnozis = value;
+                    OnPropertyChanged("IsDiagnozis");
                 }
             }
         }
@@ -61,6 +80,30 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+        public string BtnContent
+        {
+            get { return btnContent; }
+            set
+            {
+                if (btnContent != value)
+                {
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
+                }
+            }
+        }
+        public ExtendedOutcome SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+        }
         public string SelectedType
         {
             get { return selectedType; }
@@ -73,31 +116,8 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        //public string Doctor
-        //{
-        //    get { return doctor; }
-        //    set
-        //    {
-        //        if (doctor != value)
-        //        {
-        //            doctor = value;
-        //            OnPropertyChanged("Doctor");
-        //        }
-        //    }
-        //}
-        //public string Outcome
-        //{
-        //    get { return outcome; }
-        //    set
-        //    {
-        //        if (outcome != value)
-        //        {
-        //            outcome = value;
-        //            OnPropertyChanged("Outcome");
-        //        }
-        //    }
-        //}
-        public ObservableCollection<Ishod_Pregleda> Ishodi
+    
+        public ObservableCollection<ExtendedOutcome> Ishodi
         {
             get { return ishodi; }
             set
@@ -132,9 +152,9 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Name"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.name.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.name.Substring(0, this.name.Length), "[0-9]"))
             {
-                this.ValidationErrors["Name"] = "Can't start with number!";
+                this.ValidationErrors["Name"] = "Can't contain a number!";
             }
             else if (this.name.Length < 3)
             {
@@ -144,6 +164,7 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Name"] = "Must be less than 20 characters";
             }
+
             // DESCRIPTION
             if (String.IsNullOrWhiteSpace(this.description))
             {
@@ -161,40 +182,31 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Description"] = "Must be less than 200 characters";
             }
+
             // PATIENT
             if (String.IsNullOrWhiteSpace(this.selectedType))
             {
                 this.ValidationErrors["Patients"] = "Required field!";
             }
-            //// DOCTOR
-            //if (String.IsNullOrWhiteSpace(this.doctor))
-            //{
-            //    this.ValidationErrors["Doctor"] = "Required field!";
-            //}
-            //// OUTCOME
-            //if (String.IsNullOrWhiteSpace(this.outcome))
-            //{
-            //    this.ValidationErrors["Outcome"] = "Required field!";
-            //}
-            //else if (Regex.IsMatch(this.outcome.Substring(0, 1), "[0-9]"))
-            //{
-            //    this.ValidationErrors["Outcome"] = "Can't start with number!";
-            //}
+           
         }
         #endregion
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
-
+        public MyICommand ChangeCommand { get; set; }
+       
         public ReviewOutcomeViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
+            ChangeCommand = new MyICommand(OnSaveChanges);
             DeleteCommand = new RelayCommand(OnDelete);
 
             //combobox
             Patients = DbContextHandler.Instance.GetAllPatientsList();
-
+           
             //tabela
             DbContextHandler.Instance.GetAllReviewOutcome().ForEach(ishod => Ishodi.Add(ishod));
         }
@@ -203,13 +215,42 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-                int patientId = DbContextHandler.Instance.GetPatientIdByName(this.selectedType);
+                if (!isUpdate)
+                {
+                    int patientId = DbContextHandler.Instance.GetPatientIdByName(this.selectedType);
 
-                DbContextHandler.Instance.CreateReviewOutcome(Name, Description, patientId);
+                    DbContextHandler.Instance.CreateReviewOutcome(Name, Description, patientId, isDiagnozis);
 
-                Ishodi.Clear();
-                DbContextHandler.Instance.GetAllReviewOutcome().ForEach(ishod => Ishodi.Add(ishod));
+                    Ishodi.Clear();
+                    DbContextHandler.Instance.GetAllReviewOutcome().ForEach(ishod => Ishodi.Add(ishod));
+                    Name = "";
+                    Description = "";
+                    SelectedType = null;
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
+
+                    int patientId = DbContextHandler.Instance.GetPatientIdByName(this.selectedType);
+                    DbContextHandler.Instance.UpdateOutcome(SelectedItem.Ishod_Id, name, description, patientId);
+
+
+                    Ishodi.Clear();
+                    DbContextHandler.Instance.GetAllReviewOutcome().ForEach(ishod => Ishodi.Add(ishod));
+                    Name = "";
+                    Description = "";
+                    SelectedType = null;
+                }
             }
+        }
+        public void OnSaveChanges()
+        {
+            Name = SelectedItem.Name;
+            Description = SelectedItem.Description;
+
+            isUpdate = true;
+            BtnContent = "Update";
         }
 
         public void OnDelete()
@@ -218,6 +259,7 @@ namespace ClinicApp.ViewModel
 
             DbContextHandler.Instance.DeleteOutcomeById(ishodId);
 
+            MessageBox.Show("Delete data!");
             Ishodi.RemoveAt(CurrentIndex);
         }
         #endregion

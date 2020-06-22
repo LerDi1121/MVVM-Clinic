@@ -92,6 +92,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\BindableBase.cs" />
     <Compile Include="Core\DbContextHandler.cs" />
+    <Compile Include="Core\ExtendedDepartment.cs" />
     <Compile Include="Core\MyICommand.cs" />
     <Compile Include="Core\ValidationBase.cs" />
     <Compile Include="Core\ValidationErrors.cs" />
@@ -129,6 +130,9 @@
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Doktor_specijalista_Uput.cs">
+      <DependentUpon>ClinicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GetAllDepartments_Result.cs">
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Ishod_Pregleda.cs">

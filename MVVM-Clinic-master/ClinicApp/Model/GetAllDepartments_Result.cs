@@ -13,20 +13,17 @@ namespace ClinicApp.Model
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class Ishod_Pregleda_Dijagnoza
+public partial class GetAllDepartments_Result
 {
 
-    public Nullable<int> TerapijaTerapija_Id { get; set; }
+    public string Name { get; set; }
 
-    public int Ishod_Id { get; set; }
+    public Nullable<int> Floor { get; set; }
 
+    public Nullable<int> DepartmanId { get; set; }
 
-
-    public virtual Ishod_Pregleda Ishod_Pregleda { get; set; }
-
-    public virtual Terapija Terapija { get; set; }
+    public string ClinicName { get; set; }
 
 }
 

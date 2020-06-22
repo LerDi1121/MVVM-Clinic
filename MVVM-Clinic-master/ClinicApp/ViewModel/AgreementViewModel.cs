@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClinicApp.ViewModel
 {
@@ -16,9 +17,14 @@ namespace ClinicApp.ViewModel
         #region Fields and properties
 
         private string type;
-        private DateTime expirationDate;
+        private DateTime selectedDate;
         private bool specialization;
+        private bool isPartTime;
         private string doctor;
+
+        private Ugovor selectedItem;
+        private string btnContent;
+        private bool isUpdate = false;
 
         private ObservableCollection<Ugovor> ugovori = new ObservableCollection<Ugovor>();
 
@@ -36,15 +42,15 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        public DateTime ExpirationDate
+        public DateTime SelectedDate
         {
-            get { return expirationDate; }
+            get { return selectedDate; }
             set
             {
-                if (expirationDate != value)
+                if (selectedDate != value)
                 {
-                    expirationDate = value;
-                    OnPropertyChanged("ExpirationDate");
+                    selectedDate = value;
+                    OnPropertyChanged("SelectedDate");
                 }
             }
         }
@@ -61,6 +67,19 @@ namespace ClinicApp.ViewModel
             }
 
         }
+        public bool IsPartTime
+        {
+            get { return isPartTime; }
+            set
+            {
+                if (isPartTime != value)
+                {
+                    isPartTime = value;
+                    OnPropertyChanged("IsPartTime");
+                }
+            }
+
+        }
         public string Doctor
         {
             get { return doctor; }
@@ -73,7 +92,6 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
         public ObservableCollection<Ugovor> Ugovori
         {
             get { return ugovori; }
@@ -86,7 +104,6 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
         public int CurrentIndex
         {
             get { return currentIndex; }
@@ -99,56 +116,43 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
+        public Ugovor SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+        }
+        public string BtnContent
+        {
+            get { return btnContent; }
+            set
+            {
+                if (btnContent != value)
+                {
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
+                }
+            }
+        }
         #endregion
 
         #region Validation
         protected override void ValidateSelf()
         {
-            // EXPIRATION DATE
-            //if (String.IsNullOrWhiteSpace(this.expirationDate))
-            //{
-            //    this.ValidationErrors["ExpirationDate"] = "Required field!";
-            //}
-            //else if (Regex.IsMatch(this.expirationDate.Substring(0, 1), "[0-9]"))
-            //{
-            //    this.ValidationErrors["ExpirationDate"] = "Can't start with number!";
-            //}
-            //else if (this.expirationDate.Length < 3)
-            //{
-            //    this.ValidationErrors["ExpirationDate"] = "Must have more than 3 characters";
-            //}
-            //else if (this.expirationDate.Length > 20)
-            //{
-            //    this.ValidationErrors["ExpirationDate"] = "Must be less than 20 characters";
-            //}
-
-            //// SPECIALIZATION
-            //if (String.IsNullOrWhiteSpace(this.specialization))
-            //{
-            //    this.ValidationErrors["Specialization"] = "Required field!";
-            //}
-            //else if (Regex.IsMatch(this.specialization.Substring(0, 1), "[0-9]"))
-            //{
-            //    this.ValidationErrors["Specialization"] = "Can't start with number!";
-            //}
-            //else if (this.specialization.Length < 3)
-            //{
-            //    this.ValidationErrors["Specialization"] = "Must have more than 3 characters";
-            //}
-            //else if (this.specialization.Length > 20)
-            //{
-            //    this.ValidationErrors["Specialization"] = "Must be less than 20 characters";
-            //}
-
             // DOCTOR
             if (String.IsNullOrWhiteSpace(this.doctor))
             {
                 this.ValidationErrors["Doctor"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.doctor.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.doctor.Substring(0, this.doctor.Length), "[0-9]"))
             {
-                this.ValidationErrors["Doctor"] = "Can't start with number!";
+                this.ValidationErrors["Doctor"] = "Can't contain a number!";
             }
             else if (this.doctor.Length < 5)
             {
@@ -166,11 +170,16 @@ namespace ClinicApp.ViewModel
 
         public MyICommand AddCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
 
         public AgreementViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
+            ChangeCommand = new MyICommand(OnSaveChanges);
             DeleteCommand = new RelayCommand(OnDelete);
+
+            SelectedDate = DateTime.Now;
 
             DbContextHandler.Instance.GetAllAgreements().ForEach(ugovor => Ugovori.Add(ugovor));
         }
@@ -179,11 +188,38 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-                DbContextHandler.Instance.CreateAgreement(Type, ExpirationDate, Specialization, Doctor);
+                if (!isUpdate)
+                {
+                    DbContextHandler.Instance.CreateAgreement(IsPartTime, SelectedDate, Specialization, Doctor);
 
-                Ugovori.Clear();
-                DbContextHandler.Instance.GetAllAgreements().ForEach(ugovor => Ugovori.Add(ugovor));
+                    Ugovori.Clear();
+                    DbContextHandler.Instance.GetAllAgreements().ForEach(ugovor => Ugovori.Add(ugovor));
+                    Doctor = "";
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
+                    DbContextHandler.Instance.UpdateAgreement(SelectedItem.Ugovor_Id, type, selectedDate, specialization, doctor);
+                    
+                    Ugovori.Clear();
+                    DbContextHandler.Instance.GetAllAgreements().ForEach(ugovor => Ugovori.Add(ugovor));
+
+                    isUpdate = false;
+                    BtnContent = "Add";
+                    Doctor = "";
+                }
             }
+        }
+        public void OnSaveChanges()
+        {
+            Type = SelectedItem.Vrsta_Ugovora;
+            SelectedDate = SelectedItem.Datum_Vazenja;
+            Specialization = SelectedItem.Specijalizacija;
+            Doctor = SelectedItem.Doktor;
+
+            isUpdate = true;
+            BtnContent = "Update";
         }
 
         public void OnDelete()
@@ -191,7 +227,7 @@ namespace ClinicApp.ViewModel
             int ugovorId = Ugovori.ElementAt(CurrentIndex).Ugovor_Id;
 
             DbContextHandler.Instance.DeleteAgreementById(ugovorId);
-
+            MessageBox.Show("Delete data!");
             Ugovori.RemoveAt(CurrentIndex);
         }
         #endregion      

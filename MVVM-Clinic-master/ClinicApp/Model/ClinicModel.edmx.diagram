@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="17ac10f9cfe442a0a64abab328dd2d00" Name="Diagram1">
-        <EntityTypeShape EntityType="ClinicDBModel.Departman" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Dijagnoza_Specijaliste" Width="1.5" PointX="12.75" PointY="6" IsExpanded="true" />
+      <Diagram DiagramId="17ac10f9cfe442a0a64abab328dd2d00" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="ClinicDBModel.Departman" Width="1.5" PointX="0.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Dijagnoza_Specijaliste" Width="1.5" PointX="12.375" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Doktor_Departman" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Width="3.125" PointX="8.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Doktor_opste_prakse_Pregled1" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Doktor_specijalista_Uput" Width="1.5" PointX="15" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Doktor_specijalista_Uput" Width="1.5" PointX="14.875" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Doktor" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Ishod_Pregleda" Width="1.5" PointX="10.5" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Ishod_Pregleda_Dijagnoza" Width="1.5" PointX="12.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Ishod_Pregleda_Uput" Width="1.5" PointX="12.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Klinika_Departman" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Ishod_Pregleda_Dijagnoza" Width="2.375" PointX="15.125" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Ishod_Pregleda_Uput" Width="2" PointX="12.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Klinika_Departman" Width="1.5" PointX="2.5" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Klinika" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Pacijent_Departman" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Pacijent" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />

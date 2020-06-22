@@ -25,6 +25,6 @@ namespace ClinicApp.View.All
         {
             InitializeComponent();
             this.DataContext = new AgreementViewModel();
-        }
+        }  
     }
 }

@@ -8,23 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClinicApp.ViewModel
 {
-    public enum typeTherapy
-    {
-        DRUG,
-        MASSAGE,
-        EXERCISES,
-        SPA
-    }
     public class TherapyViewModel : ValidationBase
     {
         #region Fields and properties
         private string name;
         private string description;
-        private List<string> types = new List<string>();
-        private string selectedType;
+        private List<string> types = new List<string>() { "Drug", "Massage", "Exercises", "Spa" };
+
+        private Terapija selectedItem;
+        private string btnContent;
+        private bool isUpdate = false;
 
         private ObservableCollection<Terapija> terapije = new ObservableCollection<Terapija>();
 
@@ -66,19 +63,32 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        public string SelectedType
+      
+        public string BtnContent
         {
-            get { return selectedType; }
+            get { return btnContent; }
             set
             {
-                if (selectedType != value)
+                if (btnContent != value)
                 {
-                    selectedType = value;
-                    OnPropertyChanged("SelectedType");
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
                 }
             }
         }
-
+        public Terapija SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+        }
+      
         public ObservableCollection<Terapija> Terapije
         {
             get { return terapije; }
@@ -108,14 +118,15 @@ namespace ClinicApp.ViewModel
 
         #region Validations
         protected override void ValidateSelf()
-        {// NAME
+        {
+            // NAME
             if (String.IsNullOrWhiteSpace(this.name))
             {
                 this.ValidationErrors["Name"] = "Required field!";
             }
-            else if (Regex.IsMatch(this.name.Substring(0, 1), "[0-9]"))
+            else if (Regex.IsMatch(this.name.Substring(0, this.name.Length), "[0-9]"))
             {
-                this.ValidationErrors["Name"] = "Can't start with number!";
+                this.ValidationErrors["Name"] = "Can't contain a number!";
             }
             else if (this.name.Length < 3)
             {
@@ -145,34 +156,25 @@ namespace ClinicApp.ViewModel
             }
 
             // TYPES
-            if (String.IsNullOrWhiteSpace(this.selectedType))
+            if (String.IsNullOrWhiteSpace(this.Types.ToString()))
             {
                 this.ValidationErrors["Types"] = "Required field!";
             }
 
-            //// DIAGNOSIS
-            //if (String.IsNullOrWhiteSpace(this.diagnosis))
-            //{
-            //    this.ValidationErrors["Diagnosis"] = "Required field!";
-            //}
-            //else if (Regex.IsMatch(this.diagnosis.Substring(0, 1), "[0-9]"))
-            //{
-            //    this.ValidationErrors["Diagnosis"] = "Can't start with number!";
-            //}
         }
         #endregion
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
 
         public TherapyViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
+            ChangeCommand = new MyICommand(OnSaveChanges);
             DeleteCommand = new RelayCommand(OnDelete);
-
-            //combobox            
-            //Types = typeTherapy.DRUG; 
 
             //tabela
             DbContextHandler.Instance.GetAllTherapies().ForEach(terapija => Terapije.Add(terapija));
@@ -182,21 +184,50 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-               
+                if (!isUpdate)
+                {
+                    DbContextHandler.Instance.CreateTherapy(Name, Description, Types.ToString());
 
-               // DbContextHandler.Instance.CreateTherapy(Name, Description, Types);
+                    Terapije.Clear();
+                    DbContextHandler.Instance.GetAllTherapies().ForEach(terapija => Terapije.Add(terapija));
 
-                Terapije.Clear();
-                DbContextHandler.Instance.GetAllTherapies().ForEach(terapija => Terapije.Add(terapija));
+                    Name = "";
+                    Description = "";
+                    Types = null;
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
+
+                    DbContextHandler.Instance.UpdateTherapy(SelectedItem.Terapija_Id, name, description, types.ToString());
+
+                    Terapije.Clear();
+                    DbContextHandler.Instance.GetAllTherapies().ForEach(terapija => Terapije.Add(terapija));
+
+                    isUpdate = false;
+                    BtnContent = "Add";
+                    Name = "";
+                    Description = "";
+                    Types = null;
+                }
             }
         }
+            public void OnSaveChanges()
+            {
+                Name = SelectedItem.Naziv;
+                Description = SelectedItem.Opis;
+                //Types = SelectedItem.Vrsta_Terapije.;
 
-        public void OnDelete()
+                isUpdate = true;
+                BtnContent = "Update";
+            }
+            public void OnDelete()
         {
             int therapyId = Terapije.ElementAt(CurrentIndex).Terapija_Id;
 
             DbContextHandler.Instance.DeleteTherapyById(therapyId);
-
+            MessageBox.Show("Delete data!");
             Terapije.RemoveAt(CurrentIndex);
         }
         #endregion

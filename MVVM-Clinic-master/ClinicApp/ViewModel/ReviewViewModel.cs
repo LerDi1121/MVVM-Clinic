@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClinicApp.ViewModel
 {
@@ -16,9 +17,12 @@ namespace ClinicApp.ViewModel
         #region Fields and properties
         private string dateAndTime;
         private string description;
-        //private string patient;
         private List<string> doctors = new List<string>();
         private string selectedType;
+
+        private Pregled selectedItem;
+        private string btnContent;
+        private bool isUpdate = false;
 
         private ObservableCollection<Pregled> pregledi = new ObservableCollection<Pregled>();
 
@@ -48,18 +52,7 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        //public string Patient
-        //{
-        //    get { return patient; }
-        //    set
-        //    {
-        //        if (patient != value)
-        //        {
-        //            patient = value;
-        //            OnPropertyChanged("Patient");
-        //        }
-        //    }
-        //}
+       
         public List<string> Doctors
         {
             get { return doctors; }
@@ -84,8 +77,30 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-
-
+        public string BtnContent
+        {
+            get { return btnContent; }
+            set
+            {
+                if (btnContent != value)
+                {
+                    btnContent = value;
+                    OnPropertyChanged("BtnContent");
+                }
+            }
+        }
+        public Pregled SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+        }
         public ObservableCollection<Pregled> Pregledi
         {
             get { return pregledi; }
@@ -123,7 +138,7 @@ namespace ClinicApp.ViewModel
             }
             else if (Regex.IsMatch(this.dateAndTime.Substring(0, 1), "[^0-9]"))
             {
-                this.ValidationErrors["DateAndTime"] = "Must start with number!";
+                this.ValidationErrors["DateAndTime"] = "Valid format: day/month/year!";
             }
             // DESCRIPTION
             if (String.IsNullOrWhiteSpace(this.description))
@@ -142,11 +157,6 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Description"] = "Must be less than 200 characters";
             }
-            //// PATIENT
-            //if (String.IsNullOrWhiteSpace(this.patient))
-            //{
-            //    this.ValidationErrors["Patient"] = "Required field!";
-            //}
 
             // DOCTOR
             if (String.IsNullOrWhiteSpace(this.selectedType))
@@ -158,11 +168,14 @@ namespace ClinicApp.ViewModel
 
         #region Constructor and metods
         public MyICommand AddCommand { get; set; }
+        public MyICommand ChangeCommand { get; set; }
         public static RelayCommand DeleteCommand { get; set; }
 
         public ReviewViewModel()
         {
+            BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
+            ChangeCommand = new MyICommand(OnSaveChanges);
             DeleteCommand = new RelayCommand(OnDelete);
 
             //combobox
@@ -176,21 +189,52 @@ namespace ClinicApp.ViewModel
             this.Validate();
             if (this.IsValid)
             {
-                int doctorId = DbContextHandler.Instance.GetDoctorIdByName(this.selectedType);
+                if (!isUpdate)
+                {
+                    int doctorId = DbContextHandler.Instance.GetDoctorIdByName(this.selectedType);
 
-                DbContextHandler.Instance.CreateReview(Description, DateAndTime, doctorId);
+                    DbContextHandler.Instance.CreateReview(Description, DateAndTime, doctorId);
 
-                Pregledi.Clear();
-                DbContextHandler.Instance.GetAllReviews().ForEach(pregled => Pregledi.Add(pregled));
+                    Pregledi.Clear();
+                    DbContextHandler.Instance.GetAllReviews().ForEach(pregled => Pregledi.Add(pregled));
+                    DateAndTime = "";
+                    Description = "";
+                    SelectedType = null;
+                }
+                else
+                {
+                    BtnContent = "Update";
+                    MessageBox.Show("Update data!");
+
+                    //int doctorId = DbContextHandler.Instance.GetDoctorIdByName(this.selectedType);
+                    DbContextHandler.Instance.UpdateReview(SelectedItem.Pregled_Id, description, dateAndTime);
+
+                    Pregledi.Clear();
+                    DbContextHandler.Instance.GetAllReviews().ForEach(pregled => Pregledi.Add(pregled));
+
+                    isUpdate = false;
+                    BtnContent = "Add";
+                    DateAndTime = "";
+                    Description = "";
+                    SelectedType = null;
+                }
             }
         }
+        public void OnSaveChanges()
+        {
+            DateAndTime = SelectedItem.Vreme;
+            Description = SelectedItem.Opis;
 
+            isUpdate = true;
+            BtnContent = "Update";
+        }
         public void OnDelete()
         {
             int pregledId = Pregledi.ElementAt(CurrentIndex).Pregled_Id;
 
             DbContextHandler.Instance.DeleteReviewById(pregledId);
 
+            MessageBox.Show("Delete data!");
             Pregledi.RemoveAt(CurrentIndex);
         }
         #endregion

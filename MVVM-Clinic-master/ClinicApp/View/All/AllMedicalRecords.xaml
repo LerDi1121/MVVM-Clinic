@@ -14,6 +14,7 @@
                 <Label Content="All medical records" Margin="0,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="37" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#009999" Background="#f8f8ff" FontSize="20" FontWeight="SemiBold"/>
                 <DataGrid ItemsSource="{Binding Kartoni, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedIndex="{Binding CurrentIndex}"
+                      SelectedItem="{Binding SelectedItem}"
                       Background="{x:Null}" 
                       BorderBrush="White"
                       RowHeight="26"
@@ -38,12 +39,12 @@
                     </DataGrid.Resources>
                     <!--1. red u tabeli-->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name"     Width="*" Binding="{Binding Ime,        UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
-                        <DataGridTextColumn Header="Lastname" Width="*" Binding="{Binding Prezime,    UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
-                        <DataGridTextColumn Header="JMBG"     Width="*" Binding="{Binding JMBG,       UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
-                        <DataGridTextColumn Header="History"  Width="*" Binding="{Binding Evidencija, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
-                        <DataGridTextColumn Header="Clinic"   Width="*" Binding="{Binding Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
-
+                        <DataGridTextColumn Header="Name"       Width="60" Binding="{Binding Ime,        UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
+                        <DataGridTextColumn Header="Lastname"   Width="80" Binding="{Binding Prezime,    UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
+                        <DataGridTextColumn Header=" JMBG"     Width="110" Binding="{Binding JMBG,       UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
+                        <DataGridTextColumn Header="History"    Width="90" Binding="{Binding Evidencija, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
+                        <DataGridTextColumn Header="Dep."    Width="60" Binding="{Binding Pacijent_Departman_Klinika_DepartmanDepartmanDepartman_Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
+                        <DataGridTextColumn Header="Clinic"     Width="60" Binding="{Binding Pacijent_Departman_Klinika_DepartmanKlinikaKlinika_Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="#006666" FontSize="14"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button Content="Change" HorizontalAlignment="Left" Height="30" Margin="0,377,0,0" VerticalAlignment="Top" Width="220" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18"  Command="{Binding ChangeCommand}"/>
@@ -54,41 +55,37 @@
         <Border Name="Border2" VerticalAlignment="Top" Width="450" Height="400" BorderBrush="White" BorderThickness="1" Margin="454,10,0,0">
             <Grid Background="Transparent" Height="449" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="306*"/>
-                    <RowDefinition Height="143*"/>
+                    <RowDefinition Height="306"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!--Naslov-->
                 <Label Content="New medical record" Margin="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="37" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#009999" Background="#f8f8ff" FontSize="20" FontWeight="SemiBold"/>
                 <!--Name-->
-                <Label  Content="Name:"  HorizontalAlignment="Left" Height="40" Margin="10,37,0,0"  VerticalAlignment="Top" Width="66" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="name"   HorizontalAlignment="Left" Height="30" Margin="70,39,0,0" VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Name}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="20,69,278,0" Width="150" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Name]}" Foreground="Red"/>
+                <Label  Content="Name:"  HorizontalAlignment="Left" Height="40" Margin="40,37,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBox x:Name="name"   HorizontalAlignment="Left" Height="30" Margin="170,39,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Name}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,70,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Name]}" Foreground="Red"/>
                 <!--Lastname-->
-                <Label  Content="Lastname:" HorizontalAlignment="Left" Height="40" Margin="190,37,0,0"  VerticalAlignment="Top" Width="92" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBox x:Name="lastname"  HorizontalAlignment="Left" Height="30" Margin="280,39,0,0" VerticalAlignment="Top" Width="150" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Lastname}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="280,69,18,0" Width="150" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Lastname]}" Foreground="Red"/>
+                <Label  Content="Lastname:" HorizontalAlignment="Left" Height="40" Margin="40,90,0,0"  VerticalAlignment="Top" Width="100" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <TextBox x:Name="lastname"  HorizontalAlignment="Left" Height="30" Margin="170,94,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding Lastname}"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,126,10,0" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Lastname]}" Foreground="Red"/>
                 <!--JMBG-->
                 <Label  Content="JMBG:" HorizontalAlignment="Left" Height="40" Margin="40,148,0,0"  VerticalAlignment="Top" Width="80" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
                 <TextBox x:Name="JMBG"  HorizontalAlignment="Left" Height="30" Margin="170,152,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding JMBG}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="15,177,283,0" Width="150" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[JMBG]}" Foreground="Red"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,182,128,0" Width="250" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[JMBG]}" Foreground="Red"/>
                 <!--History-->
                 <Label  Content="History:" HorizontalAlignment="Left" Height="40" Margin="40,202,0,0"  VerticalAlignment="Top" Width="120" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
                 <TextBox x:Name="history"  HorizontalAlignment="Left" Height="53" Margin="170,207,0,0" VerticalAlignment="Top" Width="200" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="16" BorderBrush="White" TextWrapping="Wrap" Text="{Binding History}"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="20,235,299,0" Width="129" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[History]}" Foreground="Red"/>
-                <!--Patient-->
-                <Label  Content="Patient:" HorizontalAlignment="Left" Height="40" Margin="40,90,0,0"  VerticalAlignment="Top" Width="120" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <ComboBox ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedType}" Height="30" Width="202" Margin="168,91,78,185.153" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="29,118,299,0" Width="120" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Patients]}" Foreground="Red"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,260,149,0" Width="250" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[History]}" Foreground="Red"/>
                 <!--Clinic-->
-                <Label  Content="Clinic:" HorizontalAlignment="Left" Height="40" Margin="40,300,0,0"  VerticalAlignment="Top" Width="120" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" Grid.RowSpan="2"/>
+                <Label  Content="Clinic:" HorizontalAlignment="Left" Height="40" Margin="40,323,0,0"  VerticalAlignment="Top" Width="120" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" Grid.RowSpan="2"/>
                 <ComboBox ItemsSource="{Binding Clinics}" SelectedItem="{Binding SelectedType2}" Height="30" Width="202" Margin="168,21.847,78,91" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" Grid.Row="1"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="-34,26.847,362,0" Width="120" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Clinics]}" Foreground="Red" Grid.Row="1"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="168,5,60,0" Width="220" Height="15" TextWrapping="Wrap" Text="{Binding ValidationErrors[Clinics]}" Foreground="Red" Grid.Row="1"/>
                 <!--Dapertment-->
-                <Label  Content="Departments:" HorizontalAlignment="Left" Height="40" Margin="40,265,0,0"  VerticalAlignment="Top" Width="120" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
+                <Label  Content="Departments:" HorizontalAlignment="Left" Height="40" Margin="40,277,0,0"  VerticalAlignment="Top" Width="120" Background="Transparent" FontFamily="Segoe UI" Foreground="#006666" FontSize="18"/>
                 <ComboBox ItemsSource="{Binding Departments}" SelectedItem="{Binding SelectedType3}" Height="30" Width="202" Margin="170,285,76,134" FontFamily="Segoe UI" Foreground="#006666" FontSize="18" Grid.RowSpan="2"/>
-                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="10,28.847,288,0" Width="150" Height="25" TextWrapping="Wrap" Text="{Binding ValidationErrors[Departments]}" Foreground="Red" Grid.Row="1"/>
+                <TextBlock VerticalAlignment="Top" FontSize="14" TextAlignment="Left" Margin="170,45,10,0" Height="10" TextWrapping="Wrap" Text="{Binding ValidationErrors[Departments]}" Foreground="Red" Grid.Row="1"/>
 
-                <Button Content="Add"    HorizontalAlignment="Left" Height="30" Margin="0,58.847,-2,0" VerticalAlignment="Top" Width="450" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding AddCommand}" Grid.Row="1"/>
+                <Button Content="{Binding BtnContent}" HorizontalAlignment="Left" Height="30" Margin="0,58.847,-2,0" VerticalAlignment="Top" Width="450" FontFamily="Segoe UI" Background="#f8f8ff" Foreground="#009999" BorderBrush="White" FontSize="18" Command="{Binding AddCommand}" Grid.Row="1"/>
             </Grid>
         </Border>
     </Grid>

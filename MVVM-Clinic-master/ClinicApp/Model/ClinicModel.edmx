@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClinicDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClinicDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departmen">
           <Key>
             <PropertyRef Name="Departman_Id" />
@@ -147,7 +147,7 @@
           </Key>
           <Property Name="Pregled_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Opis" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Vreme" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Vreme" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Terapija_Specijaliste">
@@ -455,6 +455,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="BrojacDnevnihPregledaZaDoktora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="doctorId" Type="int" Mode="In" />
+          <Parameter Name="date" Type="nvarchar" Mode="In" />
+          <Parameter Name="count" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="GetAllDepartments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Name" Type="varchar" MaxLength="50" />
+                <Property Name="Floor" Type="int" />
+                <Property Name="DepartmanId" Type="int" />
+                <Property Name="ClinicName" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="ClinicDBModelStoreContainer">
           <EntitySet Name="Departmen" EntityType="Self.Departmen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dijagnoza_Specijaliste" EntityType="Self.Dijagnoza_Specijaliste" Schema="dbo" store:Type="Tables" />
@@ -561,8 +578,7 @@
             <End Role="Zdravstveni_Karton" EntitySet="Zdravstveni_Karton" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClinicDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -735,7 +751,7 @@
           </Key>
           <Property Name="Pregled_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Vreme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vreme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="Self.FK_PregledDoktor_opste_prakse_Pregled" FromRole="Pregleds" ToRole="Doktor_opste_prakse_Pregled1" />
         </EntityType>
@@ -1128,7 +1144,19 @@
             <End Role="Dijagnoza_Specijaliste" EntitySet="Dijagnoza_Specijaliste" />
             <End Role="Terapija_Specijaliste" EntitySet="Terapija_Specijaliste" />
           </AssociationSet>
+          <FunctionImport Name="GetAllDepartments" IsComposable="true" ReturnType="Collection(ClinicDBModel.GetAllDepartments_Result)" />
+          <FunctionImport Name="BrojacDnevnihPregledaZaDoktora">
+            <Parameter Name="doctorId" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="String" />
+            <Parameter Name="count" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetAllDepartments_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Floor" Nullable="true" />
+          <Property Type="Int32" Name="DepartmanId" Nullable="true" />
+          <Property Type="String" Name="ClinicName" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1335,6 +1363,17 @@
               <ScalarProperty Name="Terapija_Id" ColumnName="Terapija_Specijaliste_Terapija_Id" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllDepartments" FunctionName="ClinicDBModel.Store.GetAllDepartments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClinicDBModel.GetAllDepartments_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="DepartmanId" ColumnName="DepartmanId" />
+                <ScalarProperty Name="ClinicName" ColumnName="ClinicName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BrojacDnevnihPregledaZaDoktora" FunctionName="ClinicDBModel.Store.BrojacDnevnihPregledaZaDoktora" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

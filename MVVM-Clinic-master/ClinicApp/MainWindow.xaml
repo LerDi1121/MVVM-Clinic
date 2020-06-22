@@ -13,7 +13,7 @@
             <ImageBrush ImageSource="/Images/Background.jpg" Opacity="0.7"/>
         </Grid.Background>
         <!--Naslov-->
-        <TextBlock Text="Clinic Center" FontSize="30" TextAlignment="Left" Height="40" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontFamily="Segoe UI" Foreground="#006666" FontWeight="SemiBold"/>
+        <TextBlock Text="Ambulanta Omarska" FontSize="30" TextAlignment="Left" Height="40" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#006666" FontWeight="SemiBold" Margin="335,0,256,0"/>
         <!--Tabovi-->
         <DockPanel Width="950" Background="Transparent" HorizontalAlignment="Left" Margin="0,40,0,0">
             <Menu DockPanel.Dock="Left" Width="925" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
@@ -30,5 +30,5 @@
                 </TabControl>
             </Menu>
         </DockPanel>
-         </Grid>
+    </Grid>
 </Window>
