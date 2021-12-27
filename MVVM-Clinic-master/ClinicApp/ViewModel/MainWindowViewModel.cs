@@ -10,191 +10,68 @@ using Unity;
 
 namespace ClinicApp.ViewModel
 {
-    public class MainWindowViewModel: ValidationBase
+    public enum ViewType
     {
-        #region Fields and properties
-        private int selectedTab;
-        private object allDepartmentTab;
-        private object allDoctorTab;
-        private object allPatientTab;
-        private object allReviewTab;
-        private object allReviewOutcomeTab;
-        private object allDiagnosisTab;
-        private object allTherapyTab;
-        private object allMedicalRecordTab;
-        private object allTAgreementTab;
+        LOGIN_VIEW,
+        REGISTER_VIEW,
+        PATIENT_VIEW,
+        DOCTOR_VIEW,
+        DOCTOR_SPECIALIST_VIEW,
+        GENERAL_PRACTICIONER_VIEW,
+    }
+    public class MainWindowViewModel: BindableBase
+    {
+        private object currentView = new LoginView();
 
-        public int SelectedTab
+        public object CurrentView
         {
-            get { return selectedTab; }
+            get { return currentView; }
             set
             {
-                if (selectedTab != value)
-                {
-                    selectedTab = value;
-                    OnPropertyChanged("SelectedTab");
-                }
-            }
-        }
-        public object AllDepartmentTab
-        {
-            get { return allDepartmentTab; }
-            set
-            {
-                if (allDepartmentTab != value)
-                {
-                    allDepartmentTab = value;
-                    OnPropertyChanged("AllDepartmentTab");
-                }
-            }
-        }
-        public object AllDoctorTab
-        {
-            get { return allDoctorTab; }
-            set
-            {
-                if (allDoctorTab != value)
-                {
-                    allDoctorTab = value;
-                    OnPropertyChanged("AllDoctorTab");
-                }
+                currentView = value;
+                OnPropertyChanged("CurrentView");
             }
         }
 
-        public object AllPatientTab
-        {
-            get { return allPatientTab; }
-            set
-            {
-                if (allPatientTab != value)
-                {
-                    allPatientTab = value;
-                    OnPropertyChanged("AllPatientTab");
-                }
-            }
-        }
-        public object AllReviewTab
-        {
-            get { return allReviewTab; }
-            set
-            {
-                if (allReviewTab != value)
-                {
-                    allReviewTab = value;
-                    OnPropertyChanged("AllReviewTab");
-                }
-            }
-        }
-        public object AllReviewOutcomeTab
-        {
-            get { return allReviewOutcomeTab; }
-            set
-            {
-                if (allReviewOutcomeTab != value)
-                {
-                    allReviewOutcomeTab = value;
-                    OnPropertyChanged("AllReviewOutcomeTab");
-                }
-            }
-        }
-        public object AllDiagnosisTab
-        {
-            get { return allDiagnosisTab; }
-            set
-            {
-                if (allDiagnosisTab != value)
-                {
-                    allDiagnosisTab = value;
-                    OnPropertyChanged("AllDiagnosisTab");
-                }
-            }
-        }
-        public object AllTherapyTab
-        {
-            get { return allTherapyTab; }
-            set
-            {
-                if (allTherapyTab != value)
-                {
-                    allTherapyTab = value;
-                    OnPropertyChanged("AllTherapyTab");
-                }
-            }
-        }
-        public object AllMedicalRecordTab
-        {
-            get { return allMedicalRecordTab; }
-            set
-            {
-                if (allMedicalRecordTab != value)
-                {
-                    allMedicalRecordTab = value;
-                    OnPropertyChanged("AllMedicalRecordTab");
-                }
-            }
-        }
-        public object AllTAgreementTab
-        {
-            get { return allTAgreementTab; }
-            set
-            {
-                if (allTAgreementTab != value)
-                {
-                    allTAgreementTab = value;
-                    OnPropertyChanged("AllTAgreementTab");
-                }
-            }
-        }
-        public static RelayCommand<int> ChangeTabCommand { get; set; }
-
-        #endregion Fields and properties
-
-        #region Constructor
-
-        public MyICommand AddCommand { get; set; }
-        public MyICommand RemoveCommand { get; set; }
-        public MyICommand ChangeCommand { get; set; }
+        public static RelayCommand<ViewType> ChangeViewCommand { get; set; }
 
         public MainWindowViewModel()
         {
-            AddCommand = new MyICommand(OnAdd);
-            RemoveCommand = new MyICommand(OnRemove);
-            ChangeCommand = new MyICommand(OnChange);
-
-            ChangeTabCommand = new RelayCommand<int>(OnChangeTab);
-
-            AllDepartmentTab = new AllDepartment();
-            AllDoctorTab = new AllDoctorView();
-            AllPatientTab = new AllPatientView();
-            AllReviewTab = new AllReviewView();
-            AllReviewOutcomeTab = new AllReviewOutcome();
-            AllDiagnosisTab = new AllDiagnosisView();
-            AllTherapyTab = new AllTherapyView();
-            AllTAgreementTab = new AllAgreementView();
-            AllMedicalRecordTab = new AllMedicalRecords();
-        }
-        #endregion
-
-        #region Methods
-        public void OnChangeTab(int tabNum)
-        {
-            SelectedTab = tabNum;
-        }
-        public void OnAdd()
-        {
-            
-        }
-        public void OnRemove()
-        {
-        }
-        public void OnChange()
-        {
+            CurrentView = new LoginView();
+            ChangeViewCommand = new RelayCommand<ViewType>(OnChangeView);
         }
 
-        protected override void ValidateSelf()
+        public void OnChangeView(ViewType nextView)
         {
-           // throw new NotImplementedException();
+            switch (nextView)
+            {
+                case ViewType.LOGIN_VIEW:
+                    CurrentView = new LoginView();
+                    break;
+
+                case ViewType.REGISTER_VIEW:
+                    CurrentView = new RegistrationView();
+                    break;
+
+                case ViewType.PATIENT_VIEW:
+                    CurrentView = new PatientView();
+                    break;
+
+                case ViewType.DOCTOR_VIEW:
+                    CurrentView = new DoctorRegistrationView();
+                    break;
+
+                case ViewType.DOCTOR_SPECIALIST_VIEW:
+                    CurrentView = new DoctorSpecialistView();
+                    break;
+
+                case ViewType.GENERAL_PRACTICIONER_VIEW:
+                    CurrentView = new GeneralPracticionerView();
+                    break;
+
+                default:
+                    break;
+            }
         }
-        #endregion
     }
 }

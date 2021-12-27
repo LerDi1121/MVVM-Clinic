@@ -1,5 +1,5 @@
 ﻿using ClinicApp.Core;
-using ClinicApp.Model;
+//using ClinicApp.Model;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace ClinicApp.ViewModel
 {
     public class MedicalRecordsViewModel : ValidationBase
     {
-        #region Fields and properties
+        /*#region Fields and properties
 
         private string name;
         private string lastname;
@@ -346,6 +346,10 @@ namespace ClinicApp.ViewModel
             MessageBox.Show("Delete data!");
             Kartoni.RemoveAt(CurrentIndex);
         }
-        #endregion      
+        #endregion      */
+        protected override void ValidateSelf()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

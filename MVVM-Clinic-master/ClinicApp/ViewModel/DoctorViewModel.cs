@@ -1,11 +1,12 @@
 ﻿using ClinicApp.Core;
-using ClinicApp.Model;
+//using ClinicApp.Model;
 using ClinicApp.View.All;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -14,24 +15,30 @@ namespace ClinicApp.ViewModel
 {
     public class DoctorViewModel : ValidationBase
     {
-        #region Fields and properties
+       #region Fields and properties
         private string name;
         private string lastname;
-        private string contact;
+        private string username;
+        private string password;
+        private string contact; 
+        private string street;
+        private string number;
+        private string city;
+        private string email;
         private string specialization;
         private List<string> departments = new List<string>();
         private string selectedType;
 
-        private Doktor selectedDoktor;
+        //private Doktor selectedDoktor;
         private string btnContent;
         private bool isUpdate = false;
 
         private bool isDoctorSpecialist;
 
-        private ObservableCollection<Doktor> doktori = new ObservableCollection<Doktor>();
+        //private ObservableCollection<Doktor> doktori = new ObservableCollection<Doktor>();
 
         private int currentIndex;
-
+  
         public string BtnContent
         {
             get { return btnContent; }
@@ -80,6 +87,30 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
+        public string Username
+        {
+            get { return username; }
+            set
+            {
+                if (username != value)
+                {
+                    username = value;
+                    OnPropertyChanged("Username");
+                }
+            }
+        }
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                if (password != value)
+                {
+                    password = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
         public string Contact
         {
             get { return contact; }
@@ -89,6 +120,55 @@ namespace ClinicApp.ViewModel
                 {
                     contact = value;
                     OnPropertyChanged("Contact");
+                }
+            }
+        }
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                if (email != value)
+                {
+                    email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
+
+        public string Street
+        {
+            get { return street; }
+            set
+            {
+                if (street != value)
+                {
+                    street = value;
+                    OnPropertyChanged("Street");
+                }
+            }
+        }
+        public string Number
+        {
+            get { return number; }
+            set
+            {
+                if (number != value)
+                {
+                    number = value;
+                    OnPropertyChanged("Number");
+                }
+            }
+        }
+        public string City
+        {
+            get { return city; }
+            set
+            {
+                if (city != value)
+                {
+                    city = value;
+                    OnPropertyChanged("City");
                 }
             }
         }
@@ -128,7 +208,7 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-        public Doktor SelectedDoktor
+       /* public Doktor SelectedDoktor
         {
             get { return selectedDoktor; }
             set
@@ -139,9 +219,9 @@ namespace ClinicApp.ViewModel
                     OnPropertyChanged("SelectedDoktor");
                 }
             }
-        }
+        }*/
 
-        public ObservableCollection<Doktor> Doktori
+      /*  public ObservableCollection<Doktor> Doktori
         {
             get { return doktori; }
             set
@@ -152,7 +232,7 @@ namespace ClinicApp.ViewModel
                     OnPropertyChanged("Doktori");
                 }
             }
-        }
+        }*/
 
         public int CurrentIndex
         {
@@ -171,6 +251,25 @@ namespace ClinicApp.ViewModel
         #region Validation
         protected override void ValidateSelf()
         {
+            // USERNAME
+            if (String.IsNullOrWhiteSpace(this.username))
+            {
+                this.ValidationErrors["Username"] = "Required field!";
+            }
+            else if (Regex.IsMatch(this.username.Substring(0, 1), "[0-9]"))
+            {
+                this.ValidationErrors["Username"] = "Can't start with number!";
+            }
+
+            // PASSWORD
+            if (String.IsNullOrWhiteSpace(this.password))
+            {
+                this.ValidationErrors["Password"] = "Required field!";
+            }
+            else if (this.password.Trim().Length <= 6)
+            {
+                this.ValidationErrors["Password"] = "Must have more than 6 characters!";
+            }
             // NAME
             if (String.IsNullOrWhiteSpace(this.name))
             {
@@ -216,7 +315,44 @@ namespace ClinicApp.ViewModel
             {
                 this.ValidationErrors["Contact"] = "Must have a number!";
             }
+            // CITY
+            if (String.IsNullOrWhiteSpace(this.city))
+            {
+                this.ValidationErrors["City"] = "Required field!";
+            }
+            else if (Regex.IsMatch(this.city.Substring(0, 1), "[0-9]"))
+            {
+                this.ValidationErrors["City"] = "Can't start with number!";
+            }
 
+            // STREET
+            if (String.IsNullOrWhiteSpace(this.street))
+            {
+                this.ValidationErrors["Street"] = "Required field!";
+            }
+            else if (Regex.IsMatch(this.street.Substring(0, 1), "[0-9]"))
+            {
+                this.ValidationErrors["Street"] = "Can't start with number!";
+            }
+
+            // NUMBER
+            if (String.IsNullOrWhiteSpace(this.number))
+            {
+                this.ValidationErrors["Number"] = "Required field!";
+            }
+            else if (Regex.IsMatch(this.number.Substring(0, 1), "[^0-9]"))
+            {
+                this.ValidationErrors["Number"] = "Must start with number!";
+            }
+            // EMAIL
+            if (String.IsNullOrWhiteSpace(this.email))
+            {
+                this.ValidationErrors["Email"] = "Required field!";
+            }
+            else if (!(new EmailAddressAttribute().IsValid(this.email)))
+            {
+                this.ValidationErrors["Email"] = "Invalid format for email address.";
+            }
             // DEPARTMENTS
             if (String.IsNullOrWhiteSpace(this.selectedType))
             {
@@ -230,7 +366,7 @@ namespace ClinicApp.ViewModel
         public static RelayCommand DeleteCommand { get; set; }
         public MyICommand ChangeCommand { get; set; }
 
-        public DoctorViewModel()
+      /*  public DoctorViewModel()
         {
             BtnContent = "Add";
             AddCommand = new MyICommand(OnAdd);
@@ -243,7 +379,7 @@ namespace ClinicApp.ViewModel
 
             foreach(Doktor d in Doktori)
             {
-                 d.NumExams = DbContextHandler.Instance.CountDailyExamsForDoctor(d.Doktor_Id, DateTime.Now.ToShortDateString());
+                // d.NumExams = DbContextHandler.Instance.CountDailyExamsForDoctor(d.Doktor_Id, DateTime.Now.ToShortDateString());
             }
         }
         public void OnAdd()
@@ -262,19 +398,25 @@ namespace ClinicApp.ViewModel
                     else
                         Specialization = "specijalista";
 
-                    DbContextHandler.Instance.CreateDoctor(Name, Lastname, Specialization, 1, departmentId, Contact);
+                    DbContextHandler.Instance.CreateDoctor(Name, Lastname, Specialization, 1, departmentId, Contact, Username, Password, Email, Street, City, Number);
 
                     Doktori.Clear();
                     DbContextHandler.Instance.GetAllDoctors().ForEach(doktor => Doktori.Add(doktor));
                     foreach (Doktor d in Doktori)
                     {
-                        d.NumExams = DbContextHandler.Instance.CountDailyExamsForDoctor(d.Doktor_Id, DateTime.Now.ToShortDateString());
+                       // d.NumExams = DbContextHandler.Instance.CountDailyExamsForDoctor(d.Doktor_Id, DateTime.Now.ToShortDateString());
                     }
                     Name = "";
                     Lastname = "";
                     Specialization = "";
                     Contact = "";
                     SelectedType = null;
+                    Email = "";
+                    Username = "";
+                    Password = "";
+                    Street = "";
+                    Number = "";
+                    City = "";
                 }
                 else
                 {                   
@@ -287,13 +429,13 @@ namespace ClinicApp.ViewModel
                     else
                         Specialization = "specijalista";
 
-                    DbContextHandler.Instance.UpdateDoctor(SelectedDoktor.Doktor_Id, name, lastname, specialization, 1, departmentId, contact);
+                    DbContextHandler.Instance.UpdateDoctor(SelectedDoktor.Doktor_Id, name, lastname, specialization, 1, departmentId, contact, password, username, street, city, number, email);
                     
                     Doktori.Clear();
                     DbContextHandler.Instance.GetAllDoctors().ForEach(doktor => Doktori.Add(doktor));
                     foreach (Doktor d in Doktori)
                     {
-                        d.NumExams = DbContextHandler.Instance.CountDailyExamsForDoctor(d.Doktor_Id, DateTime.Now.ToShortDateString());
+                       // d.NumExams = DbContextHandler.Instance.CountDailyExamsForDoctor(d.Doktor_Id, DateTime.Now.ToShortDateString());
                     }
                     Name = "";
                     Lastname = "";
@@ -302,6 +444,12 @@ namespace ClinicApp.ViewModel
                     SelectedType = null;
                     isUpdate = false;
                     BtnContent = "Add";
+                    Email = "";
+                    Username = "";
+                    Password = "";
+                    Street = "";
+                    Number = "";
+                    City = "";
                 }
             }
         }
@@ -316,15 +464,21 @@ namespace ClinicApp.ViewModel
 
         public void OnSaveChanges()
         {
+            Username = SelectedDoktor.Korisnicko_Ime;
+            Password = SelectedDoktor.Lozinka;
             Name = SelectedDoktor.Ime;
             Lastname = SelectedDoktor.Prezime;
             Specialization = SelectedDoktor.Specijalizacija;
             Contact = SelectedDoktor.Kontakt;
             SelectedType = DbContextHandler.Instance.GetDepartmentNameById(SelectedDoktor.Departman_Id);
+            Street = SelectedDoktor.Ulica;
+            Number = SelectedDoktor.Broj;
+            City = SelectedDoktor.Grad;
+            Email = SelectedDoktor.Email;
 
             isUpdate = true;
             BtnContent = "Update";
-        }
+        }*/
         #endregion
     }
 }

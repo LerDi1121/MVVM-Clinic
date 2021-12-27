@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ClinicApp.View.All.ManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicApp.View.All"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <!--Tabovi-->
+        <DockPanel Width="800" Background="Transparent" HorizontalAlignment="Left" Margin="0,40,0,0">
+            <Menu DockPanel.Dock="Left" Width="797" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
+                <TabControl SelectedIndex="{Binding SelectedTab1}" Background="Transparent" BorderBrush="Transparent" Height="409" Width="789">
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="130" Content="{Binding AllDepartmentTab}" Header="Departments"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllDoctorTab}" Header="Doctors"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="130" Content="{Binding AllTAgreementTab}" Header="Agreements"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="120" Content="{Binding AllPatientTab}" Header="Patients"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="150" Content="{Binding AllMedicalRecordTab}" Header="Medical records"/>
+                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="130" Content="{Binding LogOutTab}" Header="Log out"/>
+                </TabControl>
+            </Menu>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -15,7 +15,7 @@ namespace ClinicApp.ViewModel
     public class ReviewViewModel : ValidationBase
     {
         #region Fields and properties
-        private string dateAndTime;
+        private DateTime termin;
         private string description;
         private List<string> doctors = new List<string>();
         private string selectedType;
@@ -28,15 +28,15 @@ namespace ClinicApp.ViewModel
 
         private int currentIndex;
 
-        public string DateAndTime
+        public DateTime Termin
         {
-            get { return dateAndTime; }
+            get { return termin; }
             set
             {
-                if (dateAndTime != value)
+                if (termin != value)
                 {
-                    dateAndTime = value;
-                    OnPropertyChanged("DateAndTime");
+                    termin = value;
+                    OnPropertyChanged("Termin");
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace ClinicApp.ViewModel
                 }
             }
         }
-       
+
         public List<string> Doctors
         {
             get { return doctors; }
@@ -131,15 +131,6 @@ namespace ClinicApp.ViewModel
         #region Validations
         protected override void ValidateSelf()
         {
-            // DATE
-            if (String.IsNullOrWhiteSpace(this.dateAndTime))
-            {
-                this.ValidationErrors["DateAndTime"] = "Required field!";
-            }
-            else if (Regex.IsMatch(this.dateAndTime.Substring(0, 1), "[^0-9]"))
-            {
-                this.ValidationErrors["DateAndTime"] = "Valid format: day/month/year!";
-            }
             // DESCRIPTION
             if (String.IsNullOrWhiteSpace(this.description))
             {
@@ -193,11 +184,11 @@ namespace ClinicApp.ViewModel
                 {
                     int doctorId = DbContextHandler.Instance.GetDoctorIdByName(this.selectedType);
 
-                    DbContextHandler.Instance.CreateReview(Description, DateAndTime, doctorId);
+                    DbContextHandler.Instance.CreateReview(Description, Termin, doctorId);
 
                     Pregledi.Clear();
                     DbContextHandler.Instance.GetAllReviews().ForEach(pregled => Pregledi.Add(pregled));
-                    DateAndTime = "";
+                    Termin = DateTime.Now;
                     Description = "";
                     SelectedType = null;
                 }
@@ -206,15 +197,14 @@ namespace ClinicApp.ViewModel
                     BtnContent = "Update";
                     MessageBox.Show("Update data!");
 
-                    //int doctorId = DbContextHandler.Instance.GetDoctorIdByName(this.selectedType);
-                    DbContextHandler.Instance.UpdateReview(SelectedItem.Pregled_Id, description, dateAndTime);
+                    DbContextHandler.Instance.UpdateReview(SelectedItem.Pregled_Id, description, termin);
 
                     Pregledi.Clear();
                     DbContextHandler.Instance.GetAllReviews().ForEach(pregled => Pregledi.Add(pregled));
 
                     isUpdate = false;
                     BtnContent = "Add";
-                    DateAndTime = "";
+                    Termin = DateTime.Now;
                     Description = "";
                     SelectedType = null;
                 }
@@ -222,7 +212,7 @@ namespace ClinicApp.ViewModel
         }
         public void OnSaveChanges()
         {
-            DateAndTime = SelectedItem.Vreme;
+            Termin = SelectedItem.Termin;
             Description = SelectedItem.Opis;
 
             isUpdate = true;
@@ -238,5 +228,6 @@ namespace ClinicApp.ViewModel
             Pregledi.RemoveAt(CurrentIndex);
         }
         #endregion
+
     }
 }

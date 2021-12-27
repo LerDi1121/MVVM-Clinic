@@ -13,7 +13,6 @@ namespace ClinicApp.Core
     public class DbContextHandler
     {
         private static DbContextHandler instance;
-
         public static DbContextHandler Instance
         {
             get
@@ -30,6 +29,48 @@ namespace ClinicApp.Core
             }
         }
 
+        #region Registration
+
+        public bool Registration(Korisnik korisnik)
+        {
+            using (var dbContext = new ClinicDBEntities())
+            {
+                var user = dbContext.Korisniks.Where(x => x.Korisnicko_Ime == korisnik.Korisnicko_Ime).FirstOrDefault();
+                if (user == null)
+                {
+                    dbContext.Korisniks.Add(korisnik);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Korisnik sa ovim korisnickim imenom vec postoji!");
+                }
+            }
+            return true;
+        }
+        #endregion
+
+        #region Logging in
+        public bool Logging(string username, string password)
+        {
+            using (var dbContext = new ClinicDBEntities())
+            {
+
+                foreach (var k in dbContext.Korisniks)
+                {
+                    if (k.Korisnicko_Ime == username && k.Lozinka == password)
+                    {
+                        // uspesno se logovao
+                        SingletonUser.Instance.UserId = k.Korisnik_Id;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
         #region Departman
         public List<string> GetAllDepartmentsList()
         {
@@ -37,7 +78,7 @@ namespace ClinicApp.Core
             {
                 return (from departman in db.Departmen
                         select departman.Naziv).ToList();
-            }             
+            }
         }
 
         public int GetDeparmentIdByName(string name)
@@ -50,37 +91,35 @@ namespace ClinicApp.Core
             }
         }
         #endregion
-        #region CRUD DOKTOR
-
+        #region CRUD DOCTOR
         // C-Create
-        public void CreateDoctor(string ime, string prezime, string specijalizacija, int klinika_Id, int departman_Id, string kontakt)
+        public void CreateDoctor(string ime, string prezime, string specijalizacija, int klinika_Id, int departman_Id, string kontakt, string korisnickoIme, string lozinka, string email, string ulica, string grad, string broj, string uloga)
         {
-            Doktor doktor = new Doktor(ime, prezime, specijalizacija, klinika_Id, departman_Id, kontakt, 0);
+            Korisnik doktor = new Doktor(ime, prezime, korisnickoIme, lozinka, email, kontakt, ulica, broj, grad, specijalizacija, klinika_Id, departman_Id, uloga);
             using (var db = new ClinicDBEntities())
             {
-                db.Doktors.Add(doktor);
+                db.Korisniks.Add(doktor);
                 db.SaveChanges();
             }
         }
         // R-Read
-        public List<Doktor> GetAllDoctors()
+        public List<Korisnik> GetAllDoctors()
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from doktor in db.Doktors
+                return (from doktor in db.Korisniks
                         select doktor).ToList();
             }
         }
         // U = UPDATE
-        public void UpdateDoctor(int doctorId, string ime, string prezime, string specijalizacija, int klinika_Id, int departman_Id, string kontakt)
+        public void UpdateDoctor(int doctorId, string ime, string prezime, string specijalizacija, int klinika_Id, int departman_Id, string kontakt, string lozinka, string korIme, string ulica, string grad, string broj, string email)
         {
             Doktor doktor;
             // preuzimanje podataka trenutnog doktora
             using (var db = new ClinicDBEntities())
             {
-                doktor = db.Doktors.Where(x => x.Doktor_Id == doctorId).FirstOrDefault();
+                doktor = db.Korisniks.Where(x => x.Korisnik_Id == doctorId).FirstOrDefault() as Doktor;
             }
-
             bool haveChanges = false;
 
             // menjanje vrednosti atributa
@@ -89,37 +128,61 @@ namespace ClinicApp.Core
                 doktor.Ime = ime;
                 haveChanges = true;
             }
-
             if (!doktor.Prezime.Equals(prezime))
             {
                 doktor.Prezime = prezime;
                 haveChanges = true;
             }
-
             if (!doktor.Specijalizacija.Equals(specijalizacija))
             {
                 doktor.Specijalizacija = specijalizacija;
                 haveChanges = true;
             }
-
             if (!doktor.Klinika_Id.Equals(klinika_Id))
             {
                 doktor.Klinika_Id = klinika_Id;
                 haveChanges = true;
             }
-
             if (!doktor.Departman_Id.Equals(departman_Id))
             {
                 doktor.Departman_Id = departman_Id;
                 haveChanges = true;
             }
-
             if (!doktor.Kontakt.Equals(kontakt))
             {
                 doktor.Kontakt = kontakt;
                 haveChanges = true;
             }
-
+            if (!doktor.Lozinka.Equals(lozinka))
+            {
+                doktor.Lozinka = lozinka;
+                haveChanges = true;
+            }
+            if (!doktor.Korisnicko_Ime.Equals(korIme))
+            {
+                doktor.Korisnicko_Ime = korIme;
+                haveChanges = true;
+            }
+            if (!doktor.Ulica.Equals(ulica))
+            {
+                doktor.Ulica = ulica;
+                haveChanges = true;
+            }
+            if (!doktor.Grad.Equals(grad))
+            {
+                doktor.Grad = grad;
+                haveChanges = true;
+            }
+            if (!doktor.Broj.Equals(broj))
+            {
+                doktor.Broj = broj;
+                haveChanges = true;
+            }
+            if (!doktor.Email.Equals(email))
+            {
+                doktor.Email = email;
+                haveChanges = true;
+            }
             // cuvanje izmena
             if (haveChanges)
             {
@@ -133,48 +196,47 @@ namespace ClinicApp.Core
 
         // D-Delete
         public void DeleteDoctorById(int doctorId)
-        {          
-            Doktor doktor;
+        {
+            Korisnik doktor;
 
             using (var db = new ClinicDBEntities())
             {
-                doktor = db.Doktors.Where(x => x.Doktor_Id == doctorId).FirstOrDefault();
+                doktor = db.Korisniks.Where(x => x.Korisnik_Id == doctorId).FirstOrDefault();
                 db.Entry(doktor).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
-            }         
+            }
         }
         #endregion
 
         #region CRUD PATIENT
-
         // C = CREATE
-        public void CreatePatient(string ime, string prezime, string kontakt, string adresa)
+        public void CreatePatient(string ime, string prezime, string kontakt, string ulica, string broj, string grad, string email, string korisnickoIme, string lozinka)
         {
-            Pacijent pacijent = new Pacijent(ime, prezime, kontakt, adresa);
+            Korisnik pacijent = new Korisnik(ime, prezime, kontakt, ulica, broj, grad, email, korisnickoIme, lozinka, UserType.PATIENT.ToString());
             using (var db = new ClinicDBEntities())
             {
-                db.Pacijents.Add(pacijent);
+                db.Korisniks.Add(pacijent);
                 db.SaveChanges();
             }
         }
 
         // R = Read
-        public List<Pacijent> GetAllPatients()
+        public List<Korisnik> GetAllPatients()
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from pacijent in db.Pacijents
+                return (from pacijent in db.Korisniks
                         select pacijent).ToList();
             }
         }
         // U = UPDATE
-        public void UpdatePatient(int patientId, string ime, string prezime, string kontakt, string adresa)
+        public void UpdatePatient(int patientId, string ime, string prezime, string kontakt, string ulica, string broj, string grad, string email, string lozinka, string korisnIme)
         {
             Pacijent pacijent;
             // preuzimanje podataka trenutnog doktora
             using (var db = new ClinicDBEntities())
             {
-                pacijent = db.Pacijents.Where(x => x.Pacijent_Id == patientId).FirstOrDefault();
+                pacijent = db.Korisniks.Where(x => x.Korisnik_Id == patientId).FirstOrDefault() as Pacijent;
             }
 
             bool haveChanges = false;
@@ -196,13 +258,36 @@ namespace ClinicApp.Core
                 pacijent.Kontakt = kontakt;
                 haveChanges = true;
             }
-
-            if (!pacijent.Adresa.Equals(adresa))
+            if (!pacijent.Ulica.Equals(ulica))
             {
-                pacijent.Adresa = adresa;
+                pacijent.Ulica = ulica;
                 haveChanges = true;
             }
-         
+            if (!pacijent.Broj.Equals(broj))
+            {
+                pacijent.Broj = broj;
+                haveChanges = true;
+            }
+            if (!pacijent.Grad.Equals(grad))
+            {
+                pacijent.Grad = grad;
+                haveChanges = true;
+            }
+            if (!pacijent.Email.Equals(email))
+            {
+                pacijent.Email = email;
+                haveChanges = true;
+            }
+            if (!pacijent.Korisnicko_Ime.Equals(korisnIme))
+            {
+                pacijent.Korisnicko_Ime = korisnIme;
+                haveChanges = true;
+            }
+            if (!pacijent.Lozinka.Equals(lozinka))
+            {
+                pacijent.Lozinka = lozinka;
+                haveChanges = true;
+            }
             // cuvanje izmena
             if (haveChanges)
             {
@@ -222,7 +307,7 @@ namespace ClinicApp.Core
 
             using (var db = new ClinicDBEntities())
             {
-                pacijent = db.Pacijents.Where(x => x.Pacijent_Id == patientId).FirstOrDefault();
+                pacijent = db.Korisniks.Where(x => x.Korisnik_Id == patientId).FirstOrDefault() as Pacijent;
                 db.Entry(pacijent).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
@@ -300,7 +385,7 @@ namespace ClinicApp.Core
                 return db.GetAllDepartments().ToList();
             }
         }
-    
+
         // za update 
         public string GetDepartmentNameById(int departmentId)
         {
@@ -321,7 +406,7 @@ namespace ClinicApp.Core
             {
                 departman = db.Departmen.Where(x => x.Departman_Id == departmanId).FirstOrDefault();
             }
-          
+
             bool haveChanges = false;
 
             // menjanje vrednosti atributa
@@ -352,8 +437,8 @@ namespace ClinicApp.Core
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from doktor in db.Doktors
-                        select doktor.Departman_Id).ToList();
+                return (from doktor in db.Korisniks
+                        select doktor.Korisnik_Id).ToList();
             }
         }
 
@@ -381,12 +466,12 @@ namespace ClinicApp.Core
                         db.SaveChanges();
                         return true;
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         MessageBox.Show("Ne mozete obrisati departman dok god na njemu rade neki doktori / \nleze neki pacijenti!");
                         return false;
-                    }              
-                }             
+                    }
+                }
             }
         }
         #endregion
@@ -396,7 +481,7 @@ namespace ClinicApp.Core
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from pacijent in db.Pacijents
+                return (from pacijent in db.Korisniks
                         select pacijent.Ime).ToList();
             }
         }
@@ -405,9 +490,9 @@ namespace ClinicApp.Core
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from pacijent in db.Pacijents
+                return (from pacijent in db.Korisniks
                         where pacijent.Ime == name
-                        select pacijent.Pacijent_Id).First();
+                        select pacijent.Korisnik_Id).First();
             }
         }
         #endregion
@@ -416,7 +501,7 @@ namespace ClinicApp.Core
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from doktor in db.Doktors
+                return (from doktor in db.Korisniks
                         select doktor.Ime).ToList();
             }
         }
@@ -425,9 +510,9 @@ namespace ClinicApp.Core
         {
             using (var db = new ClinicDBEntities())
             {
-                return (from doktor in db.Doktors
+                return (from doktor in db.Korisniks
                         where doktor.Ime == name
-                        select doktor.Doktor_Id).First();
+                        select doktor.Korisnik_Id).First();
             }
         }
         #endregion
@@ -475,7 +560,7 @@ namespace ClinicApp.Core
                 dijagnoza.Opis = opis;
                 haveChanges = true;
             }
-           
+
             // cuvanje izmena
             if (haveChanges)
             {
@@ -592,7 +677,7 @@ namespace ClinicApp.Core
                 db.SaveChanges();
             }
         }
-        
+
         #endregion
 
         #region CRUD AGREEMENT
@@ -682,11 +767,29 @@ namespace ClinicApp.Core
         #region CRUD REVIEW
 
         // C = CREATE
-        public void CreateReview(string opis, string vreme, int doktorId)
+        public void CreateReview(string opis, DateTime termin, int doktorId)
         {
-            Pregled pregled = new Pregled(opis, vreme, doktorId);
+            Pregled pregled = new Pregled(opis, termin, doktorId, false);
+
+            Doktor_opste_prakse_Pregled1 Doktor_pregled = null;
+            Doktor doktor = GetAllDoctors().Where(x => x.Korisnik_Id == doktorId).FirstOrDefault() as Doktor;
             using (var db = new ClinicDBEntities())
             {
+                Doktor_pregled = db.Doktor_opste_prakse_Pregled1.Where(Dp => Dp.DoktorDoktor_Id == doktorId).FirstOrDefault();
+
+                if (Doktor_pregled == null)
+                {
+                    Doktor_pregled = new Doktor_opste_prakse_Pregled1()
+                    {
+                       // DoktorDoktor_Id = doktorId,
+                       // Doktor_opste_prakseDoktor_Id = doktorId,
+                        //Doktor= doktor
+                    };
+                    db.Doktor_opste_prakse_Pregled1.Add(Doktor_pregled);
+                    db.SaveChanges();
+                }
+
+                pregled.Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id = Doktor_pregled.DoktorDoktor_Id;
                 db.Pregleds.Add(pregled);
                 db.SaveChanges();
             }
@@ -701,7 +804,7 @@ namespace ClinicApp.Core
             }
         }
         // U = UPDATE
-        public void UpdateReview(int pregledId, string opis, string vreme)
+        public void UpdateReview(int pregledId, string opis, DateTime termin)
         {
             Pregled pregled;
             // preuzimanje podataka trenutnog doktora
@@ -719,9 +822,9 @@ namespace ClinicApp.Core
                 haveChanges = true;
             }
 
-            if (!pregled.Vreme.Equals(vreme))
+            if (!pregled.Termin.Equals(termin))
             {
-                pregled.Vreme = vreme;
+                pregled.Termin = termin;
                 haveChanges = true;
             }
 
@@ -753,7 +856,7 @@ namespace ClinicApp.Core
                 db.SaveChanges();
             }
         }
-        
+
         #endregion
 
         #region CRUD REVIEW OUTCOME
@@ -783,12 +886,12 @@ namespace ClinicApp.Core
             {
                 return (from ishod in db.Ishod_Pregleda
                         from gerund in db.Doktor_op_pr_Pregled_Pacijent
-                        from doktor in db.Doktors
-                        from pacijent in db.Pacijents
-                        where ishod.Doktor_op_pr_Pregled_Pacijent.PacijentPacijent_Id == pacijent.Pacijent_Id &&
+                        from doktor in db.Korisniks
+                        from pacijent in db.Korisniks
+                        where ishod.Doktor_op_pr_Pregled_Pacijent.PacijentPacijent_Id == pacijent.Korisnik_Id &&
                               gerund.PacijentPacijent_Id == ishod.Doktor_op_pr_Pregled_Pacijent.PacijentPacijent_Id &&
-                              ishod.Doktor_op_pr_Pregled_Pacijent.Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id == doktor.Doktor_Id
-                        select new ExtendedOutcome() { Name = ishod.Naziv, Description = ishod.Opis, Doctor = doktor.Ime, Patient = pacijent.Ime, Ishod_Id = ishod.Ishod_Id, Outcome = ishod.Naziv}).ToList();
+                              ishod.Doktor_op_pr_Pregled_Pacijent.Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id == doktor.Korisnik_Id
+                        select new ExtendedOutcome() { Name = ishod.Naziv, Description = ishod.Opis, Doctor = doktor.Ime, Patient = pacijent.Ime, Ishod_Id = ishod.Ishod_Id, Outcome = ishod.Naziv }).ToList();
             }
         }
         // U = UPDATE
@@ -821,7 +924,7 @@ namespace ClinicApp.Core
                 ishod.Doktor_pregled_Pacijent_PacijentPacijent_Id = pacijentId;
                 haveChanges = true;
             }
-           
+
             // cuvanje izmena
             if (haveChanges)
             {
@@ -844,7 +947,7 @@ namespace ClinicApp.Core
                 db.SaveChanges();
             }
         }
-        
+
         #endregion
 
         #region CRUD THERAPY

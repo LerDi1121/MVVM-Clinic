@@ -1,5 +1,5 @@
 ﻿using ClinicApp.Core;
-using ClinicApp.Model;
+//using ClinicApp.Model;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Windows.Documents;
 namespace ClinicApp.ViewModel
 {
     public class ReviewOutcomeViewModel : ValidationBase
-    {
+    {/*
         #region Fields and properties
         private string name;
         private string description;
@@ -262,6 +262,10 @@ namespace ClinicApp.ViewModel
             MessageBox.Show("Delete data!");
             Ishodi.RemoveAt(CurrentIndex);
         }
-        #endregion
+        #endregion*/
+        protected override void ValidateSelf()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

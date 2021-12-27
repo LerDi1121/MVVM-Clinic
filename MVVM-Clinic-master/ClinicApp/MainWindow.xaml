@@ -13,22 +13,7 @@
             <ImageBrush ImageSource="/Images/Background.jpg" Opacity="0.7"/>
         </Grid.Background>
         <!--Naslov-->
-        <TextBlock Text="Ambulanta Omarska" FontSize="30" TextAlignment="Left" Height="40" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#006666" FontWeight="SemiBold" Margin="335,0,256,0"/>
-        <!--Tabovi-->
-        <DockPanel Width="950" Background="Transparent" HorizontalAlignment="Left" Margin="0,40,0,0">
-            <Menu DockPanel.Dock="Left" Width="925" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
-                <TabControl SelectedIndex="{Binding SelectedTab}" Background="Transparent" BorderBrush="Transparent" Height="448" Width="925">
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="115" Content="{Binding AllDepartmentTab}" Header="Departments"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="79" Content="{Binding AllDoctorTab}" Header="Doctors"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="100" Content="{Binding AllTAgreementTab}" Header="Agreements"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="79" Content="{Binding AllPatientTab}" Header="Patients"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="140" Content="{Binding AllMedicalRecordTab}" Header="Medical records"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="79" Content="{Binding AllReviewTab}" Header="Reviews"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="142" Content="{Binding AllReviewOutcomeTab}" Header="Review outcomes"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="90" Content="{Binding AllDiagnosisTab}" Header="Diagnosis"/>
-                    <TabItem Background="Transparent" FontFamily="Segoe UI" FontSize="18" Foreground="#009999" BorderBrush="White" Height="30" Width="90" Content="{Binding AllTherapyTab}" Header="Therapies"/>
-                </TabControl>
-            </Menu>
-        </DockPanel>
+        <TextBlock Text="Ambulanta Omarska" FontSize="30" TextAlignment="Left" Height="40" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Foreground="#006666" FontWeight="SemiBold" Margin="331,0,256,0"/>
+        <ContentControl Content="{Binding CurrentView, Mode=OneWay}" />
     </Grid>
 </Window>
