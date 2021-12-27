@@ -15,11 +15,8 @@ namespace ClinicApp.Model
     public partial class Pacijent : Korisnik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        
-        public Pacijent() { }
         public Pacijent(string ime, string prezime, string korisnickoIme, string lozinka, string email, string kontakt, string ulica, string broj, string grad, string uloga) : base(ime, prezime, kontakt, email, ulica, grad, broj, korisnickoIme, lozinka, uloga)
         {
-            this.Doktor_op_pr_Pregled_Pacijent = new HashSet<Doktor_op_pr_Pregled_Pacijent>();
             this.Pacijent_Departman = new HashSet<Pacijent_Departman>();
         }
     
@@ -29,5 +26,6 @@ namespace ClinicApp.Model
         public virtual ICollection<Doktor_op_pr_Pregled_Pacijent> Doktor_op_pr_Pregled_Pacijent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pacijent_Departman> Pacijent_Departman { get; set; }
+        public virtual Doktor_op_pr_Pregled_Pacijent Doktor_op_pr_Pregled_Pacijent { get; set; }
     }
 }

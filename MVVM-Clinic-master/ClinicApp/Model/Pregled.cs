@@ -11,13 +11,10 @@ namespace ClinicApp.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     public partial class Pregled
     {
         public Pregled()
         {
-
         }
         public Pregled(string opis, DateTime termin, int doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id, bool obavljen)
         {
@@ -30,10 +27,9 @@ namespace ClinicApp.Model
         public int Pregled_Id { get; set; }
         public string Opis { get; set; }
         public System.DateTime Termin { get; set; }
-
-        [ForeignKey("Doktor_opste_prakse_Pregled1")]
         public int Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id { get; set; }
         public bool Obavljen { get; set; }
     
+        public virtual Doktor_op_pr_Pregled_Pacijent Doktor_op_pr_Pregled_Pacijent { get; set; }
     }
 }

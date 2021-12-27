@@ -20,14 +20,13 @@ namespace ClinicApp.Model
             Opis = opis;
             Doktor_pregled_Pacijent_PacijentPacijent_Id = doktor_pregled_Pacijent_PacijentPacijent_Id;
         }
-
         public int Ishod_Id { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
         public int Doktor_pregled_Pacijent_PacijentPacijent_Id { get; set; }
     
-        public virtual Doktor_op_pr_Pregled_Pacijent Doktor_op_pr_Pregled_Pacijent { get; set; }
         public virtual Ishod_Pregleda_Dijagnoza Ishod_Pregleda_Dijagnoza { get; set; }
         public virtual Ishod_Pregleda_Uput Ishod_Pregleda_Uput { get; set; }
+        public virtual Doktor_op_pr_Pregled_Pacijent Doktor_op_pr_Pregled_Pacijent { get; set; }
     }
 }

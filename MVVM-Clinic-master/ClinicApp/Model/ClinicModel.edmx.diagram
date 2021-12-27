@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="ClinicDBModel.Departman" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Dijagnoza_Specijaliste" Width="1.5" PointX="12.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Doktor_Departman" Width="1.5" PointX="4.625" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Width="3.125" PointX="4.125" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Width="3.125" PointX="1.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Doktor_specijalista_Uput" Width="1.5" PointX="10.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Doktor" Width="1.5" PointX="6.875" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Ishod_Pregleda" Width="1.5" PointX="8.375" PointY="8.125" IsExpanded="true" />
@@ -18,26 +18,29 @@
         <EntityTypeShape EntityType="ClinicDBModel.Klinika" Width="1.5" PointX="4.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Pacijent_Departman" Width="1.5" PointX="9.625" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Pacijent" Width="1.5" PointX="13.875" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Pregled" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Pregled" Width="3.625" PointX="5.25" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Terapija_Specijaliste" Width="1.5" PointX="15" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Terapija" Width="1.5" PointX="12.75" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicDBModel.Ugovor" Width="1.5" PointX="2.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicDBModel.Zdravstveni_Karton" Width="1.5" PointX="14.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicDBModel.Zdravstveni_Karton" Width="4" PointX="14.25" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="ClinicDBModel.FK_Klinika_DepartmanDepartman" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.FK_Doktor_specijalista_UputDijagnoza_Specijaliste" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.FK_Doktor_DepartmanKlinika_Departman" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.FK_Doktor_DepartmanUgovor" ManuallyRouted="false" />
-        <AssociationConnector Association="ClinicDBModel.FK_Doktor_pregled_PacijentIshod_Pregleda" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.FK_Doktor_specijalista_UputUput" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.FK_Dijagnoza_inherits_Ishod_Pregleda" ManuallyRouted="true" >
-          <ConnectorPoint PointX="9.125" PointY="10.489889322916666" />
-          <ConnectorPoint PointX="9.125" PointY="12.643992513020834" />
-          <ConnectorPoint PointX="10.375" PointY="12.643992513020834" />
+          <ConnectorPoint PointX="9.40625" PointY="10.489889322916666" />
+          <ConnectorPoint PointX="9.40625" PointY="13.511536458333334" />
+          <ConnectorPoint PointX="10.375" PointY="13.511536458333334" />
         </AssociationConnector>
         <AssociationConnector Association="ClinicDBModel.FK_Uput_inherits_Ishod_Pregleda" ManuallyRouted="true" >
-          <ConnectorPoint PointX="9.4453155" PointY="10.489889322916666" />
-          <ConnectorPoint PointX="9.4453155" PointY="11.65625" />
-          <ConnectorPoint PointX="14.625" PointY="11.65625" />
+          <ConnectorPoint PointX="9.8749999999999982" PointY="10.489889322916666" />
+          <ConnectorPoint PointX="10.25" PointY="10.864889322916667" />
+          <ConnectorPoint PointX="10.25" PointY="11" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="11" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="11" />
+          <ConnectorPoint PointX="14.027002876201925" PointY="11" />
+          <ConnectorPoint PointX="14.652002876201925" PointY="11.625" />
         </AssociationConnector>
         <AssociationConnector Association="ClinicDBModel.FK_DijagnozaTerapija" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.FK_Klinika_DepartmanPacijent_Departman" ManuallyRouted="false" />
@@ -45,15 +48,15 @@
         <AssociationConnector Association="ClinicDBModel.FK_Zdravstveni_KartonPacijent_Departman" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicDBModel.Dijagnoza_SpecijalisteTerapija_Specijaliste" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ClinicDBModel.Korisnik" Width="1.5" PointX="10.25" PointY="0.5" />
-        <AssociationConnector Association="ClinicDBModel.PacijentDoktor_op_pr_Pregled_Pacijent" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="ClinicDBModel.DoktorDoktor_specijalista_Uput" />
         <AssociationConnector Association="ClinicDBModel.PacijentPacijent_Departman" />
         <InheritanceConnector EntityType="ClinicDBModel.Doktor" />
         <InheritanceConnector EntityType="ClinicDBModel.Pacijent" />
         <AssociationConnector Association="ClinicDBModel.DoktorDoktor_Departman" />
-        <AssociationConnector Association="ClinicDBModel.DoktorDoktor_op_pr_Pregled_Pacijent" />
-        <AssociationConnector Association="ClinicDBModel.PregledDoktor_op_pr_Pregled_Pacijent" />
+        <AssociationConnector Association="ClinicDBModel.Doktor_op_pr_Pregled_PacijentDoktor" />
+        <AssociationConnector Association="ClinicDBModel.Doktor_op_pr_Pregled_PacijentPacijent" />
+        <AssociationConnector Association="ClinicDBModel.Doktor_op_pr_Pregled_PacijentIshod_Pregleda" />
+        <AssociationConnector Association="ClinicDBModel.Doktor_op_pr_Pregled_PacijentPregled" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
