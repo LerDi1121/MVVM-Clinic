@@ -26,6 +26,5 @@ namespace ClinicApp.Model
         public virtual ICollection<Doktor_op_pr_Pregled_Pacijent> Doktor_op_pr_Pregled_Pacijent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pacijent_Departman> Pacijent_Departman { get; set; }
-        public virtual Doktor_op_pr_Pregled_Pacijent Doktor_op_pr_Pregled_Pacijent { get; set; }
     }
 }
