@@ -185,9 +185,6 @@
     <Compile Include="Model\Doktor_Departman.cs">
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Doktor_opste_prakse_Pregled1.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Doktor_op_pr_Pregled_Pacijent.cs">
       <DependentUpon>ClinicModel.tt</DependentUpon>
     </Compile>

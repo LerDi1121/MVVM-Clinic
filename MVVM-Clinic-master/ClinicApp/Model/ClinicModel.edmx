@@ -10,7 +10,6 @@
     <EntitySet Name="Dijagnoza_Specijaliste" EntityType="ClinicDBModel.Store.Dijagnoza_Specijaliste" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doktor_Departman" EntityType="ClinicDBModel.Store.Doktor_Departman" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doktor_op_pr_Pregled_Pacijent" EntityType="ClinicDBModel.Store.Doktor_op_pr_Pregled_Pacijent" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doktor_opste_prakse_Pregled1" EntityType="ClinicDBModel.Store.Doktor_opste_prakse_Pregled1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Doktor_specijalista_Uput" EntityType="ClinicDBModel.Store.Doktor_specijalista_Uput" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Korisniks" EntityType="ClinicDBModel.Store.Korisniks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Korisniks_Doktor" EntityType="ClinicDBModel.Store.Korisniks_Doktor" store:Type="Tables" Schema="dbo" />
@@ -43,17 +42,9 @@
       <End Role="Ugovors" EntitySet="Ugovors" />
       <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
     </AssociationSet>
-    <AssociationSet Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" Association="ClinicDBModel.Store.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-      <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
-      <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-    </AssociationSet>
     <AssociationSet Name="FK_Doktor_pregled_PacijentIshod_Pregleda" Association="ClinicDBModel.Store.FK_Doktor_pregled_PacijentIshod_Pregleda">
       <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
       <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PregledDoktor_opste_prakse_Pregled" Association="ClinicDBModel.Store.FK_PregledDoktor_opste_prakse_Pregled">
-      <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
-      <End Role="Pregleds" EntitySet="Pregleds" />
     </AssociationSet>
     <AssociationSet Name="FK_Doktor_specijalista_UputUput" Association="ClinicDBModel.Store.FK_Doktor_specijalista_UputUput">
       <End Role="Ishod_Pregleda_Uput" EntitySet="Ishod_Pregleda_Uput" />
@@ -94,10 +85,6 @@
     <AssociationSet Name="PacijentDoktor_op_pr_Pregled_Pacijent" Association="ClinicDBModel.Store.PacijentDoktor_op_pr_Pregled_Pacijent">
       <End Role="Pacijent" EntitySet="Korisniks_Pacijent" />
       <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-    </AssociationSet>
-    <AssociationSet Name="DoktorDoktor_opste_prakse_Pregled1" Association="ClinicDBModel.Store.DoktorDoktor_opste_prakse_Pregled1">
-      <End Role="Doktor" EntitySet="Korisniks_Doktor" />
-      <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
     </AssociationSet>
     <AssociationSet Name="DoktorDoktor_specijalista_Uput" Association="ClinicDBModel.Store.DoktorDoktor_specijalista_Uput">
       <End Role="Doktor" EntitySet="Korisniks_Doktor" />
@@ -157,14 +144,6 @@
     <Property Name="PacijentPacijent_Id1" Type="int" Nullable="false" />
     <Property Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
     <Property Name="Pacijent_Korisnik_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doktor_opste_prakse_Pregled1">
-    <Key>
-      <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-    </Key>
-    <Property Name="Doktor_opste_prakseDoktor_Id" Type="int" Nullable="false" />
-    <Property Name="DoktorDoktor_Id" Type="int" Nullable="false" />
-    <Property Name="Doktor_Korisnik_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Doktor_specijalista_Uput">
     <Key>
@@ -374,18 +353,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-    <End Role="Doktor_opste_prakse_Pregled1" Type="ClinicDBModel.Store.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
-    <End Role="Doktor_op_pr_Pregled_Pacijent" Type="ClinicDBModel.Store.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor_opste_prakse_Pregled1">
-        <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-      </Principal>
-      <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
-        <PropertyRef Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Doktor_pregled_PacijentIshod_Pregleda">
     <End Role="Doktor_op_pr_Pregled_Pacijent" Type="ClinicDBModel.Store.Doktor_op_pr_Pregled_Pacijent" Multiplicity="1" />
     <End Role="Ishod_Pregleda" Type="ClinicDBModel.Store.Ishod_Pregleda" Multiplicity="*" />
@@ -395,18 +362,6 @@
       </Principal>
       <Dependent Role="Ishod_Pregleda">
         <PropertyRef Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PregledDoktor_opste_prakse_Pregled">
-    <End Role="Doktor_opste_prakse_Pregled1" Type="ClinicDBModel.Store.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
-    <End Role="Pregleds" Type="ClinicDBModel.Store.Pregleds" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor_opste_prakse_Pregled1">
-        <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-      </Principal>
-      <Dependent Role="Pregleds">
-        <PropertyRef Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -513,18 +468,6 @@
       </Principal>
       <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
         <PropertyRef Name="Pacijent_Korisnik_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="DoktorDoktor_opste_prakse_Pregled1">
-    <End Role="Doktor" Type="ClinicDBModel.Store.Korisniks_Doktor" Multiplicity="1" />
-    <End Role="Doktor_opste_prakse_Pregled1" Type="ClinicDBModel.Store.Doktor_opste_prakse_Pregled1" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor">
-        <PropertyRef Name="Korisnik_Id" />
-      </Principal>
-      <Dependent Role="Doktor_opste_prakse_Pregled1">
-        <PropertyRef Name="Doktor_Korisnik_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -659,21 +602,11 @@
             <PropertyRef Name="PacijentPacijent_Id" />
           </Key>
           <Property Name="PacijentPacijent_Id" Type="Int32" Nullable="false" />
-          <Property Name="PacijentPacijent_Id1" Type="Int32" Nullable="false" />
           <Property Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Doktor_opste_prakse_Pregled1" />
           <NavigationProperty Name="Ishod_Pregleda" Relationship="Self.FK_Doktor_pregled_PacijentIshod_Pregleda" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Ishod_Pregleda" />
           <NavigationProperty Name="Pacijent" Relationship="ClinicDBModel.PacijentDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Pacijent" />
-        </EntityType>
-        <EntityType Name="Doktor_opste_prakse_Pregled1">
-          <Key>
-            <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-          </Key>
-          <Property Name="Doktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
-          <Property Name="DoktorDoktor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_opste_prakse_Pregled1" ToRole="Doktor_op_pr_Pregled_Pacijent" />
-          <NavigationProperty Name="Pregleds" Relationship="Self.FK_PregledDoktor_opste_prakse_Pregled" FromRole="Doktor_opste_prakse_Pregled1" ToRole="Pregleds" />
-          <NavigationProperty Name="Doktor" Relationship="ClinicDBModel.DoktorDoktor_opste_prakse_Pregled1" FromRole="Doktor_opste_prakse_Pregled1" ToRole="Doktor" />
+          <NavigationProperty Name="Doktor" Relationship="ClinicDBModel.DoktorDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Doktor" />
+          <NavigationProperty Name="Pregled" Relationship="ClinicDBModel.PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor_op_pr_Pregled_Pacijent" ToRole="Pregled" />
         </EntityType>
         <EntityType Name="Doktor_specijalista_Uput">
           <Key>
@@ -693,9 +626,9 @@
           <Property Name="Specijalizacija" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Klinika_Id" Type="Int32" Nullable="false" />
           <Property Name="Departman_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="ClinicDBModel.DoktorDoktor_opste_prakse_Pregled1" FromRole="Doktor" ToRole="Doktor_opste_prakse_Pregled1" />
           <NavigationProperty Name="Doktor_specijalista_Uput" Relationship="ClinicDBModel.DoktorDoktor_specijalista_Uput" FromRole="Doktor" ToRole="Doktor_specijalista_Uput" />
           <NavigationProperty Name="Doktor_Departman" Relationship="ClinicDBModel.DoktorDoktor_Departman" FromRole="Doktor" ToRole="Doktor_Departman" />
+          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="ClinicDBModel.DoktorDoktor_op_pr_Pregled_Pacijent" FromRole="Doktor" ToRole="Doktor_op_pr_Pregled_Pacijent" />
         </EntityType>
         <EntityType Name="Ishod_Pregleda">
           <Key>
@@ -779,8 +712,8 @@
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Termin" Nullable="false" Type="DateTime" />
           <Property Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Doktor_opste_prakse_Pregled1" Relationship="Self.FK_PregledDoktor_opste_prakse_Pregled" FromRole="Pregleds" ToRole="Doktor_opste_prakse_Pregled1" />
           <Property Name="Obavljen" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Doktor_op_pr_Pregled_Pacijent" Relationship="ClinicDBModel.PregledDoktor_op_pr_Pregled_Pacijent" FromRole="Pregled" ToRole="Doktor_op_pr_Pregled_Pacijent" />
         </EntityType>
         <EntityType Name="Terapija_Specijaliste">
           <Key>
@@ -877,18 +810,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
-          <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doktor_opste_prakse_Pregled1">
-              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-            </Principal>
-            <Dependent Role="Doktor_op_pr_Pregled_Pacijent">
-              <PropertyRef Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Doktor_pregled_PacijentIshod_Pregleda">
           <End Role="Doktor_op_pr_Pregled_Pacijent" Type="Self.Doktor_op_pr_Pregled_Pacijent" Multiplicity="1" />
           <End Role="Ishod_Pregleda" Type="Self.Ishod_Pregleda" Multiplicity="*" />
@@ -898,18 +819,6 @@
             </Principal>
             <Dependent Role="Ishod_Pregleda">
               <PropertyRef Name="Doktor_pregled_Pacijent_PacijentPacijent_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PregledDoktor_opste_prakse_Pregled">
-          <End Role="Doktor_opste_prakse_Pregled1" Type="Self.Doktor_opste_prakse_Pregled1" Multiplicity="1" />
-          <End Role="Pregleds" Type="Self.Pregled" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doktor_opste_prakse_Pregled1">
-              <PropertyRef Name="Doktor_opste_prakseDoktor_Id" />
-            </Principal>
-            <Dependent Role="Pregleds">
-              <PropertyRef Name="Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1016,7 +925,6 @@
           <EntitySet Name="Dijagnoza_Specijaliste" EntityType="Self.Dijagnoza_Specijaliste" />
           <EntitySet Name="Doktor_Departman" EntityType="Self.Doktor_Departman" />
           <EntitySet Name="Doktor_op_pr_Pregled_Pacijent" EntityType="Self.Doktor_op_pr_Pregled_Pacijent" />
-          <EntitySet Name="Doktor_opste_prakse_Pregled1" EntityType="Self.Doktor_opste_prakse_Pregled1" />
           <EntitySet Name="Doktor_specijalista_Uput" EntityType="Self.Doktor_specijalista_Uput" />
           <EntitySet Name="Ishod_Pregleda" EntityType="Self.Ishod_Pregleda" />
           <EntitySet Name="Ishod_Pregleda_Dijagnoza" EntityType="Self.Ishod_Pregleda_Dijagnoza" />
@@ -1045,17 +953,9 @@
             <End Role="Ugovors" EntitySet="Ugovors" />
             <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
           </AssociationSet>
-          <AssociationSet Name="FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent" Association="Self.FK_Doktor_opste_prakse_PregledDoktor_op_pr_Pregled_Pacijent">
-            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
-            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
-          </AssociationSet>
           <AssociationSet Name="FK_Doktor_pregled_PacijentIshod_Pregleda" Association="Self.FK_Doktor_pregled_PacijentIshod_Pregleda">
             <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
             <End Role="Ishod_Pregleda" EntitySet="Ishod_Pregleda" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PregledDoktor_opste_prakse_Pregled" Association="Self.FK_PregledDoktor_opste_prakse_Pregled">
-            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
-            <End Role="Pregleds" EntitySet="Pregleds" />
           </AssociationSet>
           <AssociationSet Name="FK_Doktor_specijalista_UputUput" Association="Self.FK_Doktor_specijalista_UputUput">
             <End Role="Ishod_Pregleda_Uput" EntitySet="Ishod_Pregleda_Uput" />
@@ -1099,10 +999,6 @@
             <End Role="Pacijent" EntitySet="Korisniks" />
             <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
           </AssociationSet>
-          <AssociationSet Name="DoktorDoktor_opste_prakse_Pregled1" Association="ClinicDBModel.DoktorDoktor_opste_prakse_Pregled1">
-            <End Role="Doktor" EntitySet="Korisniks" />
-            <End Role="Doktor_opste_prakse_Pregled1" EntitySet="Doktor_opste_prakse_Pregled1" />
-          </AssociationSet>
           <AssociationSet Name="DoktorDoktor_specijalista_Uput" Association="ClinicDBModel.DoktorDoktor_specijalista_Uput">
             <End Role="Doktor" EntitySet="Korisniks" />
             <End Role="Doktor_specijalista_Uput" EntitySet="Doktor_specijalista_Uput" />
@@ -1115,6 +1011,14 @@
           <AssociationSet Name="DoktorDoktor_Departman" Association="ClinicDBModel.DoktorDoktor_Departman">
             <End Role="Doktor" EntitySet="Korisniks" />
             <End Role="Doktor_Departman" EntitySet="Doktor_Departman" />
+          </AssociationSet>
+          <AssociationSet Name="DoktorDoktor_op_pr_Pregled_Pacijent" Association="ClinicDBModel.DoktorDoktor_op_pr_Pregled_Pacijent">
+            <End Role="Doktor" EntitySet="Korisniks" />
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
+          </AssociationSet>
+          <AssociationSet Name="PregledDoktor_op_pr_Pregled_Pacijent" Association="ClinicDBModel.PregledDoktor_op_pr_Pregled_Pacijent">
+            <End Role="Pregled" EntitySet="Pregleds" />
+            <End Role="Doktor_op_pr_Pregled_Pacijent" EntitySet="Doktor_op_pr_Pregled_Pacijent" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GetAllDepartments_Result">
@@ -1143,10 +1047,6 @@
           <End Type="ClinicDBModel.Pacijent" Role="Pacijent" Multiplicity="1" />
           <End Type="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Role="Doktor_op_pr_Pregled_Pacijent" Multiplicity="*" />
         </Association>
-        <Association Name="DoktorDoktor_opste_prakse_Pregled1">
-          <End Type="ClinicDBModel.Doktor" Role="Doktor" Multiplicity="1" />
-          <End Type="ClinicDBModel.Doktor_opste_prakse_Pregled1" Role="Doktor_opste_prakse_Pregled1" Multiplicity="*" />
-        </Association>
         <Association Name="DoktorDoktor_specijalista_Uput">
           <End Type="ClinicDBModel.Doktor" Role="Doktor" Multiplicity="1" />
           <End Type="ClinicDBModel.Doktor_specijalista_Uput" Role="Doktor_specijalista_Uput" Multiplicity="*" />
@@ -1158,6 +1058,14 @@
         <Association Name="DoktorDoktor_Departman">
           <End Type="ClinicDBModel.Doktor" Role="Doktor" Multiplicity="1" />
           <End Type="ClinicDBModel.Doktor_Departman" Role="Doktor_Departman" Multiplicity="*" />
+        </Association>
+        <Association Name="DoktorDoktor_op_pr_Pregled_Pacijent">
+          <End Type="ClinicDBModel.Doktor" Role="Doktor" Multiplicity="*" />
+          <End Type="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Role="Doktor_op_pr_Pregled_Pacijent" Multiplicity="1" />
+        </Association>
+        <Association Name="PregledDoktor_op_pr_Pregled_Pacijent">
+          <End Type="ClinicDBModel.Pregled" Role="Pregled" Multiplicity="*" />
+          <End Type="ClinicDBModel.Doktor_op_pr_Pregled_Pacijent" Role="Doktor_op_pr_Pregled_Pacijent" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1198,16 +1106,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(ClinicDBModel.Doktor_op_pr_Pregled_Pacijent)">
         <MappingFragment StoreEntitySet="Doktor_op_pr_Pregled_Pacijent">
           <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
-          <ScalarProperty Name="PacijentPacijent_Id1" ColumnName="PacijentPacijent_Id1" />
           <ScalarProperty Name="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Doktor_opste_prakse_Pregled1">
-      <EntityTypeMapping TypeName="IsTypeOf(ClinicDBModel.Doktor_opste_prakse_Pregled1)">
-        <MappingFragment StoreEntitySet="Doktor_opste_prakse_Pregled1">
-          <ScalarProperty Name="Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakseDoktor_Id" />
-          <ScalarProperty Name="DoktorDoktor_Id" ColumnName="DoktorDoktor_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1383,14 +1282,6 @@
         <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="DoktorDoktor_opste_prakse_Pregled1" TypeName="ClinicDBModel.DoktorDoktor_opste_prakse_Pregled1" StoreEntitySet="Doktor_opste_prakse_Pregled1">
-      <EndProperty Name="Doktor">
-        <ScalarProperty Name="Korisnik_Id" ColumnName="Doktor_Korisnik_Id" />
-      </EndProperty>
-      <EndProperty Name="Doktor_opste_prakse_Pregled1">
-        <ScalarProperty Name="Doktor_opste_prakseDoktor_Id" ColumnName="Doktor_opste_prakseDoktor_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="DoktorDoktor_specijalista_Uput" TypeName="ClinicDBModel.DoktorDoktor_specijalista_Uput" StoreEntitySet="Doktor_specijalista_Uput">
       <EndProperty Name="Doktor">
         <ScalarProperty Name="Korisnik_Id" ColumnName="Doktor_Korisnik_Id" />
@@ -1419,6 +1310,14 @@
         <ScalarProperty Name="Klinika_DepartmanDepartmanDepartman_Id" ColumnName="Klinika_DepartmanDepartmanDepartman_Id" />
       </EndProperty>
     </AssociationSetMapping>
+          <AssociationSetMapping Name="DoktorDoktor_op_pr_Pregled_Pacijent" TypeName="ClinicDBModel.DoktorDoktor_op_pr_Pregled_Pacijent" StoreEntitySet="Doktor_op_pr_Pregled_Pacijent">
+            <EndProperty Name="Doktor">
+              <ScalarProperty Name="Korisnik_Id" ColumnName="Pacijent_Korisnik_Id" />
+            </EndProperty>
+            <EndProperty Name="Doktor_op_pr_Pregled_Pacijent">
+              <ScalarProperty Name="PacijentPacijent_Id" ColumnName="PacijentPacijent_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

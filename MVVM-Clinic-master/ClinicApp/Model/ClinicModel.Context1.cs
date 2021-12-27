@@ -24,15 +24,13 @@ namespace ClinicApp.Model
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-          //  modelBuilder.Conventions.Remove<Pregled>();
-           throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Departman> Departmen { get; set; }
         public virtual DbSet<Dijagnoza_Specijaliste> Dijagnoza_Specijaliste { get; set; }
         public virtual DbSet<Doktor_Departman> Doktor_Departman { get; set; }
         public virtual DbSet<Doktor_op_pr_Pregled_Pacijent> Doktor_op_pr_Pregled_Pacijent { get; set; }
-        public virtual DbSet<Doktor_opste_prakse_Pregled1> Doktor_opste_prakse_Pregled1 { get; set; }
         public virtual DbSet<Doktor_specijalista_Uput> Doktor_specijalista_Uput { get; set; }
         public virtual DbSet<Ishod_Pregleda> Ishod_Pregleda { get; set; }
         public virtual DbSet<Ishod_Pregleda_Dijagnoza> Ishod_Pregleda_Dijagnoza { get; set; }

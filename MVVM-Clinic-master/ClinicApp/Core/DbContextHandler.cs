@@ -771,26 +771,13 @@ namespace ClinicApp.Core
         {
             Pregled pregled = new Pregled(opis, termin, doktorId, false);
 
-            Doktor_opste_prakse_Pregled1 Doktor_pregled = null;
+           
             Doktor doktor = GetAllDoctors().Where(x => x.Korisnik_Id == doktorId).FirstOrDefault() as Doktor;
             using (var db = new ClinicDBEntities())
             {
-                Doktor_pregled = db.Doktor_opste_prakse_Pregled1.Where(Dp => Dp.DoktorDoktor_Id == doktorId).FirstOrDefault();
+                
 
-                if (Doktor_pregled == null)
-                {
-                    Doktor_pregled = new Doktor_opste_prakse_Pregled1()
-                    {
-                       // DoktorDoktor_Id = doktorId,
-                       // Doktor_opste_prakseDoktor_Id = doktorId,
-                        //Doktor= doktor
-                    };
-                    db.Doktor_opste_prakse_Pregled1.Add(Doktor_pregled);
-                    db.SaveChanges();
-                }
-
-                pregled.Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id = Doktor_pregled.DoktorDoktor_Id;
-                db.Pregleds.Add(pregled);
+                 db.Pregleds.Add(pregled);
                 db.SaveChanges();
             }
         }
