@@ -11,6 +11,7 @@ namespace ClinicApp.Model
 {
     using System;
     using System.Collections.Generic;
+    
     public partial class Pregled
     {
         public Pregled()
