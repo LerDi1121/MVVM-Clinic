@@ -24,7 +24,6 @@ namespace ClinicApp.Model
         public int PacijentPacijent_Id1 { get; set; }
         public int Doktor_opste_prakse_Pregled_Doktor_opste_prakseDoktor_Id { get; set; }
     
-        public virtual Doktor_opste_prakse_Pregled1 Doktor_opste_prakse_Pregled1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ishod_Pregleda> Ishod_Pregleda { get; set; }
         public virtual Pacijent Pacijent { get; set; }
