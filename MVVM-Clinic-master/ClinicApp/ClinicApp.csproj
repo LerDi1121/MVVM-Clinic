@@ -173,66 +173,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClinicModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Departman.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Dijagnoza_Specijaliste.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Doktor.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Doktor_Departman.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Doktor_op_pr_Pregled_Pacijent.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Doktor_specijalista_Uput.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\GetAllDepartments_Result.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Ishod_Pregleda.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Ishod_Pregleda_Dijagnoza.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Ishod_Pregleda_Uput.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Klinika.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Klinika_Departman.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Korisnik.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pacijent.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pacijent_Departman.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pregled.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Terapija.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Terapija_Specijaliste.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Ugovor.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Zdravstveni_Karton.cs">
-      <DependentUpon>ClinicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AdditionalReviewViewModel.cs" />
     <Compile Include="ViewModel\AgreementViewModel.cs" />
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
