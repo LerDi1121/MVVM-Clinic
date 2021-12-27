@@ -34,7 +34,6 @@ namespace ClinicApp.Model
             Klinika_Id = klinika_Id;
             Departman_Id = departman_Id;
             Uloga = uloga;
-            this.Doktor_opste_prakse_Pregled1 = new HashSet<Doktor_opste_prakse_Pregled1>();
             this.Doktor_specijalista_Uput = new HashSet<Doktor_specijalista_Uput>();
             this.Doktor_Departman = new HashSet<Doktor_Departman>();
         }
@@ -45,8 +44,6 @@ namespace ClinicApp.Model
         public int Departman_Id { get; set; }
         public string Uloga { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Doktor_opste_prakse_Pregled1> Doktor_opste_prakse_Pregled1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Doktor_specijalista_Uput> Doktor_specijalista_Uput { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

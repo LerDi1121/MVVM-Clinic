@@ -35,6 +35,5 @@ namespace ClinicApp.Model
         public int Doktor_opste_prakse_PregledDoktor_opste_prakseDoktor_Id { get; set; }
         public bool Obavljen { get; set; }
     
-        public virtual Doktor_opste_prakse_Pregled1 Doktor_opste_prakse_Pregled1 { get; set; }
     }
 }
